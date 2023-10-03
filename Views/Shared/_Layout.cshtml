@@ -13,65 +13,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
 </head>
 <body>
-    @{
-        bool isFirstRun = string.IsNullOrEmpty(Context.Request.Path.Value) || Context.Request.Path.Value.Equals("/", StringComparison.OrdinalIgnoreCase);
-    }
+    
 
-    @if (!Context.Request.Path.StartsWithSegments("/home/index") && (!isFirstRun)){
-          <div class="wrapper">
-            <div class="sidebar">
-                <div class="sidebar-header">
-                    <h4 style="padding-top: 10px;">SIMS</h4>
-                </div>
-                
-                @* <img class="logo" src="~/lib/logoguidance.jpg" alt="Logo"/> *@
-                <ul class="menu">
-                    <li>
-                        <a href="dashboard">
-                            <i style = "font-size:20px" class="fas fa-home"></i>
-                            <span>Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="violation">
-                            <i style = "font-size:20px;" class="fas fa-book"></i> 
-                            <span>Violation</span>
-                        </a>
-                    </li> 
-                    <li>
-                        <a href="RegisterStudent">
-                            <i style = "font-size:20px;" class="fa-solid fa-user-graduate"></i> 
-                            <span>Register Student</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="StudentList">
-                            <i style = "font-size:20px;" class="fas fa-user"></i> 
-                            <span>Student List</span>
-                        </a>
-                    <li>
-                        <a href="reports">
-                            <i style = "font-size:20px;" class="fas fa-chart-bar"></i> 
-                            <span>Reports</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="index">
-                            <i style = "font-size:20px;" class="fas fa-sign-out-alt"></i>
-                            <span>Logout</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
 
-             <div id="content">
-                   @RenderBody()
-            </div>
-        </div>     
 
-}
-
-<div style="" class="container-fluid">
+<div class="container-fluid">
     @RenderBody()
 </div>
 

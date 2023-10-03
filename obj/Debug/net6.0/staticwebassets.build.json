@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RFdZ+MuHyRuKUSz7sVjg1FHhpP/2jDOaieodQ+EFUuc=",
+  "Hash": "ABc5k3jJLZhbaigY1F1PREpHgK6SsP19lOhiYCWWe+c=",
   "Source": "SIMSApp",
   "BasePath": "_content/SIMSApp",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SIMSApp.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\css\\loginstyle.css",
+      "SourceId": "SIMSApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\",
+      "BasePath": "_content/SIMSApp",
+      "RelativePath": "css/loginstyle.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\loginstyle.css"
     },
     {
       "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\css\\site.css",
@@ -1902,23 +1919,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\fontawesome\\all.min.js"
-    },
-    {
-      "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\lib\\Guidancelogo-removebg-preview.png",
-      "SourceId": "SIMSApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\",
-      "BasePath": "_content/SIMSApp",
-      "RelativePath": "lib/Guidancelogo-removebg-preview.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\Guidancelogo-removebg-preview.png"
     },
     {
       "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",

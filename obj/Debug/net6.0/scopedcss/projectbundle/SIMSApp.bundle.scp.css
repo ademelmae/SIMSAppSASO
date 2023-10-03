@@ -1,11 +1,11 @@
 /* _content/SIMSApp/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* 
 
-
-.wrapper[b-1wm7xk7i2u] {
+.wrapper {
   display: flex;
   align-items: stretch;
 }
-*[b-1wm7xk7i2u]{
+*{
   margin: 0;
   padding: 0;
   border: none;
@@ -15,10 +15,10 @@
   color: white;
 }
 
-.container[b-1wm7xk7i2u]{
+.container{
 
 }
-#content[b-1wm7xk7i2u] {
+#content {
   padding: 20px;   
   min-height: 100vh;
   background-color: #14141f;
@@ -26,7 +26,7 @@
   width: 100%;
 }
 
-.menu[b-1wm7xk7i2u]{
+.menu{
   height: 100%;
   position: relative;
   list-style: none;
@@ -36,7 +36,7 @@
   text-decoration: none;
 }
 
-.menu li[b-1wm7xk7i2u] {
+.menu li {
   padding: 1rem;
   margin: 8px 0;
   border-radius: 8px;
@@ -45,18 +45,18 @@
   color: white;
 }
 
-.menu li:hover[b-1wm7xk7i2u],
-.active[b-1wm7xk7i2u]{
+.menu li:hover,
+.active{
   background: #e0e0e058;
   text-decoration: none;
 color: white;
 }
 
-a[b-1wm7xk7i2u]{
+a{
   text-decoration: none;
 }
 
-.sidebar-header[b-1wm7xk7i2u]{
+.sidebar-header{
   background-color: #14141f;
   height: 60px;
   text-align: center;
@@ -64,7 +64,7 @@ a[b-1wm7xk7i2u]{
   
 }
 
-.logout[b-1wm7xk7i2u]{
+.logout{
   position: absolute;
   bottom: 0;
   left: 0;
@@ -81,4 +81,4 @@ a[b-1wm7xk7i2u]{
 
 
 
-
+ */
