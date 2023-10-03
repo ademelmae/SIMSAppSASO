@@ -1,0 +1,66 @@
+﻿@model Useraccount
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+@Html.Partial("Partials/AccountTab")
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    document.getElementById("loginForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get form data
+        var username = document.getElementById("loginUsername").value;
+        var password = document.getElementById("loginPassword").value;
+
+        // Create an object with the login credentials
+        var data = {
+            username: username,
+            password: password
+        };
+
+        // Send a POST request to the login API
+        fetch("/api/UserAPI/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (response.ok) {
+                // Login successful, extract the redirect URL
+                response.json().then(data => {
+                    var redirectUrl = data.redirectUrl;
+                    // Redirect to the received URL
+                    window.location.href = redirectUrl;
+                });
+            } else {
+                // Login failed, display error message
+                console.error("Login failed");
+            }
+        })
+
+        .catch(error => {
+            console.error("Error:", error);
+        });
+    }); 
+
+    document.getElementById("registrationForm").addEventListener("submit", function (e) {
+        const password = document.getElementById("registerPassword").value;
+        const confirmPassword = document.getElementById("registerRepeatPassword").value;
+
+        if (password !== confirmPassword) {
+            e.preventDefault();
+            alert("Passwords do not match.");
+        }
+    });
+</script>
+
+
+        
+    
+ 

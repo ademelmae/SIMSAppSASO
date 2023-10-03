@@ -1,0 +1,206 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Disciplinary Action</h5>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-caret-down icon"></i></span>
+            </div>
+            <select class="form-control" id="violationSelect">
+                <option value="">Select violation</option>
+            </select>
+        </div>
+
+        <!-- Select with Icon -->
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-caret-down icon"></i></span>
+            </div>
+            <select class="form-control" id="offenseLevelSelect">
+                <option value="1st">1st offense</option>
+                <option value="2nd">2nd Offense</option>
+                <option value="3rd">3rd Offense</option>
+                <option value="4th">4th Offense</option>
+                <option value="5th">5th Offense</option>
+                <option value="6th">6th Offense</option>
+                <option value="7th">7th Offense</option>
+                <option value="8th">8th Offense</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-list icon"></i></span>
+            </div>
+            <textarea class="form-control" id="disciplinaryActionInput" placeholder="Disciplinary Action" rows="4"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <form id="violationForm">
+            <div class="form-group">
+                <label for="studentName">Student Name</label>
+                <input type="text" class="form-control" id="studentName" name="studentName" required>
+            </div>
+            <div class="form-group">
+                <label for="violationType">Violation Type</label>
+                <input type="text" class="form-control" id="violationType" name="violationType" required>
+            </div>
+            <div class="form-group">
+                <label for="violationDate">Date of incident</label>
+                <input type="date" class="form-control" id="violationDate" name="violationDate" required>
+            </div>
+
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="isApproved" name="isApproved">
+                <label class="form-check-label" for="isApproved">Approved</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#violationForm").submit(function (e) {
+            e.preventDefault();
+
+            const data = {
+                StudentName: $("#studentName").val(),
+                ViolationType: $("#violationType").val(),
+                ViolationDate: $("#violationDate").val(),
+                IsApproved: $("#isApproved").prop("checked")
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/api/violations",
+                contentType: "application/json",
+                data: JSON.stringify(data),
+                success: function (response) {
+                    alert(response);
+                    // Optionally, reset the form
+                    $("#violationForm")[0].reset();
+                },
+                error: function (error) {
+                    alert("Error: " + error.responseText);
+                }
+            });
+        });
+    });
+</script>
+
+
+<style>
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+      background: #14141f;
+}
+
+input[type="text"], textarea{
+
+    color: white;
+}
+body {
+   background-color: #14141f;
+    font-family: 'Urbanist', sans-serif;
+}
+
+form {
+  width: 1000px;
+   max-height: 100%;
+   max-width: 100%;
+  margin: auto;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+h1 {
+  margin: 0 0 30px 0;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea.form-control,
+select.form-control  {
+   background: #1b1b27;
+  border: solid 1px rgb(105, 104, 104);
+  font-size: 16px;
+  height: 40px;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
+ 
+  color: white;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 30px;
+}
+
+select.form-control option{
+    background: #14141f;
+    color: white;
+}
+
+select.form-control{
+  background-color: #1b1b27;
+  padding: 6px;
+  height: 40px;
+  border-radius: 2px;
+  color: white;
+  border: none;
+  
+}
+
+#submitbtn {
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  background-color: #4bc970;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #3ac162;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+  margin-bottom: 10px;
+  margin-left: 100px;
+}
+
+input.form-control:focus {
+  background-color: #1b1b27;
+  color: white; 
+  outline: none; 
+}
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+</style>
+
+

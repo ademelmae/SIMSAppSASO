@@ -1,0 +1,387 @@
+@Html.Partial("Partials/popUp")
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Register Form</title>
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.3/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+   
+        <h1>Register Student Information</h1>
+        <form id="studentForm" class="formstudent">        
+        <div class="row">
+                 <div class="col-md-4">
+                 <div class="form-group">
+                    <label for="firstname">First Name:</label>
+                    <input type="text" class="form-control" id="firstname" required>
+                </div>
+            </div>
+            <div class="col-md-4">
+                 <div class="form-group">
+                    <label for="middlename">Middle Name:</label>
+                    <input type="text" class="form-control" id="middlename" required>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="lastname">Last Name:</label>
+                    <input type="text" class="form-control" id="lastname" required>
+                </div>
+            </div>
+             <div class="col-md-4">
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" class="form-control" id="dob" >
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="text" class="form-control" id="age">
+                </div>
+            </div>
+           <div class="col-md-4">
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select class="form-control" id="gender" required>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+           </div>
+             <div class="col-md-6">
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="text" class="form-control" id="phone" required>
+                </div>
+           </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="parentEmail">Email Address:</label>
+                    <input type="text" class="form-control" id="emailadd">
+                </div>
+           </div> 
+           <div class="col-md-6">
+                <div class="form-group">
+                    <label for="home">Home Address:</label>
+                    <input type="text" class="form-control" id="home" required>
+                </div>
+           </div>
+           <div class="col-md-6">
+                <div class="form-group">
+                    <label for="studentid">Student ID Number:</label>
+                    <input type="number" class="form-control" id="studentidnum" required>
+                </div>
+           </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="departmentSelect">Select Department:</label>
+                    <select class="form-control" id="departmentSelect">
+                        <option value="College of Teacher Education">College of Teacher Education</option>
+                        <option value="Criminal Justice Education">Criminal Justice Education</option>
+                        <option value="College of Commerce">College of Commerce</option>
+                        <option value="College of Computer Studies">College of Computer Studies</option>
+                        <option value="Psychology Program">Psychology Program</option>                  
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="courseSelect">Select Course:</label>
+                    <select class="form-control" id="courseSelect">
+                        <!-- Courses will be populated here -->
+                    </select>
+                </div>
+            </div> 
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="courseSelect">Select Year:</label>
+                    <select class="form-control" id="yearSelect">
+                        <option value="1st year">1st year</option>
+                        <option value="2nd year">2nd year</option>
+                        <option value="3rd year">3rd year</option>
+                        <option value="4th year">4th year</option>
+                    </select>
+                </div>
+            </div>   
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="parentName">Name of Parent/Guardian:</label>
+                    <input type="text" class="form-control" id="parentName" required>
+                </div>
+           </div>
+           <div class="col-md-6">
+                <div class="form-group">
+                    <label for="parentHome">Home Address of Parent/Guardian:</label>
+                    <input type="text" class="form-control" id="parentHome" required>
+                </div>
+           </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="parentContact">Phone Number of Parent/Guardian:</label>
+                    <input type="text" class="form-control" id="parentContact" required>
+                </div>
+           </div>
+           <div class="col-md-6">
+                <div class="form-group">
+                    <label for="parentEmail">Email Address of Parent/Guardian:</label>
+                    <input type="text" class="form-control" id="parentEmail" required>
+                </div>
+           </div>
+        </div>
+            <div class="col-md-9">
+                <button type="submit" id="submitbtn"class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+
+<script>
+    
+$(document).ready(function () {
+    $('#studentForm').submit(function (e) {
+        e.preventDefault(); // Prevent the default form submission
+        $('#confirmationModal').modal('show'); // Show the confirmation modal
+    });
+
+    // Handle the confirmation button click
+    $('#confirmYes').click(function () {
+        $('#confirmationModal').modal('hide');
+        $('#studentForm').unbind('submit').submit; // Unbind the submit event and submit the form
+        
+        const studentData = {
+            FirstName: document.getElementById("firstname").value,
+            MiddleName: document.getElementById("middlename").value,
+            LastName: document.getElementById("lastname").value,
+            Birthdate: document.getElementById("dob").value,
+            Age: parseInt(document.getElementById("age").value),
+            Gender: document.getElementById("gender").value,     
+            Phone :  document.getElementById("phone").value.toString(),
+            Email: document.getElementById("emailadd").value,
+            Home: document.getElementById("home").value,
+            StudentIdNum: document.getElementById("studentidnum").value.toString(),
+            Department: document.getElementById("departmentSelect").value,
+            Course: document.getElementById("courseSelect").value,
+            SchoolYear: document.getElementById("yearSelect").value,
+            ParentName: document.getElementById("parentName").value,
+            ParentContact: document.getElementById("parentContact").value.toString(),
+            ParentEmail: document.getElementById("parentEmail").value,
+            ParentHome: document.getElementById("parentHome").value,  
+    };
+
+    fetch('/api/studentregister', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(studentData)
+            })
+            .then(response => response.json())
+            .then(studentData => {
+                // Handle success, e.g., show a success message to the user
+                console.log('Registered student successfully:', studentData);
+                alert('Registered student successfully!');
+
+                document.getElementById('studentForm').reset();
+
+            })
+            .catch(error => {
+                // Handle errors, e.g., display an error message to the user
+                console.error('Error:', error);
+                alert('An error occurred while submitting the violation.');
+            });
+    });
+});
+
+// CALCULATE AGE BASED ON DATE OF BIRTH SELECTED
+ function calculateAge() {    
+    const dobInput = document.getElementById("dob");
+    const ageInput = document.getElementById("age");
+
+    // Get the selected date from the input field
+    const selectedDate = new Date(dobInput.value);
+
+    // Calculate the current date
+    const currentDate = new Date();
+
+    // Calculate the difference in years
+    const age = currentDate.getFullYear() - selectedDate.getFullYear();
+
+    // Update the age input field
+    ageInput.value = age;
+}
+
+// Add an event listener to the date input field
+const dobInput = document.getElementById("dob");
+dobInput.addEventListener("input", calculateAge);
+
+// Calculate the age on page load (if date of birth is already set)
+calculateAge(); 
+
+
+
+//DEFINE COURSES FOR EACH DEPARTMENT
+    const courses = {
+    "College of Teacher Education": ["Bachelor of Elementary Education", "Bachelor of Secondary Education major in English", "Bachelor of Secondary Education major in Mathematics",
+    "Bachelor of Secondary Education major in Science", "Bachelor of Secondary Education major in Social Studies"],
+    "Criminal Justice Education": ["Bachelor of Science in Criminology"],
+    "College of Commerce": ["Bachelor of Science in Accountancy", "Bachelor of Science in Accounting Technology", "Bachelor of Science in Business Administration Major in Financial Management",
+    "Bachelor of Science in Business Management", "Bachelor of Science in Hospitality Management", "Bachelor of Science in Hospitality Management Major in Food and Beverage",
+    "Bachelor of Science in Tourism Management"],
+    "College of Computer Studies": ["Bachelor of Science in Information Technology"],
+    "Psychology Program": ["Bachelor of Science in Psychology"]
+};
+
+// Function to populate the courses select box based on the selected department
+function populateCourses() {
+    const departmentSelect = document.getElementById("departmentSelect");
+    const courseSelect = document.getElementById("courseSelect");
+    const selectedDepartment = departmentSelect.value;
+
+    // Clear the current options in the courses select box
+    courseSelect.innerHTML = "";
+
+    // Populate the courses select box with options based on the selected department
+    courses[selectedDepartment].forEach(course => {
+        const option = document.createElement("option");
+        option.value = course;
+        option.text = course;
+        courseSelect.appendChild(option);
+    });
+}
+
+// Add an event listener to the department select box to update the courses select box when the department changes
+document.getElementById("departmentSelect").addEventListener("change", populateCourses);
+
+// Initial population of the courses select box
+populateCourses();
+   
+</script>
+
+<style>
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  
+}
+
+
+body{
+    font-family: 'Urbanist', sans-serif;
+}
+input[type="text"], textarea{
+    background: #14141f;
+    color: white;
+}
+body {
+   background-color: #14141f;
+
+}
+
+form {
+  width: 1000px;
+   max-height: 100%;
+   max-width: 100%;
+  margin: auto;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+
+}
+
+h1 {
+  margin: 0 0 30px 0;
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bolder;
+  font-size: 30px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="datetime"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="time"],
+input[type="url"],
+textarea,
+select.form-control  {
+   background: #1b1b27;
+  border: solid 1px rgb(105, 104, 104);
+  font-size: 16px;
+  height: 40px;
+  margin: 0;
+  outline: 0;
+  padding: 15px;
+  width: 100%;
+ 
+  color: white;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+  margin-bottom: 30px;
+}
+
+select.form-control option{
+    background: #14141f;
+    color: white;
+}
+
+select.form-control{
+  background-color: #1b1b27;
+  padding: 6px;
+  height: 40px;
+  border-radius: 2px;
+  color: white;
+  border: none;
+  
+}
+
+#submitbtn {
+  padding: 19px 39px 18px 39px;
+  color: #FFF;
+  background-color: #4bc970;
+  font-size: 18px;
+  text-align: center;
+  font-style: normal;
+  border-radius: 5px;
+  width: 100%;
+  border: 1px solid #3ac162;
+  border-width: 1px 1px 3px;
+  box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
+  margin-bottom: 10px;
+  margin-left: 100px;
+}
+
+input.form-control:focus {
+  background-color: #1b1b27;
+  color: white; 
+  outline: none; 
+}
+label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+
+
+
+
+</style>
+
+
+
+
+

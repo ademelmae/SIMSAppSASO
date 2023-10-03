@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Student List</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Middle Name</th>
+                    <th>Last Name</th>
+                    <th>Department</th>
+                    <th>Year</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="studentTableBody">
+                <!-- Student data will be inserted here using JavaScript -->
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "/api/StudentRegister",
+                success: function (students) {
+                    students.forEach(function (student) {
+                        var row = `
+                            <tr>
+                                <td>${student.firstname}</td>
+                                <td>${student.middlename}</td>
+                                <td>${student.lastname}</td>
+                                <td>${student.department}</td>
+                                <td>${student.schoolYear}</td>
+                                <td>
+                                    <button class="btn btn-primary" onclick="viewDetails(${student.studentId})">View Details</button>
+                                </td>
+                            </tr>`;
+                        $("#studentTableBody").append(row);
+                    });
+                },
+            });
+
+        });
+
+        function viewDetails(studentId) {
+            // Fetch student details based on the studentId using another AJAX call
+            $.ajax({
+                type: "GET",
+                url: `/api/studentRegister/${studentId}`, // Update the URL to include the studentId
+                success: function (student) {
+                    var modalContent = `
+                        <div class="modal fade" id="studentModal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Student Details</h5>
+                                        <button type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p><strong>First Name:</strong> ${student.firstname}</p>
+                                        <p><strong>Middle Name:</strong> ${student.middlename}</p>
+                                        <p><strong>Last Name:</strong> ${student.lastname}</p>
+                                        <p><strong>Birthdate:</strong> ${student.birthdate}</p>
+                                        <p><strong>Gender:</strong> ${student.gender}</p>
+                                        <p><strong>Phone Number:</strong> ${student.phone}</p>
+                                        <p><strong>Email Address:</strong> ${student.email}</p>
+                                        <p><strong>Home Addresss:</strong> ${student.home}</p>
+                                        <p><strong>Student ID Number:</strong> ${student.studentIdNum}</p>
+                                        <p><strong>Year:</strong> ${student.schoolYear}</p>
+                                        <p><strong>Department:</strong> ${student.department}</p>
+                                        <p><strong>Course:</strong> ${student.course}</p>
+                                        <p><strong>Parent's Name:</strong> ${student.parentName}</p>
+                                        <p><strong>Parent's Email Address:</strong> ${student.parentEmail}</p>
+                                        <p><strong>Parent's Home Address:</strong> ${student.parentHome}</p>
+                                        <p><strong>Parent's Phone Number:</strong> ${student.parentContact}</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+
+                    // Remove any existing modal recently opened and add the new one
+                    $('#studentModal').remove();
+                    $('body').append(modalContent);
+
+                    // Show the modal
+                    $('#studentModal').modal('show');
+                },
+            });
+        }
+    </script>
+</body>
+</html>
+
+
+<style>
+    th{
+        color: white;
+    }
+    td{
+        color: white;
+    }
+    .modal-content{
+        background-color: #1b1b27;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+</style>

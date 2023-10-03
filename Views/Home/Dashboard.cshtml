@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html>
+   <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.2/css/bootstrap.min.css">
+        </head>
+      <body>
+          <div class="container-fluid">
+            <div class="row">
+        <div class="col-md-12">
+          <h2 class="text-center">SASO Information Management System</h2>
+        </div>
+      </div>
+      <!-- Summary section -->
+      <div class="row mt-4">
+        <div class="col-md-4" style="height: 120px;">
+          <div class="card" style="background-color: rgb(55, 189, 122);">
+            <div class="card-body">
+              <h5 class="card-title" style="color: white;">Total Violations</h5>
+              <p class="card-text" style="color: white; font-size:20px" id="totalViolations">0</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card" style="background-color: #7386D5;">
+            <div class="card-body">
+              <h5 class="card-title" style="color: white;">Total Students</h5>
+              <p class="card-text"  style="color: white; font-size:20px" id="totalStudents">0</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card" style="background-color: coral;">
+            <div class="card-body">
+              <h5 class="card-title" style="color: white;">Reports</h5>
+              <p class="card-text" style="color:white; font-size:20px;" id="reports">0</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add your dashboard components here -->
+      <div class="row mt-9">
+        <div class="col-md-4">
+          <!-- Add a form to submit violations -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Report Violation</h5>
+              <form id="studentForm">
+                <div class="form-group">
+                  <label for="studentName">Student Name</label>
+                  <input type="text" class="form-control" id="studentName" required>
+                </div>
+                <div class="form-group">
+                  <label for="violationType">Violation Type</label>
+                  <select class="form-control" id="violationType" required>
+                    <option value="1">Plagiarism</option>
+                    <option value="2">Cheating</option>
+                    <option value="3">Disruptive Behavior</option>
+                    <!-- Add more violation types as needed -->
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-8">
+          <!-- Add a table to display existing violations -->
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Existing Violations</h5>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>id</th>
+                    <th>Student Name</th>
+                    <th>Violation Type</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody id="violationsTable">
+                  <!-- Add rows dynamically using JavaScript or a backend framework -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+        
+  </body>
+</html>
+
+
+
+ <script>
+    // Sample data (Replace this with your dynamic data from backend)
+    const violationsData = [
+      { id: 1, studentName: 'Justine Magno', violationType: 'Plagiarism', date: '2023-07-20' , remarks: 'pending'},
+      { id: 2, studentName: 'Rebme Von Dela Cruz', violationType: 'Cheating', date: '2023-07-19' },
+       { id: 3, studentName: 'Ademel Mae Viagedor', violationType: 'Gwapa rajud', date: '2023-07-19' },
+      // Add more data here
+    ];
+
+    // Function to populate the violations table
+    function populateViolationsTable() {
+      const tableBody = document.getElementById('violationsTable');
+      tableBody.innerHTML = '';
+      violationsData.forEach((violation) => {
+        const row = `
+          <tr>
+            <td>${violation.id}</td>
+            <td>${violation.studentName}</td>
+            <td>${violation.violationType}</td>
+            <td>${violation.date}</td>
+          </tr>
+        `;
+        tableBody.innerHTML += row;
+      });
+    }
+
+    // Function to update summary statistics
+    function updateSummaryStats() {
+      const totalViolations = violationsData.length;
+      const totalStudents = new Set(violationsData.map(v => v.studentName)).size;
+      const reports = 0; // You can add the logic to calculate reports count here
+
+      document.getElementById('totalViolations').innerText = totalViolations;
+      document.getElementById('totalStudents').innerText = totalStudents;
+      document.getElementById('reports').innerText = reports;
+    }
+
+    // Call the functions initially
+    populateViolationsTable();
+    updateSummaryStats();
+
+    // Handle form submission (Replace this with your backend API call)
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      const studentName = document.getElementById('studentName').value;
+      const violationType = document.getElementById('violationType').value;
+      const date = new Date().toISOString().split('T')[0];
+
+      const newViolation = {
+        id: violationsData.length + 1,
+        studentName: studentName,
+        violationType: violationType,
+        date: date,
+      };
+
+      violationsData.push(newViolation);
+      populateViolationsTable();
+      updateSummaryStats();
+
+      // Reset form
+      form.reset();
+    });
+  </script>
+
+<style>
+    body{
+      background-color: #14141f;
+    }
+    .card {
+      box-shadow: 0px 0px 10px rgba(17, 16, 16, 0.712);
+      font-family: "Poppins", sans-serif;
+      background-color: #14141f;
+      color: white;
+      border: 1px solid rgb(34, 34, 44);
+      font-size: 15px;
+    }
+    input {
+      background: #14141f;
+    }
+    th {
+      color: white;
+    }
+    td {
+      color: white;
+    }
+
+    select.form-control option {
+      background: #14141f;
+      color: white;
+    }
+    select.form-control {
+      background-color: #1b1b27;
+      padding: 6px;
+      height: 40px;
+      border-radius: 2px;
+      color: white;
+      border: none;
+    }
+    .container-fluid{
+      width: 1000px;
+    } 
+</style>
+

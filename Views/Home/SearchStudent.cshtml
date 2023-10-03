@@ -1,0 +1,77 @@
+<form>
+    <label for="keyword">Search Keyword:</label>
+    <input type="text" id="keyword" placeholder="Enter Keyword"><br>
+
+    <button type="button" onclick="searchStudent()">Search</button>
+
+    <div class="form-group">
+        <label for="firstname">First Name:</label>
+        <input type="text" class="form-control" id="firstname" required>
+    </div>
+     <div class="form-group">
+        <label for="middlename">Middle Name:</label>
+        <input type="text" class="form-control" id="middlename" required>
+    </div>
+     <div class="form-group">
+        <label for="lastname">Last Name:</label>
+        <input type="text" class="form-control" id="lastname" required>
+    </div>
+     <div class="form-group">
+        <label for="lastname">Last Name:</label>
+        <input type="text" class="form-control" id="lastname" required>
+    </div>
+</form>
+
+<div id="studentDetails">
+    <!-- Student details will be displayed here -->
+</div>
+
+
+<script>
+   function searchStudent() {
+    const keyword = document.getElementById("keyword").value;
+
+    fetch(`/api/studentRegister/search?keyword=${keyword}`)
+        .then(response => response.json())
+        .then(data => {
+            const studentDetails = document.getElementById("studentDetails");
+
+            if (data.length === 0) {
+                studentDetails.innerHTML = "No students found.";
+            } else {
+                studentDetails.innerHTML = "";
+
+                data.forEach(student => {
+                    studentDetails.innerHTML += `
+                        <div class="student">
+                            <h2>Student Details</h2>
+                            <input type="text" id="firstname" value="${student.firstname}" placeholder="First Name"><br>
+                            <input type="text" id="middlename" value="${student.middlename}" placeholder="Middle Name"><br>
+                            <input type="text" id="lastname" value="${student.lastname}" placeholder="Last Name"><br>
+                            <input type="text" id="birthdate" value="${student.birthdate}" placeholder="Birthdate"><br>
+                            <input type="text" id="gender" value="${student.gender}" placeholder="Gender"><br>
+                            <input type="text" id="phone" value="${student.phone}" placeholder="Phone"><br>
+                            <input type="text" id="email" value="${student.email}" placeholder="Email"><br>
+                            <input type="text" id="home" value="${student.home}" placeholder="Home"><br>
+                            <input type="text" id="studentIdNum" value="${student.studentIdNum}" placeholder="Student ID"><br>
+                            <input type="text" id="department" value="${student.department}" placeholder="Department"><br>
+                            <input type="text" id="course" value="${student.course}" placeholder="Course"><br>
+                            <input type="text" id="parentName" value="${student.parentName}" placeholder="Parent Name"><br>
+                            <input type="text" id="parentEmail" value="${student.parentEmail}" placeholder="Parent Email"><br>
+                            <input type="text" id="parentHome" value="${student.parentHome}" placeholder="Parent Home"><br>
+                            <input type="text" id="parentContact" value="${student.parentContact}" placeholder="Parent Contact"><br>
+                            <input type="text" id="schoolYear" value="${student.schoolYear}" placeholder="School Year"><br>
+                        </div>
+                    `;
+                });
+            }
+        })
+        .catch(error => console.error(error));
+}
+</script>
+
+
+
+
+
+

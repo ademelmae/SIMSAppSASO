@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disciplinary Actions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Include Font Awesome -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Disciplinary Action</h5>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-caret-down icon"></i></span>
+            </div>
+            <select class="form-control" id="violationSelect">
+                <option value="">Select violation</option>
+                <option value="1">Tardiness</option>
+                <option value="2">Absence from class</option>
+            </select>
+        </div>
+
+        <!-- Select with Icon -->
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-caret-down icon"></i></span>
+            </div>
+            <select class="form-control" id="offenseLevelSelect">
+                <option value="1st">1st offense</option>
+                <option value="2nd">2nd Offense</option>
+                <option value="3rd">3rd Offense</option>
+                <option value="4th">4th Offense</option>
+                <option value="5th">5th Offense</option>
+                <option value="6th">6th Offense</option>
+                <option value="7th">7th Offense</option>
+                <option value="8th">8th Offense</option>
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-list icon"></i></span>
+            </div>
+            <textarea class="form-control" id="disciplinaryActionInput" placeholder="Disciplinary Action" rows="4"></textarea>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script> <!-- Include Font Awesome JS -->
+
+<script>
+    $(document).ready(function() {
+             function updateDisciplinaryAction() {
+        var selectedViolation = $("#violationSelect").val();
+        var selectedOffenseLevel = $("#offenseLevelSelect").val();
+        console.log(selectedViolation);
+        // Check if both violation and offense level are selected
+        if (selectedViolation && selectedOffenseLevel) {
+            fetch(`/api/disciplinaryactions?offenseLevel=${selectedOffenseLevel}&violationId=${selectedViolation}`)
+                .then(response => response.json())
+                .then(data => {
+                    const disciplinaryActionInput = document.getElementById("disciplinaryActionInput");
+                    disciplinaryActionInput.value = data.join(", ");
+                });
+        }
+    }
+
+    // Attach the updateDisciplinaryAction function to the change events of both dropdowns
+    $("#violationSelect").change(updateDisciplinaryAction);
+    $("#offenseLevelSelect").change(updateDisciplinaryAction);
+});
+
+   
+</script>
+</body>
+</html>
+
+<style>
+    .card{
+        background-color:#1f1f30;
+    }
+</style>
