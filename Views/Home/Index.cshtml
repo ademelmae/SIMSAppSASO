@@ -1,66 +1,148 @@
-﻿@model Useraccount
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/css/loginstyle.css"> <!-- Correct the CSS file path -->
+    <title>Sign in & Sign up Form</title>
+</head>
+<body>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <form action="" class="sign-in-form" id="loginForm"> 
+                    <h2 class="title">Sign in</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Username" id="loginUsername"/>
+                    </div>
+                    <div class="input-field">  
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" id="loginPassword"/>
+                    </div>
+                    <input type="submit" value="Login" class="btn solid" />
+                </form>
+                <form action="#" class="sign-up-form">
+                    <h2 class="title">Sign up</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="First Name" id="registerFirstname" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Last Name" id="registerLastname" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Username" id="registerUsername" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Email" id="registerEmail "/>
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" id="registerPassword"/>
+                    </div>
+                    <input type="submit" class="btn" value="Sign up" />
+                    <div id="error-message" style="color: red;"></div>
+                </form>
+            </div>
+        </div>
 
-@{
-    ViewData["Title"] = "Login";
-}
+        <div class="panels-container">
+            <div class="panel left-panel">
+                <div class="content">
+                    <img class="logo" src="/lib/guidancelogo.png" alt="">
+                    <h1>SASO Information Management System</h1>
+                    <p>New here?</p>
+                    <button class="btn transparent" id="sign-up-btn">
+                        Sign up
+                    </button>
+                </div>
+            </div>
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>One of us ?</h3>
+                    <button class="btn transparent" id="sign-in-btn">
+                        Sign in
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-@Html.Partial("Partials/AccountTab")
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
+    <script>
+        const sign_in_btn = document.querySelector("#sign-in-btn");
+        const sign_up_btn = document.querySelector("#sign-up-btn");
+        const container = document.querySelector(".container");
 
-    document.getElementById("loginForm").addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent form submission
-
-        // Get form data
-        var username = document.getElementById("loginUsername").value;
-        var password = document.getElementById("loginPassword").value;
-
-        // Create an object with the login credentials
-        var data = {
-            username: username,
-            password: password
-        };
-
-        // Send a POST request to the login API
-        fetch("/api/UserAPI/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        })
-        .then(response => {
-            if (response.ok) {
-                // Login successful, extract the redirect URL
-                response.json().then(data => {
-                    var redirectUrl = data.redirectUrl;
-                    // Redirect to the received URL
-                    window.location.href = redirectUrl;
-                });
-            } else {
-                // Login failed, display error message
-                console.error("Login failed");
-            }
-        })
-
-        .catch(error => {
-            console.error("Error:", error);
+        sign_up_btn.addEventListener("click", () => {
+            container.classList.add("sign-up-mode");
         });
-    }); 
 
-    document.getElementById("registrationForm").addEventListener("submit", function (e) {
-        const password = document.getElementById("registerPassword").value;
-        const confirmPassword = document.getElementById("registerRepeatPassword").value;
+        sign_in_btn.addEventListener("click", () => {
+            container.classList.remove("sign-up-mode");
+        });
 
-        if (password !== confirmPassword) {
-            e.preventDefault();
-            alert("Passwords do not match.");
+          document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            // Get the input values
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+       
+            // Create an object to hold the user credentials
+            const user = {
+                Username: username,
+                Password: password
+            };
+
+            // Make a POST request to the API's login endpoint
+            fetch('/api/UserAPI/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                     console.log(response.status); // Log the status code
+                    return response.text().then(errorMsg => {
+                        console.log(errorMsg); // Log the error message from the response body
+                        throw new Error('Login failed');
+                });
+                }
+            })
+            .then(data => {
+                // If login is successful, you can handle the token here
+                console.log(data);
+                const token = data.Token;
+                console.log('Login successful. Token:', token);
+                // You can store the token in a secure manner, such as in a cookie or localStorage
+                 localStorage.setItem('userToken', token);
+                window.location.href = 'dashboard';
+                 console.log('Token stored in localStorage:', localStorage.getItem('userToken'));
+            })
+            .catch(error => {
+                console.error('Login error:', error);
+                console.error('Error storing token in localStorage:', error);
+                // Handle login error (e.g., show an error message to the user)
+            });
+        });
+
+        window.addEventListener('load', function () {
+        const storedToken = localStorage.getItem('userToken');
+        if (storedToken) {
+            // You can use the stored token for authentication here
+            console.log('User is already logged in with token:', storedToken);
+             window.location.href = 'dashboard';
         }
-    });
-</script>
-
-
-        
-    
- 
+        });
+    </script>
+</body>
+</html>

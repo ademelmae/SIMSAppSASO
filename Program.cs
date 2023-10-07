@@ -30,6 +30,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]))
         };
     });
+builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("RequireAuthenticatedUser", policy =>
+        {
+            policy.RequireAuthenticatedUser();
+        });
+    });
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 var app = builder.Build();
 

@@ -13,6 +13,7 @@
             <div class="row">
         <div class="col-md-12">
           <h2 class="text-center">SASO Information Management System</h2>
+          <button id="logoutButton">Logout</button>
         </div>
       </div>
       <!-- Summary section -->
@@ -164,6 +165,32 @@
       // Reset form
       form.reset();
     });
+
+
+
+    function logout() {
+    // Remove the token from localStorage
+    localStorage.removeItem('userToken');
+    
+    // Redirect the user to the login page
+    window.location.href = 'Index'; // Replace with the actual login page URL
+}
+
+// Event listener for the logout button/link
+document.getElementById('logoutButton').addEventListener('click', function () {
+    logout(); // Call the logout function when the button/link is clicked
+});
+
+window.addEventListener('load', function () {
+    const storedToken = localStorage.getItem('userToken');
+    if (storedToken) {
+        // User is already logged in
+        console.log('User is already logged in with token:', storedToken);
+    } else {
+        // User is not logged in, so redirect to the login page
+        window.location.href = 'Index'; // Replace with the actual login page URL
+    }
+});
   </script>
 
 <style>

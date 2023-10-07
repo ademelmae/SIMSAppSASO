@@ -16,7 +16,9 @@ namespace SIMSApp.Controllers
     public class UserAPIController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
-        private readonly IConfiguration _configuration; // Inject IConfiguration
+                private static readonly HashSet<string> InvalidTokens = new HashSet<string>();
+
+        private readonly IConfiguration _configuration; // declare to inject IConfiguration
 
         public UserAPIController(IUserRepository userRepository, IConfiguration configuration)
         {
@@ -24,7 +26,7 @@ namespace SIMSApp.Controllers
             _configuration = configuration; // Inject IConfiguration
         }
 
-        [HttpPost("login")]
+       [HttpPost("login")]
         public IActionResult Login([FromBody] Useraccount user)
         {
             var authenticatedUser = _userRepository.AuthenticateUser(user.Username, user.Password);
@@ -36,15 +38,24 @@ namespace SIMSApp.Controllers
 
             var token = GenerateJwtToken(authenticatedUser);
 
+            // Check if the generated token is in the list of invalidated tokens
+            if (InvalidTokens.Contains(token))
+            {
+                // If the token is invalidated, return Unauthorized
+                return Unauthorized();
+            }
+
             return Ok(new { Token = token });
         }
-
+        
         [Authorize]
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-            // Implement logout logic here, e.g., invalidate the token or remove it from the client-side.
-            // Depending on your token management, you may need to handle token invalidation.
+            // Invalidate the current token
+            var token = HttpContext.Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            InvalidTokens.Add(token);
+
             return Ok("Logged out successfully");
         }
 
