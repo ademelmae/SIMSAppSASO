@@ -13,6 +13,12 @@
         
         <PackageReference Include="Microsoft.AspNet.Identity.EntityFramework" Version="2.2.4" />
         
+        <PackageReference Include="Microsoft.AspNet.Identity.Owin" Version="2.2.4" />
+        
+        <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.2.0" />
+        
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.14" />
+        
         <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0" />
         
         <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
@@ -20,17 +26,15 @@
         <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.19" />
         
         <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-          <PrivateAssets>all</PrivateAssets>
-        </PackageReference>
+       
         <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+   
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0">
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
           <PrivateAssets>all</PrivateAssets>
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="7.0.0" />
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.2" />
       </ItemGroup>
 </Project>

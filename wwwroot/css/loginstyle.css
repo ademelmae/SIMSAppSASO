@@ -3,6 +3,8 @@
 * {
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 body,
@@ -11,10 +13,10 @@ input {
 }
 
 .container {
-  position: relative;
-  min-width: 180vh;
+  /* position: relative; */
+  max-width: 900vh;
   background-color: #fff;
-  min-height: 620px;
+  height: 100vh;
   overflow: hidden;
 }
 .logo{
@@ -77,63 +79,35 @@ form.sign-in-form {
   margin: 10px 0;
   height: 55px;
   border-radius: 55px;
-  display: grid;
-  grid-template-columns: 15% 85%;
-  padding: 0 0.4rem;
-  position: relative;
+  display: flex;
+  align-items: center; 
+  padding: 0 1rem;
 }
 
 .input-field i {
   text-align: center;
-  line-height: 55px;
+  line-height: 5px;
   color: #acacac;
   transition: 0.5s;
   font-size: 1.1rem;
+  flex: 0 0 15%; /* Set a fixed width for the icon container */
 }
 
 .input-field input {
+  padding-left: 20px;
   background: none;
   outline: none;
   border: none;
-  line-height: 1;
+  line-height: 0;
   font-weight: 600;
   font-size: 1.1rem;
   color: #333;
+  flex: 1; /* Allow input to expand and fill remaining space */
 }
 
 .input-field input::placeholder {
   color: #aaa;
   font-weight: 500;
-}
-
-.social-text {
-  padding: 0.7rem 0;
-  font-size: 1rem;
-}
-
-.social-media {
-  display: flex;
-  justify-content: center;
-}
-
-.social-icon {
-  height: 46px;
-  width: 46px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 0.45rem;
-  color: #110f0f;
-  border-radius: 50%;
-  border: 1px solid #333;
-  text-decoration: none;
-  font-size: 1.1rem;
-  transition: 0.3s;
-}
-
-.social-icon:hover {
-  color: #4481eb;
-  border-color: #4481eb;
 }
 
 .btn {
@@ -402,5 +376,167 @@ form.sign-in-form {
   .container.sign-up-mode:before {
     bottom: 28%;
     left: 50%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .container {
+      min-width: 100%;
+  }
+  .signin-signup {
+      width: 100%;
+      left: 50%;
+      transform: translate(-50%, -100%);
+  }
+  .panels-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 2fr 1fr;
+  }
+  /* Add more responsive styles as needed */
+}
+
+@media (max-width: 870px) {
+  /* Adjust styles for smaller screens */
+  /* Example: change font sizes, padding, margins, etc. */
+}
+
+@media (max-width: 570px) {
+  /* Further adjustments for very small screens */
+  /* Example: hide certain elements, reduce padding, etc. */
+}@media (max-width: 870px) {
+  .container {
+      min-height: 800px;
+      height: 100vh;
+      min-width: 100vw; /* Ensures full-width container */
+  }
+
+  .signin-signup {
+      width: 100%;
+      top: 95%;
+      transform: translate(-50%, -100%);
+      transition: 0.5s 0.8s ease-in-out;
+      left: 50%;
+  }
+
+  .signin-signup, .container.sign-up-mode .signin-signup {
+      left: 50%;
+  }
+
+  .panels-container {
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 2fr 1fr;
+  }
+
+  .panel {
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      padding: 2.5rem 2%;
+      grid-column: 1 / 2;
+  }
+
+  .right-panel {
+      grid-row: 3 / 4;
+  }
+
+  .left-panel {
+      grid-row: 1 / 2;
+  }
+
+  .image {
+      width: 200px;
+      transition: transform 0.9s ease-in-out;
+      transition-delay: 0.6s;
+  }
+
+  .panel .content {
+      padding-right: 15%;
+      transition: transform 0.9s ease-in-out;
+      transition-delay: 0.8s;
+  }
+
+  .panel h3 {
+      font-size: 1.2rem;
+  }
+
+  .panel p {
+      font-size: 0.7rem;
+      padding: 0.5rem 0;
+  }
+
+  .btn.transparent {
+      width: 110px;
+      height: 35px;
+      font-size: 0.7rem;
+  }
+  .container:before {
+      width: 1500px;
+      height: 1500px;
+      transform: translateX(-50%);
+      left: 30%;
+      bottom: 68%;
+      right: initial;
+      top: initial;
+      transition: 2s ease-in-out;
+  }
+
+  .container.sign-up-mode:before {
+      transform: translate(-50%, 100%);
+      bottom: 32%;
+      right: initial;
+  }
+
+  .container.sign-up-mode .left-panel .image, .container.sign-up-mode .left-panel .content {
+      transform: translateY(-300px);
+  }
+
+  .container.sign-up-mode .right-panel .image, .container.sign-up-mode .right-panel .content {
+      transform: translateY(0px);
+  }
+
+  .right-panel .image, .right-panel .content {
+      transform: translateY(300px);
+  }
+
+  .container.sign-up-mode .signin-signup {
+      top: 5%;
+      transform: translate(-50%, 0);
+  }
+}
+
+#capsLockIndicator {
+  color: gray; /* Default color */
+}
+
+#capsLockIndicator.active {
+  color: red; /* Active (Caps Lock on) color */
+}
+
+/* Media query for screens with a maximum width of 570px */
+@media (max-width: 570px) {
+  form {
+      padding: 0 1.5rem;
+  }
+
+  .image {
+      display: none;
+  }
+
+  .panel .content {
+      padding: 0.5rem 1rem;
+  }
+
+  .container {
+      padding: 1.5rem;
+  }
+
+  .container:before {
+      bottom: 72%;
+      left: 50%;
+  }
+
+  .container.sign-up-mode:before {
+      bottom: 28%;
+      left: 50%;
   }
 }
