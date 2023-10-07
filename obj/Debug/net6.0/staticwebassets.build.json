@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "YToAzssBRx+yl1dvbpH6rnnxgf8jSU0/3nmlPYfKgck=",
+  "Hash": "tk5V+Bl/qj3CbXUDC9JvifAH5XMIDlgHyXS/OLoIElY=",
   "Source": "SIMSApp",
   "BasePath": "_content/SIMSApp",
   "Mode": "Default",
@@ -1103,6 +1103,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\font\\Urbane-ThinItalic.woff2"
+    },
+    {
+      "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\js\\login.js",
+      "SourceId": "SIMSApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\",
+      "BasePath": "_content/SIMSApp",
+      "RelativePath": "js/login.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\login.js"
     },
     {
       "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\js\\site.js",

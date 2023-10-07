@@ -18394,11 +18394,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\Views\\Home\\Partials\\LoginForm.cshtml",
-      "TargetPath": "Views\\Home\\Partials\\LoginForm.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\Views\\Home\\SearchStudent.cshtml",
       "TargetPath": "Views\\Home\\SearchStudent.cshtml",
       "FileKind": "mvc"
@@ -18446,11 +18441,6 @@
     {
       "FilePath": "c:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\Views\\Home\\Partials\\RegisterForm.cshtml",
-      "TargetPath": "Views\\Home\\Partials\\RegisterForm.cshtml",
       "FileKind": "mvc"
     },
     {
