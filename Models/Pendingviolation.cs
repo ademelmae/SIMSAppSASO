@@ -9,7 +9,6 @@ namespace SIMSApp.Models
         public string StudentName { get; set; }
         public string ViolationType { get; set; }
         public string ViolationDate { get; set; }
-        public string Description { get; set; }
         public bool? IsApproved { get; set; }
     }
 }

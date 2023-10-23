@@ -37,4 +37,6 @@ public class StudentViolationController : ControllerBase
             return BadRequest(new { success = false, message = "Form submission failed", error = ex.Message });
         }
     }
+
+     
 }

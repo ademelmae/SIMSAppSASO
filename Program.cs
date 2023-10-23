@@ -32,11 +32,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 builder.Services.AddAuthorization(options =>
     {
-        options.AddPolicy("RequireAuthenticatedUser", policy =>
+        options.AddPolicy("JwtBearer", policy =>
         {
+            policy.AuthenticationSchemes.Add(JwtBearerDefaults.AuthenticationScheme);
             policy.RequireAuthenticatedUser();
         });
     });
+
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 var app = builder.Build();
 

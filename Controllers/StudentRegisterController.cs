@@ -48,20 +48,13 @@ namespace SIMSApp.Controllers
         }
      
         [HttpGet("search")]
-        public ActionResult<IEnumerable<Student>> SearchStudents([FromQuery] string keyword)
+        public async Task<ActionResult<IEnumerable<Student>>> SearchStudents(string query)
         {
-            var students = _context.Students.Where(s =>
-                s.Firstname.Contains(keyword) ||
-                s.Middlename.Contains(keyword) ||
-                s.Lastname.Contains(keyword))
-                .ToList();
+            var students = await _context.Students
+                .Where(s => s.Firstname.Contains(query) || s.Middlename.Contains(query) || s.Lastname.Contains(query)|| s.StudentIdNum.Contains(query))
+                .ToListAsync();
 
-            if (students.Count == 0)
-            {
-                return NotFound("No students found");
-            }
-
-            return Ok(students);
+            return students;
         }
 
 

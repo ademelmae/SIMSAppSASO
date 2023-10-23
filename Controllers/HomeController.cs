@@ -1,8 +1,10 @@
 ﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SIMSApp.Models;
 
 namespace SIMSApp.Controllers;
+
 
 public class HomeController : Controller
 {
@@ -38,6 +40,7 @@ public class HomeController : Controller
     {
         return View();
     }
+   
     public IActionResult RegisterStudent()
     {
         return View();
@@ -49,6 +52,16 @@ public class HomeController : Controller
     }
 
     public IActionResult addviolationform()
+    {
+        return View();
+    }
+
+    public IActionResult admindash()
+    {
+        return View();
+    }
+
+    public IActionResult sidebar()
     {
         return View();
     }

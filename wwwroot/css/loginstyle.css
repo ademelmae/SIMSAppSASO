@@ -16,7 +16,7 @@ input {
   /* position: relative; */
   max-width: 900vh;
   background-color: #fff;
-  height: 100vh;
+  height: 50vh;
   overflow: hidden;
 }
 .logo{
@@ -502,14 +502,6 @@ form.sign-in-form {
       top: 5%;
       transform: translate(-50%, 0);
   }
-}
-
-#capsLockIndicator {
-  color: gray; /* Default color */
-}
-
-#capsLockIndicator.active {
-  color: red; /* Active (Caps Lock on) color */
 }
 
 /* Media query for screens with a maximum width of 570px */

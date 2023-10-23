@@ -10,6 +10,7 @@ namespace SIMSApp.Models
         public string Middlename { get; set; }
         public string Lastname { get; set; }
         public string Birthdate { get; set; }
+        public int Age { get; set; }
         public string Gender { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }

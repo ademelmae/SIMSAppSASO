@@ -45,11 +45,6 @@ namespace SIMSApp.Models
                     .HasColumnType("int(11)")
                     .HasColumnName("id");
 
-                entity.Property(e => e.Description)
-                    .IsRequired()
-                    .HasMaxLength(500)
-                    .HasColumnName("description");
-
                 entity.Property(e => e.StudentName)
                     .IsRequired()
                     .HasMaxLength(250)
@@ -97,11 +92,6 @@ namespace SIMSApp.Models
                     .HasColumnType("int(11)")
                     .HasColumnName("id");
 
-                entity.Property(e => e.Description)
-                    .IsRequired()
-                    .HasMaxLength(500)
-                    .HasColumnName("description");
-
                 entity.Property(e => e.IsApproved).HasDefaultValueSql("'0'");
 
                 entity.Property(e => e.StudentName)
@@ -127,6 +117,10 @@ namespace SIMSApp.Models
                 entity.Property(e => e.StudentId)
                     .HasColumnType("int(11)")
                     .HasColumnName("studentId");
+
+                entity.Property(e => e.Age)
+                    .HasColumnType("int(11)")
+                    .HasColumnName("age");
 
                 entity.Property(e => e.Birthdate)
                     .IsRequired()
@@ -211,20 +205,35 @@ namespace SIMSApp.Models
 
             modelBuilder.Entity<Useraccount>(entity =>
             {
+                entity.HasKey(e => e.UserId)
+                    .HasName("PRIMARY");
+
                 entity.ToTable("useraccount");
 
-                entity.Property(e => e.Id)
+                entity.Property(e => e.UserId)
                     .HasColumnType("int(11)")
-                    .HasColumnName("id");
+                    .HasColumnName("userId");
+
+                entity.Property(e => e.Email)
+                    .HasMaxLength(250)
+                    .HasColumnName("email");
+
+                entity.Property(e => e.Firstname)
+                    .HasMaxLength(250)
+                    .HasColumnName("firstname");
+
+                entity.Property(e => e.Lastname)
+                    .HasMaxLength(250)
+                    .HasColumnName("lastname");
 
                 entity.Property(e => e.Password)
                     .IsRequired()
-                    .HasMaxLength(150)
+                    .HasMaxLength(250)
                     .HasColumnName("password");
 
                 entity.Property(e => e.Username)
                     .IsRequired()
-                    .HasMaxLength(150)
+                    .HasMaxLength(250)
                     .HasColumnName("username");
             });
 

@@ -16,7 +16,7 @@ namespace SIMSApp.Controllers
     public class UserAPIController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
-                private static readonly HashSet<string> InvalidTokens = new HashSet<string>();
+        private static readonly HashSet<string> InvalidTokens = new HashSet<string>();
 
         private readonly IConfiguration _configuration; // declare to inject IConfiguration
 

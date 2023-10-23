@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+     <link rel="stylesheet" href="/css/sidebar.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disciplinary Actions</title>
@@ -16,7 +17,6 @@
         <h5 class="card-title">Disciplinary Action</h5>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-caret-down icon"></i></span>
             </div>
             <select class="form-control" id="violationSelect">
                 <option value="">Select violation</option>
@@ -28,7 +28,6 @@
         <!-- Select with Icon -->
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-caret-down icon"></i></span>
             </div>
             <select class="form-control" id="offenseLevelSelect">
                 <option value="1st">1st offense</option>
@@ -44,7 +43,6 @@
 
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fas fa-list icon"></i></span>
             </div>
             <textarea class="form-control" id="disciplinaryActionInput" placeholder="Disciplinary Action" rows="4"></textarea>
         </div>
@@ -52,7 +50,7 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script> <!-- Include Font Awesome JS -->
+
 
 <script>
     $(document).ready(function() {
@@ -80,9 +78,3 @@
 </script>
 </body>
 </html>
-
-<style>
-    .card{
-        background-color:#1f1f30;
-    }
-</style>

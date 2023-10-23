@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,38 +16,43 @@
                     <h2 class="title">Sign in</h2>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" id="loginUsername"/>
+                        <input type="text" placeholder="Username" id="loginUsername"/ required>
                     </div>
                     <div class="input-field">  
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" id="loginPassword"/>
+                        <input type="password" placeholder="Password" id="loginPassword"/ required>
                     </div>
                     <input type="submit" value="Login" class="btn solid" />
                 </form>
-                <form action="#" class="sign-up-form">
+                <form action="" class="sign-up-form" id="registrationForm">
                     <h2 class="title">Sign up</h2>
+                     <div id="error-message" style="color: rgb(252, 46, 46); background:white; font-weight:bold; border-radius:2px; width:400px; text-align: center;"></div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="First Name" id="registerFirstname" />
+                        <input type="text" placeholder="First Name" id="registerFirstname" name="Firstname"/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Last Name" id="registerLastname" />
+                        <input type="text" placeholder="Last Name" id="registerLastname" name="Lastname"/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-user"></i>
-                        <input type="text" placeholder="Username" id="registerUsername" />
+                        <input type="text" placeholder="Username" id="registerUsername" name="Username"/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
-                        <input type="email" placeholder="Email" id="registerEmail "/>
+                        <input type="email" placeholder="Email" id="registerEmail" name="Email"/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" id="registerPassword"/>
+                        <input type="password" placeholder="Password" id="registerPassword" name="Password"/>
                     </div>
-                    <input type="submit" class="btn" value="Sign up" />
-                    <div id="error-message" style="color: red;"></div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Confirm Password" id="confirmPassword" name="confirmPassword"/>
+                    </div>
+                    <input type="submit" id="signup-button" class="btn" value="Sign up" />
+                   
                 </form>
             </div>
         </div>
@@ -56,7 +62,7 @@
                 <div class="content">
                     <img class="logo" src="/lib/guidancelogo.png" alt="">
                     <h1>SASO Information Management System</h1>
-                    <p>New here?</p>
+                    <p>Don't have an account ?</p>
                     <button class="btn transparent" id="sign-up-btn">
                         Sign up
                     </button>
@@ -64,7 +70,7 @@
             </div>
             <div class="panel right-panel">
                 <div class="content">
-                    <h3>One of us ?</h3>
+                    <h3>Already have an account ?</h3>
                     <button class="btn transparent" id="sign-in-btn">
                         Sign in
                     </button>
@@ -72,8 +78,14 @@
             </div>
         </div>
     </div>
+@Html.Partial("Partials/loadAnimation")
+    
+</div>
+
+</div>
 
 </body>
 </html>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/js/login.js"></script>
+<script src="~/js/register.js"></script>
