@@ -8,73 +8,73 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SIMSApp
 build_property.RootNamespace = SIMSApp
-build_property.ProjectDir = C:\Users\Ademel Mae\Documents\SIMS\SIMSApp\
+build_property.ProjectDir = c:\Users\Ademel Mae\Documents\SIMS\SIMSApp\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Ademel Mae\Documents\SIMS\SIMSApp
+build_property.MSBuildProjectDirectory = c:\Users\Ademel Mae\Documents\SIMS\SIMSApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/addviolationform.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/addviolationform.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxhZGR2aW9sYXRpb25mb3JtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Dashboard.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Index.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Partials/AccountTab.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Partials/AccountTab.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQYXJ0aWFsc1xBY2NvdW50VGFiLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Partials/popUp.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Partials/popUp.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQYXJ0aWFsc1xwb3BVcC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Privacy.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/RegisterStudent.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/RegisterStudent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3RlclN0dWRlbnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Reports.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Reports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/SearchStudent.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/SearchStudent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTZWFyY2hTdHVkZW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/StudentList.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/StudentList.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTdHVkZW50TGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Violation.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Violation.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWaW9sYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Shared/Error.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/_ViewImports.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/_ViewStart.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Shared/_Layout.cshtml]
+[c:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-1wm7xk7i2u
