@@ -1,35 +1,61 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-     <link rel="stylesheet" href="/css/sidebar.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Disciplinary Actions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> <!-- Include Font Awesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
-</head>
-<body>
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Disciplinary Action</h5>
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-            </div>
-            <select class="form-control" id="violationSelect">
+  <title>Student Violation Report Form</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/sidebar.css">
+  <link rel="stylesheet" href="/css/registerStudent.css">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+  <div class="container">
+    <h2>Student Violation Report Form</h2>
+    <form id="violationForm">
+      <div class="form-group">
+        <label for="studentName">Student Name:</label>
+        <input type="text" class="form-control" id="studentName" name="studentName" required>
+      </div>
+      <div class="form-group">
+        <label for="studentID">Student ID Number:</label>
+        <input type="text" class="form-control" id="studentID" name="studentID" required>
+      </div>
+      <div class="form-group">
+              <label for="departmentSelect" class="form-label">Select Department:</label>
+              <select class="form-control" id="departmentSelect">
+                <option value="College of Teacher Education">College of Teacher Education</option>
+                <option value="Criminal Justice Education">Criminal Justice Education</option>
+                <option value="College of Commerce">College of Commerce</option>
+                <option value="College of Computer Studies">College of Computer Studies</option>
+                <option value="Psychology Program">Psychology Program</option>
+              </select>
+      </div>
+      <div class="form-group">
+              <label for="courseSelect" class="form-label">Select Course:</label>
+              <select class="form-control" id="courseSelect">
+              </select>
+      </div>
+      <div class="form-group">
+        <label for="yearLevel">School Year:</label>
+        <input type="text" class="form-control" id="yearLevel" name="yearLevels" required>
+      </div>
+
+      <!-- Violation Details -->
+      <h3>Violation Details</h3>
+      <div class="form-group">
+        <select class="form-control" id="violationSelect">
                 <option value="">Select violation</option>
                 <option value="1">Tardiness</option>
                 <option value="2">Absence from class</option>
-            </select>
-        </div>
-
-        <!-- Select with Icon -->
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-            </div>
-            <select class="form-control" id="offenseLevelSelect">
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="dateOfViolation">Date of Violation:</label>
+        <input type="date" class="form-control" id="dateOfViolation" name="dateOfViolation" required>
+      </div>
+      <div class="form-group">
+        <label for="timeOfViolation">Time of Violation:</label>
+        <input type="time" class="form-control" id="timeOfViolation" name="timeOfViolation" required>
+      </div>
+      <div class="form-group">
+        <label for="sanction">Sanction:</label>
+        <select class="form-control" id="offenseLevelSelect">
                 <option value="1st">1st offense</option>
                 <option value="2nd">2nd Offense</option>
                 <option value="3rd">3rd Offense</option>
@@ -38,43 +64,153 @@
                 <option value="6th">6th Offense</option>
                 <option value="7th">7th Offense</option>
                 <option value="8th">8th Offense</option>
-            </select>
-        </div>
-
-        <div class="input-group mb-3">
-            <div class="input-group-prepend">
-            </div>
+        </select>
+      </div>
+      <div class="form-group">
             <textarea class="form-control" id="disciplinaryActionInput" placeholder="Disciplinary Action" rows="4"></textarea>
         </div>
+      <div class="form-group">
+        <label for="offenseType">Offense Type:</label>
+        <select class="form-control" id="offenseType" name="offenseType">
+          <option value="major">Major Offense</option>
+          <option value="minor">Minor Offense</option>
+          <!-- Add more options as needed -->
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="location">Location of Violation:</label>
+        <input type="text" class="form-control" id="location" name="location" required>
+      </div>
+  
+        <label for="description">Description of Violation:</label>
+        <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+   
+      <div class="form-group">
+        <label for="attachment">Attachment (Photo/Video/Document):</label>
+        <input type="file" class="form-control-file" id="attachment" name="attachment">
+      </div>
+
+      <!-- Reporting Person's Information -->
+      <h3>Reporting Person's Information</h3>
+      <div class="form-group">
+        <label for="reportingPersonName">Name:</label>
+        <input type="text" class="form-control" id="reportingPersonName" name="reportingPersonName" required>
+      </div>
+      <div class="form-group">
+        <label for="role">Role or Position:</label>
+        <input type="text" class="form-control" id="role" name="role" required>
+      </div>
+      <div class="form-group">
+        <label for="contactNumber">Contact Number:</label>
+        <input type="number" id="contact" name="contact" placeholder="09XXXXXXXXX" pattern="^09[0-9]{9}$" required>
+
+
+        @* <input type="tel" class="form-control" id="contactNumber" name="contactNumber" required> *@
+      </div>
+      
+
+    <div class="form-group">
+      <label for="approvalStatus">Approval Status:</label>
+      <div class="form-check">
+          <input type="radio" class="form-check-input" id="pendingStatus" name="approvalStatus" value="pending" required>
+          <label class="form-check-label" for="pendingStatus">Pending</label>
+      </div>
+      <div class="form-check">
+          <input type="radio" class="form-check-input" id="approvedStatus" name="approvalStatus" value="approved" required>
+          <label class="form-check-label" for="approvedStatus">Approved</label>
+      </div>
     </div>
-</div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/js/addviolation.js"></script>
 
 <script>
-    $(document).ready(function() {
-             function updateDisciplinaryAction() {
-        var selectedViolation = $("#violationSelect").val();
-        var selectedOffenseLevel = $("#offenseLevelSelect").val();
-        console.log(selectedViolation);
-        // Check if both violation and offense level are selected
-        if (selectedViolation && selectedOffenseLevel) {
-            fetch(`/api/disciplinaryactions?offenseLevel=${selectedOffenseLevel}&violationId=${selectedViolation}`)
-                .then(response => response.json())
-                .then(data => {
-                    const disciplinaryActionInput = document.getElementById("disciplinaryActionInput");
-                    disciplinaryActionInput.value = data.join(", ");
-                });
-        }
-    }
+  
+  jQuery(document).ready(function($) {
+    $("#studentName").autocomplete({
+      source: function(request, response) {
+        $.ajax({
+          url: "/api/studentregister/autocomplete",
+          type: "GET",
+          data: { searchTerm: request.term },
+          success: function(data) {
+            console.log(data);
 
-    // Attach the updateDisciplinaryAction function to the change events of both dropdowns
-    $("#violationSelect").change(updateDisciplinaryAction);
-    $("#offenseLevelSelect").change(updateDisciplinaryAction);
-});
+            // Check if data is an array
+            if (Array.isArray(data)) {
+              response($.map(data, function(item) {
+                console.log(item);
 
-   
+                // Check if expected properties exist
+                if (item.firstname && item.middlename && item.lastname) {
+                  return {
+                    label: item.firstname + ' ' + item.middlename + ' ' + item.lastname,
+                    value: item.firstname + ' ' + item.middlename + ' ' + item.lastname,
+                    studentData: item
+                  };
+                } else {
+                  console.error("Invalid data format for item:", item);
+                  return null; // Skip this item if the structure is not as expected
+                }
+              }));
+            } else {
+              console.error("Invalid response format. Expected an array.");
+            }
+          },
+          error: function(xhr, status, error) {
+            console.error("AJAX Error:", status, error);
+          }
+        });
+      },
+      minLength: 2,
+      select: function(event, ui) {
+        // Populate other fields based on selected student data
+        $("#studentID").val(ui.item.studentData.studentIdNum);
+        $("#departmentSelect").val(ui.item.studentData.department);
+        $("#courseSelect").val(ui.item.studentData.course);
+        $("#schoolYear").val(ui.item.studentData.yearLevel);
+      }
+    });
+
+//POPULATE COURSES
+const courses = {
+    "College of Teacher Education": ["Bachelor of Elementary Education", "Bachelor of Secondary Education major in English", "Bachelor of Secondary Education major in Mathematics",
+    "Bachelor of Secondary Education major in Science", "Bachelor of Secondary Education major in Social Studies"],
+    "Criminal Justice Education": ["Bachelor of Science in Criminology"],
+    "College of Commerce": ["Bachelor of Science in Accountancy", "Bachelor of Science in Accounting Technology", "Bachelor of Science in Business Administration Major in Financial Management",
+    "Bachelor of Science in Business Management", "Bachelor of Science in Hospitality Management", "Bachelor of Science in Hospitality Management Major in Food and Beverage",
+    "Bachelor of Science in Tourism Management"],
+    "College of Computer Studies": ["Bachelor of Science in Information Technology"],
+    "Psychology Program": ["Bachelor of Science in Psychology"]
+};
+
+function populateCourses() {
+    const departmentSelect = document.getElementById("departmentSelect");
+    const courseSelect = document.getElementById("courseSelect");
+    const selectedDepartment = departmentSelect.value;
+
+    courseSelect.innerHTML = "";
+
+    courses[selectedDepartment].forEach(course => {
+        const option = document.createElement("option");
+        option.value = course;
+        option.text = course;
+        courseSelect.appendChild(option);
+    });
+}
+
+document.getElementById("departmentSelect").addEventListener("change", populateCourses);
+
+populateCourses();
+
+  });
+
+  
 </script>
-</body>
-</html>
+<script src="~/js/logout.js"></script>
+

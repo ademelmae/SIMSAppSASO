@@ -1,66 +1,239 @@
-document.getElementById('searchButton').addEventListener('click', function () {
-    event.preventDefault(); 
-    const query = document.getElementById('searchInput').value;
+jQuery(document).ready(function ($) {
+    //filter by status
+    $('#statusFilter').on('change', function () {
+        var selectedStatus = $(this).val();
 
-    // Make an API request to search students
-    fetch(`/api/studentRegister/search?query=${query}`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.length > 0) {
-                const student = data[0]; // Assuming only one student is found
-                document.getElementById('studentidnum').value = student.studentIdNum;
-                document.getElementById('firstname').value = student.firstname;
-                document.getElementById('middlename').value = student.middlename;
-                document.getElementById('lastname').value = student.lastname;
-                document.getElementById('dob').value = student.birthdate;
-                document.getElementById('age').value = student.age;
-                document.getElementById('gender').value = student.gender;
-                document.getElementById('phone').value = student.phone;
-                document.getElementById('emailadd').value = student.email;
-                document.getElementById('home').value = student.home;
-                document.getElementById('departmentSelect').value = student.department;
-                document.getElementById('courseSelect').value = student.course;
-                document.getElementById('yearSelect').value = student.schoolYear;
-                document.getElementById('parentName').value = student.parentName;
-                document.getElementById('parentHome').value = student.parentHome;
-                document.getElementById('parentContact').value = student.parentContact;
-                document.getElementById('parentEmail').value = student.parentEmail;
-            } else {
-                alert('Student not found.');
-            }
-        })
-        .catch(error => console.error('Error:', error));
+        // Use DataTable API to filter rows based on the selected status
+        $('#violationsTable').DataTable().column(6)  // Assuming 'Status' is the 7th column (index 6)
+            .search(selectedStatus)
+            .draw();
+    });
+
+    //display the table
+        fetch("/api/violation/getViolationsTable")
+            .then(response => response.json())
+            .then(data => {
+                var tableBody = $("#violations-table-body");
+                tableBody.empty();
+
+                data.forEach(function (item) {
+                    var row = $("<tr></tr>");
+
+                    for (var key in item) {
+                        if (key !== 'violationId') {
+                            var cell = $("<td></td>").text(item[key]);
+                            row.append(cell);
+                        }
+                    }
+
+                    // Add action cell to the row
+                    var actionCell = $("<td class='text-center' style='width: 120px;'></td>");
+                   
+                var infoButton = $("<button></button>")
+                  .addClass("btn btn-info btn-sm mr-1") 
+                  .css("display", "inline-block")
+                  .html('<i class="fas fa-info-circle"></i>')
+                  .on("click", function () {
+                    var violationId = item.violationId;
+                    
+                      fetch("/api/violation/getviolationdetails?violationId=" + violationId)
+                        .then(response => {
+                          if (!response.ok) {
+                            throw new Error("Network response was not ok");
+                          }
+                          return response.json();
+                        })
+                        .then(violationDetails => {
+                          displayViolationDetailsModal(violationDetails);
+                        })
+                        .catch(error => console.error("Error fetching student details:", error));
+
+                });
+
+              actionCell.append(infoButton);
+
+                    // Append buttons to the action cell
+                  var deleteButton = $("<button></button>")
+                  .addClass("btn btn-danger btn-sm") // No margin for the last button
+                  .css("display", "inline-block") // Set display property to inline-block
+                  .html('<i class="fas fa-trash-alt"></i>')
+                  .on("click", function () {
+                    var violationId = item.violationId; 
+
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "Do you want to delete this violation?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Delete",
+                    }).then((willDelete) => {
+                        if (willDelete.isConfirmed) {
+                            // Send a DELETE request to the server to delete the student
+                            fetch("/api/violation/deleteViolation/" + violationId, {
+                                method: "DELETE",
+                            })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error("Network response was not ok");
+                                        console.log(response)
+                                    }
+                                    return response.json();
+                                })
+                                .then(deleteResponse => {
+                                    // Handle success, e.g., show a success message to the user
+                                    console.log('Violation student successfully:', deleteResponse);
+            
+                                    Swal.fire({
+                                        title: "Success",
+                                        text: "Violation deleted successfully!",
+                                        icon: "success",
+                                        timer: 3000,
+                                        showConfirmButton: true
+                                    });
+            
+                                    // Optionally, remove the deleted row from the table
+                                    row.remove();
+                                })
+                                .catch(error => {
+                                    // Handle errors, e.g., display an error message to the user
+                                    console.error('Error deleting violation:', error);
+                                    alert('An error occurred while deleting the violation.');
+                                });
+                        }
+                    });
+                  });
+                    actionCell.append(deleteButton);
+
+                    // Append the action cell to the row
+                    row.append(actionCell);
+
+                    // Append the row to the table body
+                    tableBody.append(row);
+                });
+
+                    $('#violationsTable').DataTable({
+                    "paging": true,
+                    "ordering": true,
+                    "info": true,
+                    // Add additional DataTable options as needed
+                    });
+               
+            });
 });
 
-const courses = {
-    "College of Teacher Education": ["Bachelor of Elementary Education", "Bachelor of Secondary Education major in English", "Bachelor of Secondary Education major in Mathematics",
-    "Bachelor of Secondary Education major in Science", "Bachelor of Secondary Education major in Social Studies"],
-    "Criminal Justice Education": ["Bachelor of Science in Criminology"],
-    "College of Commerce": ["Bachelor of Science in Accountancy", "Bachelor of Science in Accounting Technology", "Bachelor of Science in Business Administration Major in Financial Management",
-    "Bachelor of Science in Business Management", "Bachelor of Science in Hospitality Management", "Bachelor of Science in Hospitality Management Major in Food and Beverage",
-    "Bachelor of Science in Tourism Management"],
-    "College of Computer Studies": ["Bachelor of Science in Information Technology"],
-    "Psychology Program": ["Bachelor of Science in Psychology"]
-};
-function populateCourses() {
-    const departmentSelect = document.getElementById("departmentSelect");
-    const courseSelect = document.getElementById("courseSelect");
-    const selectedDepartment = departmentSelect.value;
+function displayViolationDetailsModal(violationDetails) {
+    console.log(violationDetails);
+    // Set the values in the modal
+    for (const property in violationDetails) {
+      if (violationDetails.hasOwnProperty(property)) {
+        $(`#modal${property.charAt(0).toUpperCase()}${property.slice(1)}`).text(violationDetails[property]);
+      }
+    }
+  
+    // Show the modal
+    $("#violationInfoModal").modal("show");
+  }
 
-    // Clear the current options in the courses select box
-    courseSelect.innerHTML = "";
+// UPDATE THE DISCIPLINARY ACTION
+  function updateDisciplinaryAction() {
+    var selectedViolation = $("#violationSelect").val();
+    var selectedOffenseLevel = $("#offenseLevelSelect").val();
+    
+    if (selectedViolation && selectedOffenseLevel) {
+      fetch(`/api/disciplinaryactions?offenseLevel=${selectedOffenseLevel}&violationId=${selectedViolation}`)
+        .then(response => response.json())
+        .then(data => {
+          const disciplinaryActionInput = document.getElementById("disciplinaryActionInput");
+          disciplinaryActionInput.value = data.join(", ");
+        });
+    }
+  }
 
-    // Populate the courses select box with options based on the selected department
-    courses[selectedDepartment].forEach(course => {
-        const option = document.createElement("option");
-        option.value = course;
-        option.text = course;
-        courseSelect.appendChild(option);
-    });
-}
+  $("#violationSelect").change(updateDisciplinaryAction);
+  $("#offenseLevelSelect").change(updateDisciplinaryAction);
 
-// Add an event listener to the department select box to update the courses select box when the department changes
-document.getElementById("departmentSelect").addEventListener("change", populateCourses);
 
-// Initial population of the courses select box
-populateCourses();
+//ADD VIOLATION FORM
+document.getElementById('violationForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Do you want to save this data?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, save it',
+            cancelButtonText: 'No, cancel',
+        }).then((result) => {
+    
+            if (result.isConfirmed) {
+                // User confirmed, proceed with saving the data
+                
+                const approvalStatusElements = document.getElementsByName('approvalStatus');
+                let selectedApprovalStatus;
+    
+                approvalStatusElements.forEach(element => {
+                    if (element.checked) {
+                        selectedApprovalStatus = element.value;
+                    }
+                });
+    
+        
+        const studentViolation = {
+            StudentName: document.getElementById('studentName').value,
+            StudentIdNum: document.getElementById('studentID').value,
+            Course: document.getElementById('courseSelect').value,
+            YearLevel: document.getElementById('yearLevel').value,
+            ViolationType: document.getElementById('violationSelect').selectedOptions[0].text,
+            ViolationDate: document.getElementById('dateOfViolation').value,
+            ViolationTime: document.getElementById('timeOfViolation').value,
+            OffenseLevel: document.getElementById('offenseLevelSelect').value,
+            DisciplinaryAction: document.getElementById('disciplinaryActionInput').value,
+            OffenseType: document.getElementById('offenseType').value,
+            Location: document.getElementById('location').value,
+            Description: document.getElementById('description').value,
+            Attachment: document.getElementById('attachment').value,
+            ReportingName: document.getElementById('reportingPersonName').value,
+            ReportingRole: document.getElementById('role').value,
+            ReportingContact: document.getElementById('contact').value,
+            Status: selectedApprovalStatus,
+        };
+    
+         fetch('/api/violation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(studentViolation),
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json().catch(() => ({})); // Parse the response JSON or an empty object
+                    } else {
+                        throw new Error(`Error saving data: ${response.status} - ${response.statusText}`);
+                    }
+                })
+                .then(data => {
+                    if (data) {
+                        // Success: Show a SweetAlert for success
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Confirmed Violation Successfully',
+                            text: 'Violation has been successfully added.',
+                        });
+                    } else {
+                        console.error('No valid JSON data received from the server.');
+                    }
+                })
+                .catch(error => {
+                    // Error: Show a SweetAlert for error
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: `Network error or failed to save data: ${error}`,
+                    });
+                });
+            }
+      });
+    
+});

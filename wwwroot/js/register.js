@@ -9,8 +9,21 @@ $(document).ready(function() {
         var password = $("#registerPassword").val();
         var confirmPassword = $("#confirmPassword").val();
 
-        if (password !== confirmPassword) {
-            $("#error-message").text("Passwords do not match");
+        if(firstname === '' || lastname === '' || username === '' || email === '' || password === '' || confirmPassword === '')
+        {
+            Swal.fire({
+                title: 'Error',
+                text: 'Please fill out all required fields',
+                icon: 'error'
+            });
+        }
+        else if (password !== confirmPassword) {
+            // Passwords do not match - show a SweetAlert pop-up
+            Swal.fire({
+                title: 'Error',
+                text: 'Passwords do not match',
+                icon: 'error'
+            });
         } else {
             $.ajax({
                 url: '/api/UserRegister/register',
@@ -24,18 +37,23 @@ $(document).ready(function() {
                 }),
                 contentType: 'application/json',
                 success: function(response) {
-                    if (response.Message === 'User registered successfully') {
+                    if (response === 'User registered successfully') {
                         Swal.fire({
                             title: 'Registration Successful',
                             text: 'User registered successfully!',
                             icon: 'success'
                         }).then(function() {
-                            // Redirect to a success page or perform any other actions
-                            window.location.href = 'success-page.html';
+                            $("#registrationForm")[0].reset();
+                            window.location.href = 'home/index';
                         });
                     } else {
                         if (response === 'User already exists') {
-                            $("#error-message").text("User already exists");
+                            // console.log("Server Response: ", response);
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'User already exists',
+                                icon: 'error'
+                            });
                         } else {
                             $("#error-message").text(response.Message);
                         }
@@ -48,20 +66,32 @@ $(document).ready(function() {
         }
     });
 
-    // Add a click event for the signup button to confirm registration
-    $("#signup-button").click(function() {
-        Swal.fire({
-            title: 'Confirm Registration',
-            text: 'Are you sure you want to register?',
-            icon: 'question',
-            showCancelButton: true,
-            confirmButtonText: 'Register',
-            cancelButtonText: 'Cancel'
-        }).then(function(result) {
-            if (result.isConfirmed) {
-                // Submit the registration form
-                $("#registrationForm").submit();
-            }
-        });
+    $("#signup-button").click(function(e) {
+        e.preventDefault();
+        var password = $("#registerPassword").val();
+        var confirmPassword = $("#confirmPassword").val();
+
+        if (password !== confirmPassword) {
+            // Passwords do not match - show a SweetAlert pop-up
+            Swal.fire({
+                title: 'Error',
+                text: 'Passwords do not match',
+                icon: 'error'
+            });
+        } else {
+            Swal.fire({
+                title: 'Confirm Registration',
+                text: 'Are you sure you want to register?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Register',
+                cancelButtonText: 'Cancel'
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    // Submit the registration form
+                    $("#registrationForm").submit();
+                }
+            });
+        }
     });
 });

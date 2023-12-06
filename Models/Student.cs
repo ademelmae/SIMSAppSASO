@@ -14,7 +14,11 @@ namespace SIMSApp.Models
         public string Gender { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string Home { get; set; }
+        public string Province { get; set; }
+        public string City { get; set; }
+        public string Barangay { get; set; }
+        public string Street { get; set; }
+        public int Zip { get; set; }
         public string StudentIdNum { get; set; }
         public string Department { get; set; }
         public string Course { get; set; }
@@ -22,6 +26,7 @@ namespace SIMSApp.Models
         public string ParentEmail { get; set; }
         public string ParentHome { get; set; }
         public string ParentContact { get; set; }
-        public string SchoolYear { get; set; }
+        public string YearLevel { get; set; }
+        public string AcademicYear { get; set; }
     }
 }

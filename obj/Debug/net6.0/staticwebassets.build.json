@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "XABBL130sRpkrCoImqWYm3WsDL5JJd2ejUJpsDPEv0Y=",
+  "Hash": "cFryHQuUlccE/tU7ZMEgzhaVLgw+SvQNyyUgMFdIa58=",
   "Source": "SIMSApp",
   "BasePath": "_content/SIMSApp",
   "Mode": "Default",
@@ -1224,6 +1224,23 @@
       "OriginalItemSpec": "wwwroot\\js\\logout.js"
     },
     {
+      "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\js\\province.js",
+      "SourceId": "SIMSApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\",
+      "BasePath": "_content/SIMSApp",
+      "RelativePath": "js/province.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\province.js"
+    },
+    {
       "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\js\\register.js",
       "SourceId": "SIMSApp",
       "SourceType": "Discovered",
@@ -1273,6 +1290,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\js\\updatestudent.js",
+      "SourceId": "SIMSApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\",
+      "BasePath": "_content/SIMSApp",
+      "RelativePath": "js/updatestudent.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\updatestudent.js"
     },
     {
       "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

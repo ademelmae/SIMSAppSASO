@@ -25,17 +25,17 @@ namespace SIMSApp.Controllers
         return Ok(studentCount);
     }
 
-    [HttpGet("pendingViolationCount")]
+    [HttpGet("violationCount")]
     public IActionResult GetPendingViolationCount()
     {
-        int pendingViolationCount = _context.Pendingviolations.Count();
+        int pendingViolationCount = _context.Studentviolations.Count(v => v.Status == "pending");
         return Ok(pendingViolationCount);
     }
 
-    [HttpGet("approvedViolationCount")]
+    [HttpGet("approvedCount")]
     public IActionResult GetApprovedViolationCount()
     {
-        int approvedViolationCount = _context.Approvedviolations.Count();
+        int approvedViolationCount = _context.Studentviolations.Count(v => v.Status == "approved");
         return Ok(approvedViolationCount);
     }
 

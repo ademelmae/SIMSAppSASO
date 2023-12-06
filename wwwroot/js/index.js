@@ -1,5 +1,8 @@
- // Ensure jQuery is loaded and available
- $(document).ready(function() {
+$(document).ready(function() {
+    // check the status if logged
+    if(sessionStorage.getItem("Logged") === "false" || sessionStorage.getItem("Logged")===undefined || sessionStorage.getItem("Logged")===null){
+        window.location.href ="https://localhost:7203/"
+    }
     $.ajax({
         url: '/api/count/studentCount',
         method: 'GET',
@@ -10,7 +13,7 @@
     });
 
     $.ajax({
-        url: '/api/count/pendingViolationCount',
+        url: '/api/count/violationCount',
         method: 'GET',
         success: function(data) {
             $('#pendingViolationCount').empty(); // Remove existing content
@@ -19,7 +22,7 @@
     });
 
     $.ajax({
-        url: '/api/count/approvedViolationCount',
+        url: '/api/count/approvedCount',
         method: 'GET',
         success: function(data) {
             $('#approvedViolationCount').empty(); // Remove existing content

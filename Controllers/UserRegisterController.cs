@@ -1,72 +1,59 @@
 using System;
-using System.Linq;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Cryptography;
 using Microsoft.EntityFrameworkCore;
 using SIMSApp.Models;
-using Microsoft.Extensions.Logging;
-using System.Security.Cryptography; // For password hashing
-using System.Text; // For encoding
 
-namespace SIMSApp.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class UserRegisterController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class UserRegisterController : ControllerBase
+    private readonly simsdbContext _context;
+
+    public UserRegisterController(simsdbContext context)
     {
-        private readonly simsdbContext _context;
-        private readonly ILogger<UserRegisterController> _logger;
+        _context = context;
+    }
 
-        public UserRegisterController(simsdbContext context, ILogger<UserRegisterController> logger)
+    [HttpPost("register")]
+    public IActionResult Register([FromBody] Useraccount request)
+    {
+        try
         {
-            _context = context;
-            _logger = logger;
-        }
+            var existingUser = _context.Useraccounts.FirstOrDefault(u => u.Username == request.Username);
 
-        [HttpPost("register")]
-        public IActionResult Register([FromBody] Useraccount userModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (UserExists(userModel.Email))
+            if (existingUser != null)
             {
                 return Ok("User already exists");
             }
-            
-                var userEntity = new Useraccount
+
+            // Hash the password using SHA-256
+            using (SHA256 sha256 = SHA256.Create())
             {
-                Firstname = userModel.Firstname,
-                Lastname = userModel.Lastname,
-                Username = userModel.Username,
-                Email = userModel.Email,
-                Password = HashPassword(userModel.Password) // Hash and salt the password
-            };
+                byte[] bytes = Encoding.UTF8.GetBytes(request.Password);
+                byte[] hashBytes = sha256.ComputeHash(bytes);
+                string hashedPassword = BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+                
+                // Create a new user entity
+                var newUser = new Useraccount
+                {
+                    Firstname = request.Firstname,
+                    Lastname = request.Lastname,
+                    Username = request.Username,
+                    Email = request.Email,
+                    Password = hashedPassword
+                };
 
-            _context.Useraccounts.Add(userEntity);
-            _context.SaveChanges();
-
-            _logger.LogInformation($"User registered: {userEntity.Email}");
-
-            return Ok(new { Message = "User registered successfully" });
-          
-            
-        }
-
-        private bool UserExists(string email)
-        {
-            return _context.Useraccounts.Any(u => u.Email == email);
-        }
-
-        private string HashPassword(string password)
-        {
-            // Implement password hashing and salting here (e.g., using PBKDF2)
-            using (var sha256 = new SHA256Managed())
-            {
-                var hashBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+                _context.Useraccounts.Add(newUser);
+                _context.SaveChanges();
             }
+
+            return Ok("User registered successfully");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Message = "Registration failed", Error = ex.Message });
         }
     }
 }

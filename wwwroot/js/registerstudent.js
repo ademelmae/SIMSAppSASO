@@ -1,58 +1,258 @@
-    
-$(document).ready(function () {
-    $('#studentForm').submit(function (e) {
-        e.preventDefault(); // Prevent the default form submission
-        $('#confirmationModal').modal('show'); // Show the confirmation modal
-    });
 
-    // Handle the confirmation button click
-    $('#confirmYes').click(function () {
-        $('#confirmationModal').modal('hide');
-        $('#studentForm').unbind('submit').submit; // Unbind the submit event and submit the form
-        
-        const studentData = {
-            FirstName: document.getElementById("firstname").value,
-            MiddleName: document.getElementById("middlename").value,
-            LastName: document.getElementById("lastname").value,
-            Birthdate: document.getElementById("dob").value,
-            Age: parseInt(document.getElementById("age").value),
-            Gender: document.getElementById("gender").value,     
-            Phone :  document.getElementById("phone").value.toString(),
-            Email: document.getElementById("emailadd").value,
-            Home: document.getElementById("home").value,
-            StudentIdNum: document.getElementById("studentidnum").value.toString(),
-            Department: document.getElementById("departmentSelect").value,
-            Course: document.getElementById("courseSelect").value,
-            SchoolYear: document.getElementById("yearSelect").value,
-            ParentName: document.getElementById("parentName").value,
-            ParentContact: document.getElementById("parentContact").value.toString(),
-            ParentEmail: document.getElementById("parentEmail").value,
-            ParentHome: document.getElementById("parentHome").value,  
-    };
+jQuery(document).ready(function ($) {
+  fetch("/api/studentregister/getstudentdata")
+      .then(response => response.json())
+      .then(data => {
+          var tableBody = $("#studentTableBody");
+          tableBody.empty();
 
-    fetch('/api/studentregister', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(studentData)
-            })
-            .then(response => response.json())
-            .then(studentData => {
-                // Handle success, e.g., show a success message to the user
-                console.log('Registered student successfully:', studentData);
-                alert('Registered student successfully!');
+          data.forEach(function (item) {
+              var row = $("<tr></tr>");
 
-                document.getElementById('studentForm').reset();
+              // Add columns to the row
+              for (var key in item) {
+                  var cell = $("<td></td>").text(item[key]);
+                  row.append(cell);
+              }
 
-            })
-            .catch(error => {
-                // Handle errors, e.g., display an error message to the user
-                console.error('Error:', error);
-                alert('An error occurred while submitting the violation.');
-            });
-    });
+              var actionCell = $("<td class='text-center' style='width: 120px;'></td>");
+
+              //InfoButton
+              var infoButton = $("<button></button>")
+                  .addClass("btn btn-info btn-sm mr-1") 
+                  .css({
+                    display: "inline-block",
+                    margin: ""
+                  })
+                  .html('<i class="fas fa-info-circle"></i>')
+                  .on("click", function () {
+                    var studentId = item.studentId;
+                    
+                      fetch("/api/studentregister/getstudentdetails?studentId=" + studentId)
+                        .then(response => {
+                          if (!response.ok) {
+                            throw new Error("Network response was not ok");
+                          }
+                          return response.json();
+                        })
+                        .then(studentDetails => {
+                          displayStudentDetailsModal(studentDetails);
+                        })
+                        .catch(error => console.error("Error fetching student details:", error));
+
+                });
+              actionCell.append(infoButton);
+
+              var updateButton = $("<button></button>")
+                  .addClass("btn btn-warning btn-sm mr-1") 
+                  .css({
+                    display: "inline-block",
+                   
+                    
+                  })
+                  .html('<i class="fas fa-edit"></i>')
+                  .on("click", function () {
+                    var studentId = item.studentId;
+
+                    $.ajax({
+                        url: "/api/studentregister/" + studentId,
+                        method: "GET",
+                        success: function (data) {
+                            // Populate the modal form fields with the retrieved data
+                            updateStudent({
+                              "studentId":data.studentId,
+                              "studentIdNum":data.studentIdNum,
+                              "firstname":data.firstname,
+                              "middlename":data.middlename,
+                              "lastname":data.lastname,
+                              "birthdate":data.birthdate,
+                              "age":data.age,
+                              "gender":data.gender,
+                              "phone":data.phone,
+                              "email":data.email,
+                              "province":data.province,
+                              "city":data.city,
+                              "barangay":data.barangay,
+                              "street":data.street,
+                              "zip":data.zip,
+                              "academicYear":data.academicYear,
+                              "department":data.department,
+                              "course": data.course,
+                              "yearLevel": data.yearLevel,
+                              "parentName":data.parentName,
+                              "parentHome":data.parentHome,
+                              "parentContact":data.parentContact,
+                              "parentEmail":data.parentEmail,
+                            })
+
+                        },
+                        error: function () {
+                            alert("Error retrieving student data");
+                        }
+                    });
+          
+                  });
+
+              actionCell.append(updateButton);
+
+              var deleteButton = $("<button></button>")
+                  .addClass("btn btn-danger btn-sm") // No margin for the last button
+                  .css("display", "inline-block") // Set display property to inline-block
+                  .html('<i class="fas fa-trash-alt"></i>')
+                  .on("click", function () {
+                    var studentId = item.studentId;
+
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "Do you want to delete this student?",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Delete",
+                    }).then((willDelete) => {
+                        if (willDelete.isConfirmed) {
+                            // Send a DELETE request to the server to delete the student
+                            fetch("/api/studentregister/deleteStudent/" + studentId, {
+                                method: "DELETE",
+                            })
+                                .then(response => {
+                                    if (!response.ok) {
+                                        throw new Error("Network response was not ok");
+                                    }
+                                    return response.json();
+                                })
+                                .then(deleteResponse => {
+                                    // Handle success, e.g., show a success message to the user
+                                    console.log('Deleted student successfully:', deleteResponse);
+            
+                                    Swal.fire({
+                                        title: "Success",
+                                        text: "Student deleted successfully!",
+                                        icon: "success",
+                                        timer: 3000,
+                                        showConfirmButton: true
+                                    });
+            
+                                    // Optionally, remove the deleted row from the table
+                                    row.remove();
+                                })
+                                .catch(error => {
+                                    // Handle errors, e.g., display an error message to the user
+                                    console.error('Error deleting student:', error);
+                                    alert('An error occurred while deleting the student.');
+                                });
+                        }
+                    });
+                  });
+              actionCell.append(deleteButton);
+
+              row.append(actionCell);
+              tableBody.append(row);
+          });
+
+          // DataTable initialization
+          if ($.fn.DataTable) {
+              $('#studentTable').DataTable({
+                  "paging": true,
+                  "ordering": true,
+                  "info": true,
+                  // Add additional DataTable options as needed
+              });
+          } else {
+              console.error("DataTables not loaded!");
+          }
+      })
+      .catch(error => console.error("Error fetching data:", error));
 });
+
+// updateStudent
+
+
+function displayStudentDetailsModal(studentDetails) {
+  console.log(studentDetails);
+  // Set the values in the modal
+  for (const property in studentDetails) {
+    if (studentDetails.hasOwnProperty(property)) {
+      $(`#modal${property.charAt(0).toUpperCase()}${property.slice(1)}`).text(studentDetails[property]);
+    }
+  }
+
+  // Show the modal
+  $("#infoModal").modal("show");
+}
+
+
+      
+    $('#studentForm').submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+          title: "Are you sure?",
+                    text: "Do you want to register student?",
+                    icon: "warning",
+                    showCancelButton: true, 
+                    confirmButtonText: "Submit",
+        }).then((willSubmit) => {
+          if (willSubmit.isConfirmed) {
+            submitForm();
+          }
+        });
+    });
+
+    function submitForm(){
+      const studentData = {
+        FirstName: document.getElementById("firstname").value,
+        MiddleName: document.getElementById("middlename").value,
+        LastName: document.getElementById("lastname").value,
+        Birthdate: document.getElementById("dob").value,
+        Age: parseInt(document.getElementById("age").value),
+        Gender: document.getElementById("gender").value,     
+        Phone :  document.getElementById("phone").value.toString(),
+        Email: document.getElementById("emailadd").value,
+        Province: document.getElementById("province").value,
+        City: document.getElementById("city").value,
+        Barangay: document.getElementById("barangay").value,
+        Street: document.getElementById("streetAddress").value,
+        Zip: document.getElementById("zipCode").value,
+        AcademicYear: document.getElementById("academicYear").value,
+        StudentIdNum: document.getElementById("studentidnum").value.toString(),
+        Department: document.getElementById("departmentSelect").value,
+        Course: document.getElementById("courseSelect").value,
+        YearLevel: document.getElementById("yearSelect").value,
+        ParentName: document.getElementById("parentName").value,
+        ParentContact: document.getElementById("parentContact").value.toString(),
+        ParentEmail: document.getElementById("parentEmail").value,
+        ParentHome: document.getElementById("parentHome").value,  
+};
+
+fetch('/api/studentregister', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(studentData)
+        })
+        .then(response => response.json())
+        .then(studentData => {
+            // Handle success, e.g., show a success message to the user
+            console.log('Registered student successfully:', studentData);
+
+            Swal.fire({
+              title: "Success",
+              text: "Student registered successfully!",
+              icon: "success",
+              timer: 3000, // Auto close the success message after 3 seconds
+              showConfirmButton: false // Hide the "OK" button
+            });
+
+            document.getElementById('studentForm').reset();
+
+        })
+        .catch(error => {
+            // Handle errors, e.g., display an error message to the user
+            console.error('Error:', error);
+            alert('An error occurred while submitting the violation.');
+        });
+    }
+
 
 function calculateAge() {    
     const dobInput = document.getElementById("dob");
@@ -100,7 +300,6 @@ calculateAge();
     "Psychology Program": ["Bachelor of Science in Psychology"]
 };
 
-// Function to populate the courses select box based on the selected department
 function populateCourses() {
     const departmentSelect = document.getElementById("departmentSelect");
     const courseSelect = document.getElementById("courseSelect");
@@ -124,5 +323,46 @@ document.getElementById("departmentSelect").addEventListener("change", populateC
 // Initial population of the courses select box
 populateCourses();
 
+const cityBarangayMap = {
+    'Bogo City': ['Anonang Norte', 'Anonang Sur', 'Banban', 'Binabag', 'Bungtod', 'Carbon', 'Cayang', 'Cogon', 'Dakit', 'Don Pedro', 'Gairan', 'Guadalupe', 'La Paz', 'LPC', 'Libertad', 'Lourdes', 'Malingin', 'Marangog','Nailon','Odlot', 'Pandan', 'Polambato', 'Sambag', 'San Vicente', 'Siocon', 'Sto. Nino', 'Sto.Rosario', 'Sudlonon', 'Taytayan'],
 
+    // Add more cities and their respective barangays here
+  };
+
+  const provinceCityMap = {
+    'Cebu': ['Bogo City'],
+    // Add more provinces and their respective cities here
+  };
+
+  $('#province').on('change', function() {
+    const selectedProvince = $(this).val();
+    const cityDropdown = $('#city');
+    cityDropdown.empty();
+    const cities = provinceCityMap[selectedProvince] || [];
+    cities.forEach(function(city) {
+      cityDropdown.append($('<option>', {
+        value: city,
+        text: city,
+      }));
+    });
+
+    // Trigger the city change event to update the barangay dropdown
+    cityDropdown.trigger('change');
+  });
+
+  $('#city').on('change', function() {
+    const selectedCity = $(this).val();
+    const barangayDropdown = $('#barangay');
+    barangayDropdown.empty();
+    const barangays = cityBarangayMap[selectedCity] || [];
+    barangays.forEach(function(barangay) {
+      barangayDropdown.append($('<option>', {
+        value: barangay,
+        text: barangay,
+      }));
+    });
+  });
+
+  // Trigger the province change event initially to populate the city dropdown
+  $('#province').trigger('change');
 

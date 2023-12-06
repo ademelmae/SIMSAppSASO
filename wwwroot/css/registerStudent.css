@@ -7,9 +7,10 @@ body {
 }
 
 .header {
-    background: #2b63a9;
+    background: #2ba970;
     color: #fff;
-    padding: 20px;
+    padding: 10px;
+    font-size: 10px;
     text-align: center;
 }
 

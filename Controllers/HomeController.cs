@@ -19,7 +19,9 @@ public class HomeController : Controller
     {
         return View();
     }
-      public IActionResult Dashboard()
+
+
+    public IActionResult Dashboard()
     {
         return View();
     }
@@ -33,10 +35,6 @@ public class HomeController : Controller
         return View();
     }
      public IActionResult StudentList()
-    {
-        return View();
-    }
-    public IActionResult Reports()
     {
         return View();
     }
@@ -56,15 +54,11 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult admindash()
+    public IActionResult ViewViolations()
     {
         return View();
     }
 
-    public IActionResult sidebar()
-    {
-        return View();
-    }
 
     public IActionResult Login()
     {

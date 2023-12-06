@@ -1,0 +1,42 @@
+<title>Student Violations</title>
+<link rel="stylesheet" href="/css/sidebar.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
+
+<div class="container mt-5">
+    <h2>Student Violations</h2>
+    @Html.Partial("Partials/AddViolationModal")
+    @Html.Partial("Partials/ViolationInfoModal")
+    <div class="form-group">
+    <label for="statusFilter">Filter by Status:</label>
+    <select id="statusFilter" class="form-control">
+        <option value="">All</option>
+        <option value="pending">Pending</option>
+        <option value="approved">Approved</option>
+    </select>
+    </div>
+    <table  id="violationsTable" class="display">
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Student ID</th>
+                <th>Course</th>
+                <th>Year Level</th>
+                <th>Offense Level</th>
+                <th>Violation Type</th>
+                <th>Status</th>
+                  <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="violations-table-body">
+            <!-- Data will be populated here -->
+        </tbody>
+    </table>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="~/js/addviolation.js"></script>
+<script src="~/js/logout.js"></script>
