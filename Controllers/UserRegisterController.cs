@@ -21,7 +21,7 @@ public class UserRegisterController : ControllerBase
     {
         try
         {
-            var existingUser = _context.Useraccounts.FirstOrDefault(u => u.Username == request.Username);
+            var existingUser = _context.Useraccounts.FirstOrDefault(u => u.Username == request.Username ||  u.Email == request.Email);
 
             if (existingUser != null)
             {

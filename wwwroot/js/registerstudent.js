@@ -46,9 +46,7 @@ jQuery(document).ready(function ($) {
               var updateButton = $("<button></button>")
                   .addClass("btn btn-warning btn-sm mr-1") 
                   .css({
-                    display: "inline-block",
-                   
-                    
+                    display: "inline-block"
                   })
                   .html('<i class="fas fa-edit"></i>')
                   .on("click", function () {
