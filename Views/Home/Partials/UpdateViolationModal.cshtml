@@ -1,0 +1,108 @@
+<div class="modal fade" id="UpdateViolationModal" tabindex="-1" role="dialog" aria-labelledby="updateViolationModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateViolationModalLabel">Student Violation Report</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     <!-- Modal content -->
+<div class="modal-body">
+    <div class="container">
+      <div class="form-container">
+        <div class="header"><h2>Student Violation Report Form</h2></div>
+          <form id="updateViolationForm">
+          <!-- Violation Details -->
+          <h3>Violation Details</h3>
+          <div class="form-group">
+            <select class="form-control" id="updateViolationType">
+                    <option value="">Select violation</option>
+                    <option value="1">Tardiness</option>
+                    <option value="2">Absence from class</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="dateOfViolation">Date of Violation:</label>
+            <input type="date" class="form-control" id="updateViolationDate" name="violationDate" required>
+          </div>
+          <div class="form-group">
+            <label for="timeOfViolation">Time of Violation:</label>
+            <input type="time" class="form-control" id="updateViolationTime" name="violationTime" required>
+          </div>
+          <div class="form-group">
+            <label for="sanction">Sanction:</label>
+            <select class="form-control" id="updateOffenseLevel">
+                    <option value="1st">1st offense</option>
+                    <option value="2nd">2nd Offense</option>
+                    <option value="3rd">3rd Offense</option>
+                    <option value="4th">4th Offense</option>
+                    <option value="5th">5th Offense</option>
+                    <option value="6th">6th Offense</option>
+                    <option value="7th">7th Offense</option>
+                    <option value="8th">8th Offense</option>
+            </select>
+          </div>
+          <div class="form-group">
+                <textarea class="form-control" id="updateDisciplinaryAction" placeholder="Disciplinary Action" rows="4"></textarea>
+            </div>
+          <div class="form-group">
+            <label for="offenseType">Offense Type:</label>
+            <select class="form-control" id="updateOffenseType" name="offenseType">
+              <option value="major">Major Offense</option>
+              <option value="minor">Minor Offense</option>
+              <!-- Add more options as needed -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="location">Location of Violation:</label>
+            <input type="text" class="form-control" id="updateLocation" name="location" required>
+          </div>
+      
+            <label for="description">Description of Violation:</label>
+            <textarea class="form-control" id="updateDescription" name="description" rows="4" required></textarea>
+
+          <!-- Reporting Person's Information -->
+          <h3>Reporting Person's Information</h3>
+          <div class="form-group">
+            <label for="reportingPersonName">Name:</label>
+            <input type="text" class="form-control" id="updateReportingName" name="reportingPersonName" required>
+          </div>
+          <div class="form-group">
+            <label for="role">Role or Position:</label>
+            <input type="text" class="form-control" id="updateReportingRole" name="role" required>
+          </div>
+          <div class="form-group">
+            <label for="contactNumber">Contact Number:</label>
+            <input type="number" id="updateReportingContact" name="contact" placeholder="09XXXXXXXXX" pattern="^09[0-9]{9}$" required>
+          </div>
+          
+
+        <div class="form-group">
+          <label for="approvalStatus">Approval Status:</label>
+          <div class="form-check">
+              <input type="radio" class="form-check-input" id="updateStatusPending" name="approvalStatus" value="pending" required>
+              <label class="form-check-label" for="updateStatusPending">Pending</label>
+          </div>
+          <div class="form-check">
+              <input type="radio" class="form-check-input" id="updateStatusApproved" name="approvalStatus" value="approved" required>
+              <label class="form-check-label" for="updateStatusApproved">Approved</label>
+          </div>
+        </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+  
+    </div>
+</div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="~/js/addviolation.js"></script>

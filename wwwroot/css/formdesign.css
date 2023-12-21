@@ -1,0 +1,95 @@
+body {
+    background-color: #f4f4f4;
+    font-family: 'Karla', sans-serif;
+  }
+  
+  .container {
+    max-width: 1200px; /* Adjust the max-width to make the form wider */
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .form-container {
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  form {
+    margin-top: 10px;
+  }
+  
+  .form-category {
+    
+    font-size: 28px;
+    margin-bottom: 10px;
+    padding: 10px;
+    color: black;
+    font-weight: 600;
+    border-radius: 5px;
+  }
+  
+  .form-group {
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  .form-control{
+      font-weight:400;
+      color: gray;
+      font-size: 1rem;
+  }
+  
+  
+  input,
+  select {
+    width: 100%;
+    padding: 10px;
+    height: 50px;
+    font-size: 1rem;
+    font-weight: 400;
+    box-sizing: border-box;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }
+  
+  .btn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #2980b9;
+  }
+  
+  .row {
+    margin-bottom: 10px;
+  }
+  
+  #submitbtn{
+    font-weight: bold; 
+    width: 150px;
+    height:60px;
+  }
+
+  #backbtn{
+    background-color: rgb(20, 201, 129);
+    font-weight: bold; 
+    width: 150px;
+    height:60px;
+  }
+
+  label{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 600;
+  }

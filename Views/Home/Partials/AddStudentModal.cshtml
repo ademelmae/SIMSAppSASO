@@ -1,7 +1,3 @@
-<button type="button" style="margin-top: 20px; margin-bottom:50px;"class="btn btn-primary" data-toggle="modal" data-target="#studentModal">
-  Register Student
-  @* <i class="fa fa-plus" aria-hidden="true"></i> *@
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="studentModal" tabindex="-1" role="dialog" aria-labelledby="studentModalLabel" aria-hidden="true">
@@ -15,11 +11,19 @@
       </div>
      <!-- Modal content -->
 <div class="modal-body">
-  <div class="header"><h2>Student Register Form</h2></div>
+  <div class="header" style=";"><h2>Student Registration Form</h2></div>
   <div class="container">
-    <div class="form-container">
-      <div class="form-title">Register Student Information</div>
+    <div class="form-container" style="background">
       <form id="studentForm" class="formstudent">
+          <div id="profile-picture">
+            <div id="profile-image-container">
+              <img id="profile-image" src="placeholder.jpeg" alt="Profile Image">
+            </div>
+            <div id="upload-btn-wrapper">
+              <button class="btn">Upload a picture</button>
+              <input type="file" name="myfile" />
+            </div>
+          </div>
         <div class="row">
           <div class="col-md-6">
             <div class="form-category">Student Information</div>
@@ -189,3 +193,110 @@
     </div>
   </div>
 </div>
+
+
+<style>
+  /* Add custom styles for a modern and creative UI */
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  .modal-content {
+    border-radius: 10px;
+  }
+
+  .modal-header {
+    background-color: #3498db;
+    color: #fff;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+
+  .modal-title {
+    font-weight: bold;
+  }
+
+  .form-container {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+
+  .form-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .form-category {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  #submitbtn {
+    background-color: #3498db;
+    color: #fff;
+    transition: background-color 0.3s ease;
+  }
+
+  #submitbtn:hover {
+    background-color: #2980b9;
+  }
+
+  /* Add styles for the profile picture section */
+  #profile-picture {
+    text-align: center;
+  }
+
+  #profile-image-container {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 2px solid #3498db;
+    position: relative;
+  }
+
+  #profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* Ensure the border-radius is applied to the image */
+  }
+
+  #upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  #upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+
+  #upload-btn-wrapper .btn {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  #upload-btn-wrapper .btn:hover {
+    border-color: #3498db;
+    color: #3498db;
+  }
+</style>

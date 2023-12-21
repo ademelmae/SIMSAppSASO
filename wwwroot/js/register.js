@@ -8,12 +8,19 @@ $(document).ready(function() {
         var email = $("#registerEmail").val();
         var password = $("#registerPassword").val();
         var confirmPassword = $("#confirmPassword").val();
+        var missingFields = [];
+        
+        if (firstname === '') missingFields.push('First Name');
+        if (lastname === '') missingFields.push('Last Name');
+        if (username === '') missingFields.push('Username');
+        if (email === '') missingFields.push('Email');
+        if (password === '') missingFields.push('Password');
+        if (confirmPassword === '') missingFields.push('Confirm Password');
 
-        if(firstname === '' || lastname === '' || username === '' || email === '' || password === '' || confirmPassword === '')
-        {
+        if (missingFields.length > 0) {
             Swal.fire({
                 title: 'Error',
-                text: 'Please fill out all required fields',
+                html: 'Please fill out the following fields:<br>' + missingFields.join('<br>'),
                 icon: 'error'
             });
         }
@@ -51,7 +58,7 @@ $(document).ready(function() {
                             // console.log("Server Response: ", response);
                             Swal.fire({
                                 title: 'Error',
-                                text: 'User already exists',
+                                text: 'An account is already registered with that username or email address',
                                 icon: 'error'
                             });
                         } else {

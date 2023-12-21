@@ -3,6 +3,7 @@ const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
 const loadingSpinner = document.getElementById("loadingSpinner");
 
+
 // check if logged in
 if(sessionStorage.getItem("Logged") === "true"){
     window.location.href ="https://localhost:7203/home/dashboard"
@@ -87,7 +88,7 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
         Swal.fire({
             icon: 'error',
             title: 'Login Failed',
-            text: error.message || 'An error occurred during login. Please try again.',
+            text: error.message || 'Username or password is incorrect',
         });
     });
 });

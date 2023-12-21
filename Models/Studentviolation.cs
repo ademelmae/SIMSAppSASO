@@ -9,7 +9,7 @@ namespace SIMSApp.Models
         public string StudentName { get; set; }
         public string StudentIdNum { get; set; }
         public string Course { get; set; }
-        public string YearLevel { get; set; }
+        public string AcademicYear { get; set; }
         public string ViolationType { get; set; }
         public string ViolationDate { get; set; }
         public string ViolationTime { get; set; }

@@ -28,36 +28,77 @@ jQuery(document).ready(function ($) {
 
                     // Add action cell to the row
                     var actionCell = $("<td class='text-center' style='width: 120px;'></td>");
-                   
-                var infoButton = $("<button></button>")
-                  .addClass("btn btn-info btn-sm mr-1") 
-                  .css("display", "inline-block")
-                  .html('<i class="fas fa-info-circle"></i>')
+                   //INFO BUTTON
+                    var infoButton = $("<button></button>")
+                    .addClass("btn btn-info btn-sm mr-1") 
+                    .css("display", "inline-block")
+                    .html('<i class="fas fa-info-circle"></i>')
+                    .on("click", function () {
+                        var violationId = item.violationId;
+                        
+                        fetch("/api/violation/getviolationdetails?violationId=" + violationId)
+                            .then(response => {
+                            if (!response.ok) {
+                                throw new Error("Network response was not ok");
+                            }
+                            return response.json();
+                            })
+                            .then(violationDetails => {
+                            displayViolationDetailsModal(violationDetails);
+                            })
+                            .catch(error => console.error("Error fetching violation details:", error));
+
+                    });
+                    actionCell.append(infoButton);
+                    
+                    //UPDATE BUTTON
+                  var updateButton = $("<button></button>")
+                  .addClass("btn btn-warning btn-sm") 
+                  .css({
+                    display: "inline-block",
+                    margin: "2px",
+                    background: ""
+                  })
+                  .html('<i class="fas fa-edit"></i>')
                   .on("click", function () {
                     var violationId = item.violationId;
-                    
-                      fetch("/api/violation/getviolationdetails?violationId=" + violationId)
-                        .then(response => {
-                          if (!response.ok) {
-                            throw new Error("Network response was not ok");
-                          }
-                          return response.json();
-                        })
-                        .then(violationDetails => {
-                          displayViolationDetailsModal(violationDetails);
-                        })
-                        .catch(error => console.error("Error fetching student details:", error));
 
-                });
+                    $.ajax({
+                        url: "/api/violation/" + violationId,
+                        method: "GET",
+                        success: function (data) {
+                            // Populate the modal form fields with the retrieved data
+                            updateViolation({
+                                "violationId":data.violationId,
+                                "violationType":data.violationType,
+                                "violationDate":data.violationDate,
+                                "violationTime":data.violationTime,
+                                "offenseLevel":data.offenseLevel,
+                                "disciplinaryAction":data.disciplinaryAction,
+                                "offenseType":data.offenseType,
+                                "location":data.location,
+                                "description":data.description,
+                                "reportingName":data.reportingName,
+                                "reportingRole":data.reportingRole,
+                                "reportingContact":data.reportingContact,
+                                "status":data.status
+                              })
 
-              actionCell.append(infoButton);
-
-                    // Append buttons to the action cell
-                  var deleteButton = $("<button></button>")
-                  .addClass("btn btn-danger btn-sm") // No margin for the last button
-                  .css("display", "inline-block") // Set display property to inline-block
-                  .html('<i class="fas fa-trash-alt"></i>')
-                  .on("click", function () {
+                        },
+                        error: function () {
+                            alert("Error retrieving student data");
+                        }
+                    });
+          
+                  });
+  
+                actionCell.append(updateButton);
+                    //DELETE BUTTON
+                    var deleteButton = $("<button></button>")
+                    .addClass("btn btn-danger btn-sm") // No margin for the last button
+                    .css("display", "inline-block") // Set display property to inline-block
+                    .html('<i class="fas fa-trash-alt"></i>')
+                    .on("click", function () {
                     var violationId = item.violationId; 
 
                     Swal.fire({
@@ -91,7 +132,6 @@ jQuery(document).ready(function ($) {
                                         showConfirmButton: true
                                     });
             
-                                    // Optionally, remove the deleted row from the table
                                     row.remove();
                                 })
                                 .catch(error => {
@@ -100,25 +140,26 @@ jQuery(document).ready(function ($) {
                                     alert('An error occurred while deleting the violation.');
                                 });
                         }
+                        });
                     });
-                  });
                     actionCell.append(deleteButton);
 
-                    // Append the action cell to the row
-                    row.append(actionCell);
+                // Append the action cell to the row
+                row.append(actionCell);
 
-                    // Append the row to the table body
-                    tableBody.append(row);
-                });
+                // Append the row to the table body
+                tableBody.append(row);
+            });
 
                     $('#violationsTable').DataTable({
                     "paging": true,
                     "ordering": true,
                     "info": true,
-                    // Add additional DataTable options as needed
                     });
-               
             });
+
+            
+            
 });
 
 function displayViolationDetailsModal(violationDetails) {
@@ -183,7 +224,7 @@ document.getElementById('violationForm').addEventListener('submit', function (e)
             StudentName: document.getElementById('studentName').value,
             StudentIdNum: document.getElementById('studentID').value,
             Course: document.getElementById('courseSelect').value,
-            YearLevel: document.getElementById('yearLevel').value,
+            AcademicYear: document.getElementById('academicYear').value,
             ViolationType: document.getElementById('violationSelect').selectedOptions[0].text,
             ViolationDate: document.getElementById('dateOfViolation').value,
             ViolationTime: document.getElementById('timeOfViolation').value,
@@ -235,5 +276,4 @@ document.getElementById('violationForm').addEventListener('submit', function (e)
                 });
             }
       });
-    
-});
+    });

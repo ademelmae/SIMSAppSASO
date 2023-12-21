@@ -1,5 +1,8 @@
 
+
 jQuery(document).ready(function ($) {
+ 
+  
   fetch("/api/studentregister/getstudentdata")
       .then(response => response.json())
       .then(data => {
@@ -15,30 +18,25 @@ jQuery(document).ready(function ($) {
                   row.append(cell);
               }
 
-              var actionCell = $("<td class='text-center' style='width: 120px;'></td>");
+              var actionCell = $("<td class='text-center' style='width: 190px;'></td>");
 
               //InfoButton
               var infoButton = $("<button></button>")
                   .addClass("btn btn-info btn-sm mr-1") 
                   .css({
                     display: "inline-block",
-                    margin: ""
+                    margin: "",
+                    background:""
                   })
-                  .html('<i class="fas fa-info-circle"></i>')
+                  .html('View Information')
                   .on("click", function () {
                     var studentId = item.studentId;
+                    sessionStorage.setItem("studentId", studentId);
                     
-                      fetch("/api/studentregister/getstudentdetails?studentId=" + studentId)
-                        .then(response => {
-                          if (!response.ok) {
-                            throw new Error("Network response was not ok");
-                          }
-                          return response.json();
-                        })
-                        .then(studentDetails => {
-                          displayStudentDetailsModal(studentDetails);
-                        })
-                        .catch(error => console.error("Error fetching student details:", error));
+                    // Redirect to another view
+                    window.location.href = "/Home/ViewStudentInfo";
+                  
+                      
 
                 });
               actionCell.append(infoButton);
@@ -48,55 +46,25 @@ jQuery(document).ready(function ($) {
                   .css({
                     display: "inline-block"
                   })
-                  .html('<i class="fas fa-edit"></i>')
+                  .html('Update')
                   .on("click", function () {
+            
                     var studentId = item.studentId;
-
-                    $.ajax({
-                        url: "/api/studentregister/" + studentId,
-                        method: "GET",
-                        success: function (data) {
-                            // Populate the modal form fields with the retrieved data
-                            updateStudent({
-                              "studentId":data.studentId,
-                              "studentIdNum":data.studentIdNum,
-                              "firstname":data.firstname,
-                              "middlename":data.middlename,
-                              "lastname":data.lastname,
-                              "birthdate":data.birthdate,
-                              "age":data.age,
-                              "gender":data.gender,
-                              "phone":data.phone,
-                              "email":data.email,
-                              "province":data.province,
-                              "city":data.city,
-                              "barangay":data.barangay,
-                              "street":data.street,
-                              "zip":data.zip,
-                              "academicYear":data.academicYear,
-                              "department":data.department,
-                              "course": data.course,
-                              "yearLevel": data.yearLevel,
-                              "parentName":data.parentName,
-                              "parentHome":data.parentHome,
-                              "parentContact":data.parentContact,
-                              "parentEmail":data.parentEmail,
-                            })
-
-                        },
-                        error: function () {
-                            alert("Error retrieving student data");
-                        }
-                    });
-          
+                    sessionStorage.setItem("studentId", studentId);
+                    
+                    // Redirect to another view
+                    window.location.href = "/Home/UpdateStudent";
                   });
 
               actionCell.append(updateButton);
 
               var deleteButton = $("<button></button>")
-                  .addClass("btn btn-danger btn-sm") // No margin for the last button
-                  .css("display", "inline-block") // Set display property to inline-block
-                  .html('<i class="fas fa-trash-alt"></i>')
+              .addClass("btn btn-danger btn-sm") 
+              .css({
+                display: "inline-block",
+                margin: "2px",
+                background:""
+              }) .html('Delete')
                   .on("click", function () {
                     var studentId = item.studentId;
 
@@ -164,19 +132,6 @@ jQuery(document).ready(function ($) {
 
 // updateStudent
 
-
-function displayStudentDetailsModal(studentDetails) {
-  console.log(studentDetails);
-  // Set the values in the modal
-  for (const property in studentDetails) {
-    if (studentDetails.hasOwnProperty(property)) {
-      $(`#modal${property.charAt(0).toUpperCase()}${property.slice(1)}`).text(studentDetails[property]);
-    }
-  }
-
-  // Show the modal
-  $("#infoModal").modal("show");
-}
 
 
       

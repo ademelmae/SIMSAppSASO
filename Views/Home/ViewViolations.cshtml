@@ -2,19 +2,43 @@
 <link rel="stylesheet" href="/css/sidebar.css">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-
-
-<div class="container mt-5">
-    <h2>Student Violations</h2>
-    @Html.Partial("Partials/AddViolationModal")
-    @Html.Partial("Partials/ViolationInfoModal")
-    <div class="form-group">
-    <label for="statusFilter">Filter by Status:</label>
-    <select id="statusFilter" class="form-control">
-        <option value="">All</option>
-        <option value="pending">Pending</option>
-        <option value="approved">Approved</option>
-    </select>
+<style>
+    .container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+</style>
+<body>
+    <div class="container">
+          <div class="header--wrapper">
+                <div class="header--title">
+                        <span style="color: white;font-weight: bold; font-size: 20px">SASO-<span style="color: rgb(255, 255, 255)55, 255, 255);">IMS</span></span>
+                        <h2 style="color:white;">Student Violation List</h2>
+                </div>
+                <div class="user--info">
+                    @* <div class="search--box">
+                        <i class="fa-solid fa-search"></i>
+                        <input type="text"
+                        placeholder="Search"/>
+                    </div> *@
+                    <img src="/lib/guidancelogo.png" alt="">
+                </div>
+            </div>
+        @* <h2 style="color ;">Student Violations</h2> *@
+        @* @Html.Partial("Partials/AddViolationModal") *@
+        @Html.Partial("Partials/ViolationInfoModal")
+        @Html.Partial("Partials/UpdateViolationModal")
+        <div class="form-group">
+        <label for="statusFilter">Filter by Status:</label>
+        <select id="statusFilter" class="form-control">
+            <option value="">All</option>
+            <option value="pending">Pending</option>
+            <option value="approved">Approved</option>
+        </select>
     </div>
     <table  id="violationsTable" class="display">
         <thead>
@@ -33,10 +57,11 @@
             <!-- Data will be populated here -->
         </tbody>
     </table>
-</div>
-
+    </div>
+</body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="~/js/addviolation.js"></script>
+<script src="~/js/updateviolation.js"></script>
 <script src="~/js/logout.js"></script>

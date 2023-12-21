@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cFryHQuUlccE/tU7ZMEgzhaVLgw+SvQNyyUgMFdIa58=",
+  "Hash": "NcRr0EHvh+VDL0/107pyI1eKG5o9W0BkcXp5hKjrdHQ=",
   "Source": "SIMSApp",
   "BasePath": "_content/SIMSApp",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\SIMSApp.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\css\\formdesign.css",
+      "SourceId": "SIMSApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\",
+      "BasePath": "_content/SIMSApp",
+      "RelativePath": "css/formdesign.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\formdesign.css"
     },
     {
       "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\css\\loadstyle.css",
@@ -1309,6 +1326,40 @@
       "OriginalItemSpec": "wwwroot\\js\\updatestudent.js"
     },
     {
+      "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\js\\updateviolation.js",
+      "SourceId": "SIMSApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\",
+      "BasePath": "_content/SIMSApp",
+      "RelativePath": "js/updateviolation.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\updateviolation.js"
+    },
+    {
+      "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\js\\viewstudent.js",
+      "SourceId": "SIMSApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\",
+      "BasePath": "_content/SIMSApp",
+      "RelativePath": "js/viewstudent.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\viewstudent.js"
+    },
+    {
       "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
       "SourceId": "SIMSApp",
       "SourceType": "Discovered",
@@ -2327,6 +2378,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\lib\\student.png",
+      "SourceId": "SIMSApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\",
+      "BasePath": "_content/SIMSApp",
+      "RelativePath": "lib/student.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\student.png"
     }
   ]
 }

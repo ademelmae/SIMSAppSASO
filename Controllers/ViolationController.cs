@@ -45,7 +45,7 @@ public class ViolationController : ControllerBase
                     s.StudentName,
                     s.StudentIdNum,
                     s.Course,
-                    s.YearLevel,
+                    s.AcademicYear,
                     s.OffenseLevel,
                     s.ViolationType,
                     s.Status
@@ -93,10 +93,23 @@ public class ViolationController : ControllerBase
             }
         }
 
-    private bool ViolationExists(int id)
-    {
-        return _context.Studentviolations.Any(e => e.ViolationId == id);
-    }
+         [HttpGet("{violationId}")]
+        public ActionResult<Studentviolation> GetViolation(int violationId)
+        {
+            var violation = _context.Studentviolations.FirstOrDefault(v  => v.ViolationId == violationId);
+
+            if (violation == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(violation);
+        }
+
+   
+    
+
+    
 
 
 }

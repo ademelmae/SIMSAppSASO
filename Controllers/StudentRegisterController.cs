@@ -22,10 +22,18 @@ namespace SIMSApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddStudent(Student studinfo)
         {
-            _context.Students.Add(studinfo);
-            await _context.SaveChangesAsync();
-            return Ok(studinfo);
-        
+            var existingStudent = _context.Students.FirstOrDefault(s => s.Firstname == studinfo.Firstname &&  s.Middlename == studinfo.Middlename && s.Lastname == studinfo.Lastname);
+
+            if (existingStudent != null)
+            {
+                return Ok("Student already exists");
+            }
+            else{
+                 _context.Students.Add(studinfo);
+                await _context.SaveChangesAsync();
+                return Ok(studinfo);
+            }
+           
         }
 
         [HttpGet]
@@ -53,7 +61,7 @@ namespace SIMSApp.Controllers
         {
             var students = _context.Students
                 .Where(s => s.Firstname.Contains(searchTerm) || s.Middlename.Contains(searchTerm))
-                .Select(s => new { s.Firstname, s.Middlename, s.Lastname, s.StudentIdNum, s.Department, s.Course, s.YearLevel })
+                .Select(s => new { s.Firstname, s.Middlename, s.Lastname, s.StudentIdNum, s.Department, s.Course, s.AcademicYear })
                 .ToList();
 
             return Ok(students);

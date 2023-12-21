@@ -4,19 +4,19 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">    
 
-<div class="wrapper">
+<div style="" class="wrapper">
         <div class="main--content">
-            <div class="header--wrapper">
+            <div style="" class="header--wrapper">
                 <div class="header--title">
-                    <span style="color:black;font-weight: bold; font-size: 20px">SASO-<span style="color: rgb(225, 87, 110);">IMS</span></span>
-                      <h2>Dashboard</h2>
+                    <span style="color: white;font-weight: bold; font-size: 20px">SASO-<span style="color: rgb(255, 255, 255)55, 255, 255);">IMS</span></span>
+                      <h2 style="color:white;">Dashboard</h2>
                 </div>
                 <div class="user--info">
-                    <div class="search--box">
+                    @* <div class="search--box">
                         <i class="fa-solid fa-search"></i>
                         <input type="text"
                         placeholder="Search"/>
-                    </div>
+                    </div> *@
                     <img src="/lib/guidancelogo.png" alt="">
                 </div>
             </div>
@@ -24,7 +24,7 @@
         <div class="card-container">
             <h3 class="main--title">Today's data</h3>
             <div class="card--wrapper">
-                <div class="payment--card light-green">
+                <div style="background:#3b76ef; color:white;" class="payment--card">
                         <div class="card--header">
                             <div class="amount">
                                 <span class="title">
@@ -32,11 +32,11 @@
                                 </span>
                                 <span id="studentCount" class="amount-value"></span>
                             </div>
-                            <i class="fas fa-users icon dark-green"></i>
+                            <i style="background-color:darkblue;" class="fas fa-users icon"></i>
                         </div>
                 </div>
 
-                 <div class="payment--card light-red">
+                 <div class="payment--card" style="background-color: #f47e7e; color:white;">
                     <div class="card--header">
                         <div class="amount">
                             <span class="title">
@@ -44,11 +44,11 @@
                             </span>
                             <span id ="pendingViolationCount"class="amount-value"></span>
                         </div>
-                        <i class="fas fa-exclamation-triangle icon dark-red"></i>
+                        <i style="background-color: #ef3e3e;" class="fas fa-exclamation-triangle icon"></i>
                     </div>
                 </div>
 
-                <div class="payment--card light-purple">
+                <div style="background-color:#21b09c; color:white;"class="payment--card">
                     <div class="card--header">
                         <div class="amount">
                             <span class="title">
@@ -56,11 +56,11 @@
                             </span>
                             <span id="approvedViolationCount"class="amount-value"></span>
                         </div>
-                        <i class="fas fa-exclamation-triangle icon dark-purple"></i>
+                        <i style="background-color:#188b7c;" class="fas fa-exclamation-triangle icon"></i>
                     </div>
                 </div>
 
-                <div class="payment--card light-blue">
+                @* <div class="payment--card light-blue">
                     <div class="card--header">
                         <div class="amount">
                             <span class="title">
@@ -68,16 +68,13 @@
                             </span>
                             <span class="amount-value">13</span>
                         </div>
-                        <i class="fas fa-file icon dark-blue"></i>
+                        <i style=""class="fas fa-file icon dark-blue"></i>
                     </div>
-                </div>
+                </div> *@
 
             
             </div>
         </div>
-      
-                  
-     
         </div>
 </div>
 

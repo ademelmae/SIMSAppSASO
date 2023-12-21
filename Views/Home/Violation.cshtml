@@ -3,37 +3,35 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/sidebar.css">
   <link rel="stylesheet" href="/css/registerStudent.css">
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
   <div class="container">
-    <h2>Student Violation Report Form</h2>
+    <h2 style=";">Student Violation Report Form</h2>
     <form id="violationForm">
       <div class="form-group">
+        <label for="searchStudent">Search for student:</label>
+         
+               <input type="text" class="form-control" id="searchStudent" name="searchStudent">
+        
+       </div>
+       <div class="form-group">
         <label for="studentName">Student Name:</label>
-        <input type="text" class="form-control" id="studentName" name="studentName" required>
+        <input type="text" class="form-control" id="studentName" name="studentName" disabled>
       </div>
       <div class="form-group">
         <label for="studentID">Student ID Number:</label>
-        <input type="text" class="form-control" id="studentID" name="studentID" required>
+        <input type="text" class="form-control" id="studentID" name="studentID" disabled>
       </div>
       <div class="form-group">
-              <label for="departmentSelect" class="form-label">Select Department:</label>
-              <select class="form-control" id="departmentSelect">
-                <option value="College of Teacher Education">College of Teacher Education</option>
-                <option value="Criminal Justice Education">Criminal Justice Education</option>
-                <option value="College of Commerce">College of Commerce</option>
-                <option value="College of Computer Studies">College of Computer Studies</option>
-                <option value="Psychology Program">Psychology Program</option>
-              </select>
+        <label for="departmentSelect" class="form-label">Department:</label>
+        <input type="text" class="form-control" id="departmentSelect" name="departmentSelect" disabled>
       </div>
       <div class="form-group">
-              <label for="courseSelect" class="form-label">Select Course:</label>
-              <select class="form-control" id="courseSelect">
-              </select>
+        <label for="courseSelect" class="form-label">Course:</label>
+        <input type="text" class="form-control" id="courseSelect" name="courseSelect" disabled>   
       </div>
       <div class="form-group">
-        <label for="yearLevel">School Year:</label>
-        <input type="text" class="form-control" id="yearLevel" name="yearLevels" required>
+        <label for="academicYear">Academic Year:</label>
+        <input type="text" class="form-control" id="academicYear" name="academicYear" disabled>
       </div>
 
       <!-- Violation Details -->
@@ -102,10 +100,7 @@
       </div>
       <div class="form-group">
         <label for="contactNumber">Contact Number:</label>
-        <input type="number" id="contact" name="contact" placeholder="09XXXXXXXXX" pattern="^09[0-9]{9}$" required>
-
-
-        @* <input type="tel" class="form-control" id="contactNumber" name="contactNumber" required> *@
+        <input type="number" id="contact" name="contact" placeholder="09XXXXXXXXX" pattern="^\d{11}$" required>
       </div>
       
 
@@ -132,7 +127,7 @@
 <script>
   
   jQuery(document).ready(function($) {
-    $("#studentName").autocomplete({
+    $("#searchStudent").autocomplete({
       source: function(request, response) {
         $.ajax({
           url: "/api/studentregister/autocomplete",
@@ -169,46 +164,17 @@
       },
       minLength: 2,
       select: function(event, ui) {
+       var fullName = ui.item.studentData.firstname + ' ' + ui.item.studentData.middlename + ' ' + ui.item.studentData.lastname;
         // Populate other fields based on selected student data
+         $("#studentName").val(fullName);
         $("#studentID").val(ui.item.studentData.studentIdNum);
         $("#departmentSelect").val(ui.item.studentData.department);
         $("#courseSelect").val(ui.item.studentData.course);
-        $("#schoolYear").val(ui.item.studentData.yearLevel);
+        $("#academicYear").val(ui.item.studentData.academicYear);
       }
     });
 
-//POPULATE COURSES
-const courses = {
-    "College of Teacher Education": ["Bachelor of Elementary Education", "Bachelor of Secondary Education major in English", "Bachelor of Secondary Education major in Mathematics",
-    "Bachelor of Secondary Education major in Science", "Bachelor of Secondary Education major in Social Studies"],
-    "Criminal Justice Education": ["Bachelor of Science in Criminology"],
-    "College of Commerce": ["Bachelor of Science in Accountancy", "Bachelor of Science in Accounting Technology", "Bachelor of Science in Business Administration Major in Financial Management",
-    "Bachelor of Science in Business Management", "Bachelor of Science in Hospitality Management", "Bachelor of Science in Hospitality Management Major in Food and Beverage",
-    "Bachelor of Science in Tourism Management"],
-    "College of Computer Studies": ["Bachelor of Science in Information Technology"],
-    "Psychology Program": ["Bachelor of Science in Psychology"]
-};
-
-function populateCourses() {
-    const departmentSelect = document.getElementById("departmentSelect");
-    const courseSelect = document.getElementById("courseSelect");
-    const selectedDepartment = departmentSelect.value;
-
-    courseSelect.innerHTML = "";
-
-    courses[selectedDepartment].forEach(course => {
-        const option = document.createElement("option");
-        option.value = course;
-        option.text = course;
-        courseSelect.appendChild(option);
-    });
-}
-
-document.getElementById("departmentSelect").addEventListener("change", populateCourses);
-
-populateCourses();
-
-  });
+});
 
   
 </script>

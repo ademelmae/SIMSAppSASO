@@ -187,6 +187,11 @@ namespace SIMSApp.Models
                     .HasColumnType("int(11)")
                     .HasColumnName("violationId");
 
+                entity.Property(e => e.AcademicYear)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .HasColumnName("academicYear");
+
                 entity.Property(e => e.Attachment)
                     .IsRequired()
                     .HasMaxLength(250)
@@ -266,11 +271,6 @@ namespace SIMSApp.Models
                     .IsRequired()
                     .HasMaxLength(250)
                     .HasColumnName("violationType");
-
-                entity.Property(e => e.YearLevel)
-                    .IsRequired()
-                    .HasMaxLength(250)
-                    .HasColumnName("yearLevel");
             });
 
             modelBuilder.Entity<Useraccount>(entity =>

@@ -1,0 +1,75 @@
+<html>
+<head>
+    <title>Student Register Form</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+</head>
+<style>
+    .container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+</style>
+<body>
+@Html.Partial("Partials/StudentInfoModal")
+
+<div class="container">
+    <div class="header--wrapper">
+         <div class="header--title">
+                    <span style="color: white;font-weight: bold; font-size: 20px">SASO-<span style="color: rgb(255, 255, 255)55, 255, 255);">IMS</span></span>
+                      <h2 style="color:white;">Student List</h2>
+                </div>
+                <div class="user--info">
+                    @* <div class="search--box">
+                        <i class="fa-solid fa-search"></i>
+                        <input type="text"
+                        placeholder="Search"/>
+                    </div> *@
+                    <img src="/lib/guidancelogo.png" alt="">
+                </div>
+    </div>
+    @* <h2 style="margin-top:20px;">Student Information</h2> *@
+<button type="button" id="registerButton" onclick="window.location.href='@Url.Action("studentlists", "Home")'" style="margin-top: 20px; margin-bottom:50px;"class="btn btn-info">
+  Register Student
+</button>
+    <table id="studentTable"border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Middlename</th>
+                <th>Lastname</th>
+                <th>Department</th>
+                <th>Course</th>
+                <th>Year Level</th>
+                <th>Academic Year</th>
+                <th>Action</th> 
+            </tr>
+        </thead>
+        <tbody id="studentTableBody"></tbody>
+    </table>
+</div>
+    
+
+</body>
+
+<!-- DataTables JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="~/js/registerstudent.js"></script>
+<script src="~/js/logout.js"></script>
+<script>
+    
+document.getElementById("registerButton").addEventListener("click", function() {
+  window.location.href = "https://localhost:7203/home/registerstudent";
+});
+
+</script>
+</html>

@@ -20,8 +20,11 @@ public class HomeController : Controller
         return View();
     }
 
-
     public IActionResult Dashboard()
+    {
+        return View();
+    }
+    public IActionResult dashboards()
     {
         return View();
     }
@@ -34,7 +37,7 @@ public class HomeController : Controller
     {
         return View();
     }
-     public IActionResult StudentList()
+     public IActionResult StudentLists()
     {
         return View();
     }
@@ -58,8 +61,15 @@ public class HomeController : Controller
     {
         return View();
     }
+    public IActionResult UpdateStudent()
+    {
+        return View();
+    }
 
-
+    public IActionResult ViewStudentInfo()
+    {
+        return View();
+    }
     public IActionResult Login()
     {
         return View();
