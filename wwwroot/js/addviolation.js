@@ -61,34 +61,13 @@ jQuery(document).ready(function ($) {
                   })
                   .html('<i class="fas fa-edit"></i>')
                   .on("click", function () {
+               
                     var violationId = item.violationId;
-
-                    $.ajax({
-                        url: "/api/violation/" + violationId,
-                        method: "GET",
-                        success: function (data) {
-                            // Populate the modal form fields with the retrieved data
-                            updateViolation({
-                                "violationId":data.violationId,
-                                "violationType":data.violationType,
-                                "violationDate":data.violationDate,
-                                "violationTime":data.violationTime,
-                                "offenseLevel":data.offenseLevel,
-                                "disciplinaryAction":data.disciplinaryAction,
-                                "offenseType":data.offenseType,
-                                "location":data.location,
-                                "description":data.description,
-                                "reportingName":data.reportingName,
-                                "reportingRole":data.reportingRole,
-                                "reportingContact":data.reportingContact,
-                                "status":data.status
-                              })
-
-                        },
-                        error: function () {
-                            alert("Error retrieving student data");
-                        }
-                    });
+                    sessionStorage.setItem("violationId", violationId);
+                    
+                    // Redirect to another view
+                    window.location.href = "/Home/UpdateViolation";
+                    
           
                   });
   

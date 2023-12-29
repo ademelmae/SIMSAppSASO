@@ -1,0 +1,107 @@
+<link rel="stylesheet" href="/css/sidebar.css">
+<link rel="stylesheet" href="/css/formdesign.css">
+
+<div class="container">
+      <div class="form-container">
+         <div class="header--wrapper">
+         <div class="header--title">
+                    <span style="color: white;font-weight: bold; font-size: 20px">SASO-<span style="color: rgb(255, 255, 255)55, 255, 255);">IMS</span></span>
+                      <h2 style="color:white;">Update Violation Form</h2>
+                </div>
+                <div class="user--info">
+                
+                    <img src="/lib/guidancelogo.png" alt="">
+                </div>
+        </div>
+          <form id="updateViolationForm">
+          <!-- Violation Details -->
+          <h3>Violation Details</h3>
+          <div class="form-group">
+            <select class="form-control" id="updateViolationType">
+                    <option value="">Select violation</option>
+                    <option value="1">Tardiness</option>
+                    <option value="2">Absence from class</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="dateOfViolation">Date of Violation:</label>
+            <input type="date" class="form-control" id="updateViolationDate" name="violationDate" required>
+          </div>
+          <div class="form-group">
+            <label for="timeOfViolation">Time of Violation:</label>
+            <input type="time" class="form-control" id="updateViolationTime" name="violationTime" required>
+          </div>
+          <div class="form-group">
+            <label for="sanction">Sanction:</label>
+            <select class="form-control" id="updateOffenseLevel">
+                    <option value="1st">1st offense</option>
+                    <option value="2nd">2nd Offense</option>
+                    <option value="3rd">3rd Offense</option>
+                    <option value="4th">4th Offense</option>
+                    <option value="5th">5th Offense</option>
+                    <option value="6th">6th Offense</option>
+                    <option value="7th">7th Offense</option>
+                    <option value="8th">8th Offense</option>
+            </select>
+          </div>
+          <div class="form-group">
+                <textarea class="form-control" id="updateDisciplinaryAction" placeholder="Disciplinary Action" rows="4"></textarea>
+            </div>
+          <div class="form-group">
+            <label for="offenseType">Offense Type:</label>
+            <select class="form-control" id="updateOffenseType" name="offenseType">
+              <option value="major">Major Offense</option>
+              <option value="minor">Minor Offense</option>
+              <!-- Add more options as needed -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="location">Location of Violation:</label>
+            <input type="text" class="form-control" id="updateLocation" name="location" required>
+          </div>
+      
+            <label for="description">Description of Violation:</label>
+            <textarea class="form-control" id="updateDescription" name="description" rows="4" required></textarea>
+
+          <!-- Reporting Person's Information -->
+          <h3>Reporting Person's Information</h3>
+          <div class="form-group">
+            <label for="reportingPersonName">Name:</label>
+            <input type="text" class="form-control" id="updateReportingName" name="reportingPersonName" required>
+          </div>
+          <div class="form-group">
+            <label for="role">Role or Position:</label>
+            <input type="text" class="form-control" id="updateReportingRole" name="role" required>
+          </div>
+          <div class="form-group">
+            <label for="contactNumber">Contact Number:</label>
+            <input type="number" id="updateReportingContact" name="contact" placeholder="09XXXXXXXXX" pattern="^09[0-9]{9}$" required>
+          </div>
+          
+
+        <div class="form-group">
+          <label for="approvalStatus">Approval Status:</label>
+          <div class="form-check">
+              <input type="radio" class="form-check-input" id="updateStatusPending" name="approvalStatus" value="pending" required>
+              <label class="form-check-label" for="updateStatusPending">Pending</label>
+          </div>
+          <div class="form-check">
+              <input type="radio" class="form-check-input" id="updateStatusApproved" name="approvalStatus" value="approved" required>
+              <label class="form-check-label" for="updateStatusApproved">Approved</label>
+          </div>
+        </div>
+          </form>
+        <div style="margin-top: 100px; margin-left: 720px;"class="row">
+            <div class="col-md-1">
+              <button type="" id="backbtn" onclick="window.location.href='@Url.Action("ViewViolations", "Home")'"  style="" class="btn btn-success">Back</button>
+            </div>
+            <div style="margin-left: 140px;"class="col-md-1">
+              <button type="submit" id="submitbtn" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+      </div>
+  
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/js/updateviolation.js"></script>

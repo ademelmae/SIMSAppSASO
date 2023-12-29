@@ -20,20 +20,46 @@ namespace SIMSApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddStudent(Student studinfo)
-        {
-            var existingStudent = _context.Students.FirstOrDefault(s => s.Firstname == studinfo.Firstname &&  s.Middlename == studinfo.Middlename && s.Lastname == studinfo.Lastname);
+    public async Task<IActionResult> AddStudent(Student studinfo)
+    {
+        var existingStudent = _context.Students.FirstOrDefault(s =>
+            s.Firstname == studinfo.Firstname &&
+            s.Middlename == studinfo.Middlename &&
+            s.Lastname == studinfo.Lastname);
 
-            if (existingStudent != null)
+        if (existingStudent != null)
+        {
+            // Student already exists, return a specific status code and message
+            return Conflict(new { Message = "Student already exists" });
+        }
+        else
+        {
+            // Generate a random password
+            studinfo.Password = GenerateRandomPassword();
+
+            // Save the student with the generated password
+            _context.Students.Add(studinfo);
+            await _context.SaveChangesAsync();
+
+            // Return the student object with the generated password
+            return Ok(studinfo);
+        }
+    }
+
+        private string GenerateRandomPassword()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            const int passwordLength = 8;
+
+            Random random = new Random();
+            char[] passwordArray = new char[passwordLength];
+
+            for (int i = 0; i < passwordLength; i++)
             {
-                return Ok("Student already exists");
+                passwordArray[i] = chars[random.Next(chars.Length)];
             }
-            else{
-                 _context.Students.Add(studinfo);
-                await _context.SaveChangesAsync();
-                return Ok(studinfo);
-            }
-           
+
+            return new string(passwordArray);
         }
 
         [HttpGet]

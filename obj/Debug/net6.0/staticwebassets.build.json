@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "NcRr0EHvh+VDL0/107pyI1eKG5o9W0BkcXp5hKjrdHQ=",
+  "Hash": "eqmCgMSAJ+oxnlRGHYBaBMIdfcwM0ls5vWunKKQAR6Q=",
   "Source": "SIMSApp",
   "BasePath": "_content/SIMSApp",
   "Mode": "Default",
@@ -2378,23 +2378,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
-    },
-    {
-      "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\lib\\student.png",
-      "SourceId": "SIMSApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\",
-      "BasePath": "_content/SIMSApp",
-      "RelativePath": "lib/student.png",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\lib\\student.png"
     }
   ]
 }

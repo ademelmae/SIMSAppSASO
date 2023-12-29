@@ -70,6 +70,11 @@ public class HomeController : Controller
     {
         return View();
     }
+
+     public IActionResult UpdateViolation()
+    {
+        return View();
+    }
     public IActionResult Login()
     {
         return View();

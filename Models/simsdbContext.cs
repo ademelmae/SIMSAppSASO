@@ -146,6 +146,11 @@ namespace SIMSApp.Models
                     .HasMaxLength(250)
                     .HasColumnName("parentName");
 
+                entity.Property(e => e.Password)
+                    .IsRequired()
+                    .HasMaxLength(250)
+                    .HasColumnName("password");
+
                 entity.Property(e => e.Phone)
                     .IsRequired()
                     .HasMaxLength(50)

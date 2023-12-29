@@ -14,9 +14,11 @@ jQuery(document).ready(function ($) {
 
               // Add columns to the row
               for (var key in item) {
-                  var cell = $("<td></td>").text(item[key]);
-                  row.append(cell);
-              }
+                if (key !== "studentId") {
+                    var cell = $("<td></td>").text(item[key]);
+                    row.append(cell);
+                }
+            }
 
               var actionCell = $("<td class='text-center' style='width: 190px;'></td>");
 
@@ -130,11 +132,7 @@ jQuery(document).ready(function ($) {
       .catch(error => console.error("Error fetching data:", error));
 });
 
-// updateStudent
 
-
-
-      
     $('#studentForm').submit(function (e) {
         e.preventDefault();
         Swal.fire({
@@ -183,7 +181,15 @@ fetch('/api/studentregister', {
             },
             body: JSON.stringify(studentData)
         })
-        .then(response => response.json())
+        .then(response => {
+          if (response.ok) {
+              return response.json();
+          } else if (response.status === 409) { // Conflict status code for existing resource
+              return response.json().then(data => Promise.reject(data.Message));
+          } else {
+              return Promise.reject('An error occurred while submitting the student data.');
+          }
+        })
         .then(studentData => {
             // Handle success, e.g., show a success message to the user
             console.log('Registered student successfully:', studentData);
@@ -200,10 +206,20 @@ fetch('/api/studentregister', {
 
         })
         .catch(error => {
-            // Handle errors, e.g., display an error message to the user
-            console.error('Error:', error);
-            alert('An error occurred while submitting the violation.');
-        });
+          // Handle errors, e.g., display an error message to the user
+          console.error('Error:', error);
+          if (error === 'Student already exists') {
+              // Display SweetAlert for existing student
+              Swal.fire({
+                  title: "Error",
+                  text: "Student already exists!",
+                  icon: "error"
+              });
+          } else {
+              // Display a generic error message
+              alert('An error occurred while submitting the student data.');
+          }
+      });
     }
 
 

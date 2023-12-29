@@ -5,7 +5,7 @@
     <div class="header--wrapper">
          <div class="header--title">
                     <span style="color: white;font-weight: bold; font-size: 20px">SASO-<span style="color: rgb(255, 255, 255)55, 255, 255);">IMS</span></span>
-                      <h2 style="color:white;">Update Student Form</h2>
+                      <h2 style="color:white;">Student Registration Form</h2>
                 </div>
                 <div class="user--info">
                 
@@ -183,5 +183,28 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 
 <script src="~/js/updatestudent.js"></script>
+<script>
+    document.getElementById('updatePhone').addEventListener('input', function () {
+        validatePhoneNumber('phone');
+    });
+
+    document.getElementById('updateParentContact').addEventListener('input', function () {
+        validatePhoneNumber('parentContact');
+    });
+
+    function validatePhoneNumber(inputId) {
+        var phoneNumberInput = document.getElementById(inputId);
+        var phoneError = document.getElementById(inputId + 'Error');
+        var phoneNumberPattern = /^09\d{9}$/;
+
+        if (!phoneNumberPattern.test(phoneNumberInput.value)) {
+            phoneError.textContent = 'Invalid phone number. Please use the format 09XXXXXXXXX.';
+            phoneNumberInput.setCustomValidity('Invalid phone number');
+        } else {
+            phoneError.textContent = '';
+            phoneNumberInput.setCustomValidity('');
+        }
+    }
+</script>
 
  

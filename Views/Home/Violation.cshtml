@@ -2,14 +2,24 @@
   <title>Student Violation Report Form</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/sidebar.css">
+   <link rel="stylesheet" href="/css/formdesign.css">
   <link rel="stylesheet" href="/css/registerStudent.css">
 
   <div class="container">
-    <h2 style=";">Student Violation Report Form</h2>
+    <div class="form-container">
+        <div class="header--wrapper">
+         <div class="header--title">
+                    <span style="color: white;font-weight: bold; font-size: 20px">SASO-<span style="color: rgb(255, 255, 255)55, 255, 255);">IMS</span></span>
+                      <h2 style="color:white;">Student Violation Report Form</h2>
+                </div>
+                <div class="user--info">
+                
+                    <img src="/lib/guidancelogo.png" alt="">
+                </div>
+    </div>
     <form id="violationForm">
       <div class="form-group">
         <label for="searchStudent">Search for student:</label>
-         
                <input type="text" class="form-control" id="searchStudent" name="searchStudent">
         
        </div>
@@ -35,7 +45,7 @@
       </div>
 
       <!-- Violation Details -->
-      <h3>Violation Details</h3>
+      <div class="form-category">Violation Details</div>
       <div class="form-group">
         <select class="form-control" id="violationSelect">
                 <option value="">Select violation</option>
@@ -88,8 +98,7 @@
         <input type="file" class="form-control-file" id="attachment" name="attachment">
       </div>
 
-      <!-- Reporting Person's Information -->
-      <h3>Reporting Person's Information</h3>
+      <div class="form-category">Reporting Person's Information</div>
       <div class="form-group">
         <label for="reportingPersonName">Name:</label>
         <input type="text" class="form-control" id="reportingPersonName" name="reportingPersonName" required>
@@ -102,7 +111,6 @@
         <label for="contactNumber">Contact Number:</label>
         <input type="number" id="contact" name="contact" placeholder="09XXXXXXXXX" pattern="^\d{11}$" required>
       </div>
-      
 
     <div class="form-group">
       <label for="approvalStatus">Approval Status:</label>
@@ -116,8 +124,12 @@
       </div>
     </div>
 
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <div style="margin-left: 840px;"class="col-md-1">
+              <button type="submit" id="submitbtn"class="btn btn-primary">Submit</button>
+            </div>
     </form>
+    </div>
+    
   </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

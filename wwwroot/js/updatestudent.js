@@ -71,7 +71,7 @@ function updateStudent(studentData){
         e.preventDefault();
         Swal.fire({
             title: "Are you sure?",
-                      text: "Do you want to submit the form?",
+                      text: "Do you want to update information of student?",
                       icon: "warning",
                       showCancelButton: true, 
                       confirmButtonText: "Submit",
@@ -240,12 +240,15 @@ function updateStudentInDatabase(studentData) {
 
         // Display SweetAlert success message
         Swal.fire({
-            icon: 'success',
-            title: 'Update Successful',
-            text: 'Student information has been updated successfully!',
-            timer: 9000,
-        });
-        window.location.href ="https://localhost:7203/home/studentlists"
+          icon: 'success',
+          title: 'Update Successful',
+          text: 'Student information has been updated successfully!',
+          timer: 10000,
+          willClose: () => {
+              window.location.href = "https://localhost:7203/home/studentlists";
+          },
+      });
+      
        
       
     },

@@ -183,27 +183,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="~/js/registerstudent.js"></script>
-<script src="~/js/updatestudent.js"></script>
 <script>
-       document.getElementById('phone').addEventListener('input', function () {
-        validatePhoneNumber('phone');
-    });
+  
 
-    document.getElementById('parentContact').addEventListener('input', function () {
-        validatePhoneNumber('parentContact');
-    });
-
-    function validatePhoneNumber(inputId) {
-        var phoneNumberInput = document.getElementById(inputId);
-        var phoneError = document.getElementById(inputId + 'Error');
-        var phoneNumberPattern = /^09\d{9}$/;
-
-        if (!phoneNumberPattern.test(phoneNumberInput.value)) {
-            phoneError.textContent = 'Invalid phone number. Please use the format 09XXXXXXXXX.';
-            phoneNumberInput.setCustomValidity('Invalid phone number');
-        } else {
-            phoneError.textContent = '';
-            phoneNumberInput.setCustomValidity('');
-        }
-    }
+ 
 </script>
