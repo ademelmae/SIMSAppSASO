@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SIMSApp.Models;
 
+namespace SIMSApp.Controllers{
 [ApiController]
 [Route("api/[controller]")]
 public class ViolationController : ControllerBase
@@ -106,10 +107,30 @@ public class ViolationController : ControllerBase
             return Ok(violation);
         }
 
-   
-    
+        [HttpGet("GetMonthlyReports")]
+    public IActionResult GetMonthlyReports(int year, int month)
+    {
+        // Retrieve all records from the database
+        var allReports = _context.Studentviolations.ToList();
 
-    
+        // Filter records in-memory
+        var reports = allReports
+            .Where(report =>
+            {
+                DateTime date;
+                return DateTime.TryParse(report.ViolationDate, out date) &&
+                       date.Year == year &&
+                       date.Month == month;
+            })
+            .ToList();
+
+        return Ok(reports);
+    }
+
+    }
+
+       
+ 
 
 
 }

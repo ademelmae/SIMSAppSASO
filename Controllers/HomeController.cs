@@ -52,7 +52,7 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult addviolationform()
+    public IActionResult Reports()
     {
         return View();
     }

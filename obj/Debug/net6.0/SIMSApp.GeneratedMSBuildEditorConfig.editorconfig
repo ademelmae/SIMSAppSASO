@@ -15,10 +15,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Ademel Mae\Documents\SIMS\SIMSApp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/addviolationform.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxhZGR2aW9sYXRpb25mb3JtLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEYXNoYm9hcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -65,6 +61,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/RegisterStudent.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3RlclN0dWRlbnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/Reports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Ademel Mae/Documents/SIMS/SIMSApp/Views/Home/StudentLists.cshtml]

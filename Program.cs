@@ -12,17 +12,28 @@ var configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
     .Build();
 
-// Add services to the container.
+builder.WebHost.UseKestrel(options=>
+{
+
+});
+builder.WebHost.UseUrls("https://localhost:7203", "https://192.168.254.107:7203");
+
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<simsdbContext>();
 builder.Services.AddSingleton(configuration);
+builder.Services.AddControllers()
+        .AddJsonOptions(options =>
+        {
+            options.JsonSerializerOptions.PropertyNamingPolicy = null; // Use the property name as-is
+        });
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",
         builder => builder
             .AllowAnyOrigin()
             .AllowAnyHeader()
-            .AllowAnyMethod());
+            .AllowAnyMethod()
+        );
 });
 
 var app = builder.Build();
@@ -41,10 +52,14 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
- app.UseCors("AllowAllOrigin");
+ app.UseCors("AllowAllOrigins");
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}"
 );
+ app.UseEndpoints(endpoints =>
+    {
+        endpoints.MapControllers(); // Map controllers
+    });
 
 app.Run();
