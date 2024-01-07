@@ -21,11 +21,11 @@ builder.WebHost.UseUrls("https://localhost:7203", "https://192.168.254.107:7203"
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<simsdbContext>();
 builder.Services.AddSingleton(configuration);
-builder.Services.AddControllers()
-        .AddJsonOptions(options =>
-        {
-            options.JsonSerializerOptions.PropertyNamingPolicy = null; // Use the property name as-is
-        });
+// builder.Services.AddControllers()
+//         .AddJsonOptions(options =>
+//         {
+//             options.JsonSerializerOptions.PropertyNamingPolicy = null; // Use the property name as-is
+//         });
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAllOrigins",
@@ -35,7 +35,10 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
         );
 });
-
+// builder.Services.AddHttpsRedirection(options =>
+// {
+//    options.HttpsPort = 443;
+// });
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
