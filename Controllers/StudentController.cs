@@ -6,11 +6,10 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SIMSApp.Models;
-
 namespace SIMSApp.Controllers
 {
-     [EnableCors]
-  [ApiController]
+    [EnableCors]
+    [ApiController]
     [Route("/api/[controller]/[action]")]
     public class StudentController:ControllerBase
     {
@@ -23,7 +22,6 @@ namespace SIMSApp.Controllers
         [HttpGet]
         public ActionResult<Student> GetStudentDetail([FromQuery] string studentIdNum)
         {
-            
             if (string.IsNullOrEmpty(studentIdNum))
             {
                 return BadRequest("StudentIdNum is required.");
@@ -44,24 +42,24 @@ namespace SIMSApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult<Studentviolation> GetViolationDetails([FromQuery] string studentIdNum)
+        public ActionResult<IEnumerable<Studentviolation>> GetViolationDetails([FromQuery] string studentIdNum)
         {
-            
             if (string.IsNullOrEmpty(studentIdNum))
             {
                 return BadRequest("StudentIdNum is required.");
             }
 
-            var violation = _context.Studentviolations.FirstOrDefault(v => v.StudentIdNum == studentIdNum);
+            var violations = _context.Studentviolations.Where(v => v.StudentIdNum == studentIdNum).ToList();
 
-            if (violation == null)
+            if (violations == null || violations.Count == 0)
             {
-                return NotFound("No student found with the provided studentIdNum.");
+                return NotFound("No violations found for the provided studentIdNum.");
             }
 
-            return Ok(violation);
+            return Ok(violations);
         }
-    }
 
+       
+    }
 
 }

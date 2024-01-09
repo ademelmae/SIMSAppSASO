@@ -133,20 +133,64 @@ jQuery(document).ready(function ($) {
 });
 
 
-    $('#studentForm').submit(function (e) {
-        e.preventDefault();
-        Swal.fire({
-          title: "Are you sure?",
-                    text: "Do you want to register student?",
-                    icon: "warning",
-                    showCancelButton: true, 
-                    confirmButtonText: "Submit",
-        }).then((willSubmit) => {
-          if (willSubmit.isConfirmed) {
-            submitForm();
-          }
-        });
-    });
+$('#studentForm').submit(function (e) {
+  e.preventDefault();
+
+  // Check if any required field is empty
+  if (!validateForm()) {
+      return;
+  }
+
+  Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to register student?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Submit",
+  }).then((willSubmit) => {
+      if (willSubmit.isConfirmed) {
+          submitForm();
+      }
+  });
+});
+
+function validateForm() {
+  const requiredFields = [
+      "firstname", "middlename", "lastname", "dob", "age", "gender", "phone", "emailadd",
+      "province", "city", "barangay", "streetAddress", "zipCode", "academicYear",
+      "studentidnum", "departmentSelect", "courseSelect", "yearSelect", "parentName",
+      "parentContact", "parentEmail", "parentHome"
+  ];
+
+  let anyFieldFilled = false;
+  for (const field of requiredFields) {
+      const value = document.getElementById(field).value.trim();
+      if (value !== "") {
+          anyFieldFilled = true;
+      } else {
+          // Display error message for the empty field
+          Swal.fire({
+              title: "Error",
+              text: `Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`,
+              icon: "error"
+          });
+          return false;
+      }
+  }
+
+  if (!anyFieldFilled) {
+      // Display error message if all fields are empty
+      Swal.fire({
+          title: "Error",
+          text: "All fields are empty. Please fill in at least one field.",
+          icon: "error"
+      });
+      return false;
+  }
+
+  return true; // All required fields are filled
+}
+
 
     function submitForm(){
       const studentData = {
@@ -175,51 +219,57 @@ jQuery(document).ready(function ($) {
 };
 
 fetch('/api/studentregister', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(studentData)
-        })
-        .then(response => {
-          if (response.ok) {
-              return response.json();
-          } else if (response.status === 409) { // Conflict status code for existing resource
-              return response.json().then(data => Promise.reject(data.Message));
-          } else {
-              return Promise.reject('An error occurred while submitting the student data.');
-          }
-        })
-        .then(studentData => {
-            // Handle success, e.g., show a success message to the user
-            console.log('Registered student successfully:', studentData);
+  method: 'POST',
+  headers: {
+      'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(studentData)
+})
+  .then(response => {
+      if (response.ok) {
+          return response.json();
+      } else {
+          return response.json().then(data => Promise.reject(data.Message));
+      }
+  })
+  .then(studentData => {
+      // Handle success, e.g., show a success message to the user
+      console.log('Registered student successfully:', studentData);
 
-            Swal.fire({
-              title: "Success",
-              text: "Student registered successfully!",
-              icon: "success",
-              timer: 3000, // Auto close the success message after 3 seconds
-              showConfirmButton: false // Hide the "OK" button
-            });
-
-            document.getElementById('studentForm').reset();
-
-        })
-        .catch(error => {
-          // Handle errors, e.g., display an error message to the user
-          console.error('Error:', error);
-          if (error === 'Student already exists') {
-              // Display SweetAlert for existing student
-              Swal.fire({
-                  title: "Error",
-                  text: "Student already exists!",
-                  icon: "error"
-              });
-          } else {
-              // Display a generic error message
-              alert('An error occurred while submitting the student data.');
-          }
+      Swal.fire({
+          title: "Success",
+          text: "Student registered successfully!",
+          icon: "success",
+          timer: 3000,
+          showConfirmButton: false
       });
+
+      document.getElementById('studentForm').reset();
+
+  })
+  .catch(error => {
+      // Handle errors, e.g., display an error message to the user
+      console.error('Error:', error);
+
+      if (error === 'StudentIdNum already exists') {
+          // Display SweetAlert for existing StudentIdNum
+          Swal.fire({
+              title: "Error",
+              text: "StudentIdNum already exists!",
+              icon: "error"
+          });
+      } else if (error === 'Student already exists') {
+          // Display SweetAlert for existing student
+          Swal.fire({
+              title: "Error",
+              text: "Student already exists!",
+              icon: "error"
+          });
+      } else {
+          // Display a generic error message
+          alert('An error occurred while submitting the student data.');
+      }
+  });
     }
 
 

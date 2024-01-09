@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Cors;
 
-
 var builder = WebApplication.CreateBuilder(args);
 var configuration = new ConfigurationBuilder()
     .SetBasePath(builder.Environment.ContentRootPath)
@@ -35,10 +34,8 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
         );
 });
-// builder.Services.AddHttpsRedirection(options =>
-// {
-//    options.HttpsPort = 443;
-// });
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -66,3 +63,4 @@ app.MapControllerRoute(
     });
 
 app.Run();
+    

@@ -19,19 +19,19 @@
             <div class="form-category">Student Information</div>
             <div class="form-group">
               <label for="studentidnum" class="form-label">Student ID Number:</label>
-              <input type="number" class="form-control" id="studentidnum" required>
+              <input type="number" class="form-control" id="studentidnum">
             </div>
             <div class="form-group">
               <label for="firstname" class="form-label">First Name:</label>
-              <input type="text" class="form-control" id="firstname" required>
+              <input type="text" class="form-control" id="firstname">
             </div>
             <div class="form-group">
               <label for="middlename" class="form-label">Middle Name:</label>
-              <input type="text" class="form-control" id="middlename" required>
+              <input type="text" class="form-control" id="middlename">
             </div>
             <div class="form-group">
               <label for="lastname" class="form-label">Last Name:</label>
-              <input type="text" class="form-control" id="lastname" required>
+              <input type="text" class="form-control" id="lastname">
             </div>
           </div>
           <div style="margin-top:70px;" class="col-md-6">
@@ -45,7 +45,7 @@
             </div>
             <div class="form-group">
               <label for="gender" class="form-label">Gender:</label>
-              <select class="form-control" id="gender" required>
+              <select class="form-control" id="gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
@@ -55,14 +55,14 @@
           <div class="form-category">Contact Information</div>
           <div class="form-group">
               <label for="phone" class="form-label">Phone Number:</label>
-              <input type="text" class="form-control" id="phone" pattern="^\d{11}$" maxlength="11" required>
+              <input type="text" class="form-control" id="phone" pattern="^\d{11}$" maxlength="11">
               <span id="phoneError" style="display: flex; color: rgb(255, 39, 39);" class="error-message"></span>
           </div>
         </div>
         <div style="margin-top: 70px;" class="col-md-6">
             <div class="form-group">
                 <label for="emailadd" class="form-label">Email Address:</label>
-                <input type="email" class="form-control" id="emailadd" title="Enter a valid email address" required>
+                <input type="email" class="form-control" id="emailadd" title="Enter a valid email address">
                 <span id="emailError"  style="display: flex;color:red;"class="error-message"></span>
             </div>
         </div>
@@ -76,8 +76,6 @@
                                 <label for="province">Province</label>
                                 <select class="form-control" id="province">
                                   <option value="Cebu">Cebu</option>
-                                  <option value="Bohol">Bohol</option>
-                                  <option value="Negros Oriental">Negros Oriental</option>
                                 </select>
                       </div>
                           <div class="form-group">
@@ -113,7 +111,7 @@
                         <div class="form-category">Academic Information</div>
                         <div class="form-group">
                             <label for="academicYear" class="form-label">Academic Year:</label>
-                            <input type="text" class="form-control" id="academicYear" required>
+                            <input type="text" class="form-control" id="academicYear">
                         </div>
                         <div class="form-group">
                             <label for="departmentSelect" class="form-label">Select Department:</label>
@@ -147,23 +145,23 @@
                         <div class="form-category">Parent Information</div>
                         <div class="form-group">
                             <label for="parentName" class="form-label">Name of Parent/Guardian:</label>
-                            <input type="text" class="form-control" id="parentName" required>
+                            <input type="text" class="form-control" id="parentName">
                         </div>
                          <div class="form-group">
                             <label for="parentHome" class="form-label">Home Address of Parent/Guardian:</label>
-                            <input type="text" class="form-control" id="parentHome" required>
+                            <input type="text" class="form-control" id="parentHome">
                         </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-category"> Contact Information</div>
                           <div class="form-group">
                             <label for="parentContact" class="form-label">Phone Number of Parent/Guardian:</label>
-                            <input type="number" class="form-control" id="parentContact" pattern="^09\d{9}$" maxlength="11" required>
+                            <input type="number" class="form-control" id="parentContact" pattern="^09\d{9}$" maxlength="11">
                             <span id="phoneError" style="display: flex;color:red;"class="error-message"></span>
                           </div>
                         <div class="form-group">
                             <label for="parentEmail" class="form-label">Email Address of Parent/Guardian:</label>
-                            <input type="email" class="form-control" id="parentEmail" required>
+                            <input type="email" class="form-control" id="parentEmail">
                         </div>
                     </div>
                 </div>

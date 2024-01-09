@@ -19,32 +19,39 @@ namespace SIMSApp.Controllers
             _context = context;
         }
 
-        [HttpPost]
-    public async Task<IActionResult> AddStudent(Student studinfo)
+    [HttpPost]
+public async Task<IActionResult> AddStudent(Student studinfo)
+{
+    // Check if StudentIdNum already exists
+    var existingStudentIdNum = _context.Students.FirstOrDefault(s => s.StudentIdNum == studinfo.StudentIdNum);
+    if (existingStudentIdNum != null)
     {
-        var existingStudent = _context.Students.FirstOrDefault(s =>
-            s.Firstname == studinfo.Firstname &&
-            s.Middlename == studinfo.Middlename &&
-            s.Lastname == studinfo.Lastname);
-
-        if (existingStudent != null)
-        {
-            // Student already exists, return a specific status code and message
-            return Conflict(new { Message = "Student already exists" });
-        }
-        else
-        {
-            // Generate a random password
-            studinfo.Password = GenerateRandomPassword();
-
-            // Save the student with the generated password
-            _context.Students.Add(studinfo);
-            await _context.SaveChangesAsync();
-
-            // Return the student object with the generated password
-            return Ok(studinfo);
-        }
+        return Conflict(new { Message = "StudentIdNum already exists" });
     }
+
+    // Check if the combination of Firstname, Middlename, and Lastname already exists
+    var existingStudent = _context.Students.FirstOrDefault(s =>
+        s.Firstname == studinfo.Firstname &&
+        s.Middlename == studinfo.Middlename &&
+        s.Lastname == studinfo.Lastname);
+
+    if (existingStudent != null)
+    {
+        return Conflict(new { Message = "Student already exists" });
+    }
+    else
+    {
+        // Generate a random password
+        studinfo.Password = GenerateRandomPassword();
+
+        // Save the student with the generated password
+        _context.Students.Add(studinfo);
+        await _context.SaveChangesAsync();
+
+        // Return the student object with the generated password
+        return Ok(studinfo);
+    }
+}
 
         private string GenerateRandomPassword()
         {

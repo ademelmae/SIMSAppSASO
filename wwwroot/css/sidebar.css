@@ -20,22 +20,26 @@ body{
     bottom: 0;
     width: 110px;
     height: 100vh;
-    padding: 0 1.7rem;
+  
     color: #fff;
     overflow: hidden;
     transition: all 0.5s linear;
     background: linear-gradient(109.6deg, rgb(9, 154, 151) 11.2%, rgb(21, 205, 168) 91.1%);
 }
 
+.containerbar{
+    padding: 0 1.7rem;
+}
 .sidebar:hover{
     width: 240px;
     transition: 0.5s;
 }
 
-.logo{
+.logo {
     height: 100px;
     width: 100px;
     right: 30px;
+    transition: margin-left 0.5s ease-in-out, transform 0.5s ease-in-out; /* Added transitions */
 }
 
 .menu{
@@ -193,6 +197,17 @@ body{
     font-size: 18px;
     font-weight: 200;
 }
+.logosidebar {
+    transition: margin-left 0.5s ease-in-out;
+    height: 100px;
+    width: 100px;
+    margin-left: 3px; /* Add this line to set the initial margin to 0 */
+}
+
+.sidebar:hover .logosidebar {
+    margin-left: 50px; /* Adjust the value based on your layout */
+}
+
 
 .amount-value{
     font-size: 40px;

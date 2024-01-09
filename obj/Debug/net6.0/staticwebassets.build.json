@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "eqmCgMSAJ+oxnlRGHYBaBMIdfcwM0ls5vWunKKQAR6Q=",
+  "Hash": "mK1D3JytJPPTmChCTEGUP7eTsaS6VfsNzaZ0pigTh3I=",
   "Source": "SIMSApp",
   "BasePath": "_content/SIMSApp",
   "Mode": "Default",
@@ -1239,23 +1239,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\logout.js"
-    },
-    {
-      "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\js\\province.js",
-      "SourceId": "SIMSApp",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\",
-      "BasePath": "_content/SIMSApp",
-      "RelativePath": "js/province.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\province.js"
     },
     {
       "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\js\\register.js",
