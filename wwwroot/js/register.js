@@ -9,11 +9,21 @@ $(document).ready(function() {
         var password = $("#registerPassword").val();
         var confirmPassword = $("#confirmPassword").val();
         var missingFields = [];
-        
+        var invalidFields = [];
+
+        // Email validation regular expression
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
         if (firstname === '') missingFields.push('First Name');
         if (lastname === '') missingFields.push('Last Name');
         if (username === '') missingFields.push('Username');
-        if (email === '') missingFields.push('Email');
+        
+        if (email === '') {
+            missingFields.push('Email');
+        } else if (!email.match(emailRegex)) {
+            invalidFields.push('Email');
+        }
+
         if (password === '') missingFields.push('Password');
         if (confirmPassword === '') missingFields.push('Confirm Password');
 
@@ -23,8 +33,13 @@ $(document).ready(function() {
                 html: 'Please fill out the following fields:<br>' + missingFields.join('<br>'),
                 icon: 'error'
             });
-        }
-        else if (password !== confirmPassword) {
+        } else if (invalidFields.length > 0) {
+            Swal.fire({
+                title: 'Error',
+                html: 'Please provide a valid email address for the following field(s):<br>' + invalidFields.join('<br>'),
+                icon: 'error'
+            });
+        } else if (password !== confirmPassword) {
             // Passwords do not match - show a SweetAlert pop-up
             Swal.fire({
                 title: 'Error',
@@ -55,7 +70,6 @@ $(document).ready(function() {
                         });
                     } else {
                         if (response === 'User already exists') {
-                            // console.log("Server Response: ", response);
                             Swal.fire({
                                 title: 'Error',
                                 text: 'An account is already registered with that username or email address',

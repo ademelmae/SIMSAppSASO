@@ -7,27 +7,18 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SIMSApp.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
-   
-      <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-     
 <div class="sidebar">
-            <img class="logosidebar" src="/lib/guidancelogo.png">
+        <img class="logosidebar" src="/lib/guidancelogo.png">
             <div class="containerbar">
                 <ul class="menu">
                     <li class="active">
                         <a href="dashboard">
                             <i class="fas fa-tachometer-alt"></i>
                             <span>Dashboard</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="fas fa-user"></i>
-                            <span>Profile</span>
                         </a>
                     </li>
                     <li>
@@ -45,7 +36,7 @@
                     <li>
                         <a href="ViewViolations">
                             <i class="fas fa-question-circle"></i>
-                            <span>View Violations</span>
+                            <span>Violations</span>
                         </a>
                     </li>
                     <li>
@@ -61,24 +52,41 @@
                         </a>
                     </li>
                 </ul>
-            </div>
-                
-                     
+            </div>      
 </div>
 
 <div class="container-fluid" style="width: 1280px;">
-    
     @RenderBody()
 </div>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+
+<script>
+     document.addEventListener('DOMContentLoaded', function() {
+        // Get all the buttons inside the menu
+        var buttons = document.querySelectorAll('.menu li');
+
+        // Add click event listener to each button
+        buttons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Remove the active class from all buttons
+                buttons.forEach(function(btn) {
+                    btn.classList.remove('active');
+                });
+
+                // Add the active class to the clicked button
+                button.classList.add('active');
+            });
+        });
+    });
+</script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

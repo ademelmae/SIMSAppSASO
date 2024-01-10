@@ -54,13 +54,18 @@ body{
     margin: 8px 0;
     border-radius: 8px;
     transition: all 0.5s ease-in-out;
+    
 }
 
 .menu li:hover, 
 .active{
     background: #e0e0e058;
+    text-decoration: none;
 }
 
+.menu li.active{
+    background: #e0e0e058 !important;
+}
 .menu a{
     color: #fff;
     font-size: 14px;
@@ -197,17 +202,17 @@ body{
     font-size: 18px;
     font-weight: 200;
 }
+
 .logosidebar {
     transition: margin-left 0.5s ease-in-out;
     height: 100px;
     width: 100px;
-    margin-left: 3px; /* Add this line to set the initial margin to 0 */
+    margin-left: 3px;
 }
 
 .sidebar:hover .logosidebar {
     margin-left: 50px; /* Adjust the value based on your layout */
 }
-
 
 .amount-value{
     font-size: 40px;

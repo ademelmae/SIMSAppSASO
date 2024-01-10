@@ -37,6 +37,11 @@ public class HomeController : Controller
     {
         return View();
     }
+
+     public IActionResult ViewViolationInfo()
+    {
+        return View();
+    }
      public IActionResult StudentLists()
     {
         return View();

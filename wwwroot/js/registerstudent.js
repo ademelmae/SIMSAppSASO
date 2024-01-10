@@ -20,7 +20,7 @@ jQuery(document).ready(function ($) {
                 }
             }
 
-              var actionCell = $("<td class='text-center' style='width: 190px;'></td>");
+              var actionCell = $("<td class='text-center' style='width: 170px;'></td>");
 
               //InfoButton
               var infoButton = $("<button></button>")
@@ -30,7 +30,7 @@ jQuery(document).ready(function ($) {
                     margin: "",
                     background:""
                   })
-                  .html('View Information')
+                  .html('<i class="fas fa-info-circle"></i>')
                   .on("click", function () {
                     var studentId = item.studentId;
                     sessionStorage.setItem("studentId", studentId);
@@ -48,7 +48,7 @@ jQuery(document).ready(function ($) {
                   .css({
                     display: "inline-block"
                   })
-                  .html('Update')
+                  .html('<i class="fas fa-edit"></i>')
                   .on("click", function () {
             
                     var studentId = item.studentId;
@@ -66,7 +66,7 @@ jQuery(document).ready(function ($) {
                 display: "inline-block",
                 margin: "2px",
                 background:""
-              }) .html('Delete')
+              }) .html('<i class="fas fa-trash-alt"></i>')
                   .on("click", function () {
                     var studentId = item.studentId;
 
@@ -134,64 +134,90 @@ jQuery(document).ready(function ($) {
 
 
 $('#studentForm').submit(function (e) {
-  e.preventDefault();
-
-  // Check if any required field is empty
-  if (!validateForm()) {
-      return;
-  }
-
-  Swal.fire({
-      title: "Are you sure?",
-      text: "Do you want to register student?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Submit",
-  }).then((willSubmit) => {
-      if (willSubmit.isConfirmed) {
-          submitForm();
-      }
+    e.preventDefault();
+  
+    // Check if any required field is empty
+    if (!validateForm()) {
+        return;
+    }
+  
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Do you want to register student?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Submit",
+    }).then((willSubmit) => {
+        if (willSubmit.isConfirmed) {
+            submitForm();
+        }
+    });
   });
-});
+  
+  function validateForm() {
+    const requiredFields = [
+      { id: "firstname", label: "First Name" },
+      { id: "middlename", label: "Middle Name" },
+      { id: "lastname", label: "Last Name" },
+      { id: "dob", label: "Date of Birth" },
+      { id: "age", label: "Age" },
+      { id: "gender", label: "Gender" },
+      { id: "phone", label: "Phone" },
+      { id: "emailadd", label: "Email" },
+      { id: "province", label: "Province" },
+      { id: "city", label: "City" },
+      { id: "barangay", label: "Barangay" },
+      { id: "streetAddress", label: "Street Address" },
+      { id: "zipCode", label: "Zip Code" },
+      { id: "academicYear", label: "Academic Year" },
+      { id: "studentidnum", label: "Student ID Number" },
+      { id: "departmentSelect", label: "Select Department" },
+      { id: "courseSelect", label: "Select Course" },
+      { id: "yearSelect", label: "Select Year" },
+      { id: "parentName", label: "Name of Parent" },
+      { id: "parentContact", label: "Phone Number of Parent" },
+      { id: "parentEmail", label: "Email Address of Parent" },
+      { id: "parentHome", label: "Home Address of Parent" },
 
-function validateForm() {
-  const requiredFields = [
-      "firstname", "middlename", "lastname", "dob", "age", "gender", "phone", "emailadd",
-      "province", "city", "barangay", "streetAddress", "zipCode", "academicYear",
-      "studentidnum", "departmentSelect", "courseSelect", "yearSelect", "parentName",
-      "parentContact", "parentEmail", "parentHome"
-  ];
-
-  let anyFieldFilled = false;
-  for (const field of requiredFields) {
-      const value = document.getElementById(field).value.trim();
+    ];
+  
+    let anyFieldFilled = false;
+    let missingFields = [];
+  
+    for (const field of requiredFields) {
+      const value = document.getElementById(field.id).value.trim();
       if (value !== "") {
-          anyFieldFilled = true;
+        anyFieldFilled = true;
       } else {
-          // Display error message for the empty field
-          Swal.fire({
-              title: "Error",
-              text: `Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`,
-              icon: "error"
-          });
-          return false;
+        // Collect missing field
+        missingFields.push(field.label);
       }
-  }
-
-  if (!anyFieldFilled) {
+    }
+  
+    if (!anyFieldFilled) {
       // Display error message if all fields are empty
       Swal.fire({
-          title: "Error",
-          text: "All fields are empty. Please fill in at least one field.",
-          icon: "error"
+        title: "Error",
+        text: "All fields are empty. Please fill in at least one field.",
+        icon: "error"
       });
       return false;
+    }
+  
+    if (missingFields.length > 0) {
+      // Display error message for each missing field
+      Swal.fire({
+        title: "Error",
+        html: `Please fill in the following field(s):<br>${missingFields.join('<br>')}`,
+        icon: "error"
+      });
+      return false;
+    }
+  
+    return true; // All required fields are filled
   }
-
-  return true; // All required fields are filled
-}
-
-
+  
+  
     function submitForm(){
       const studentData = {
         FirstName: document.getElementById("firstname").value,

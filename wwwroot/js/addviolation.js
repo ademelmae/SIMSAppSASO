@@ -29,26 +29,21 @@ jQuery(document).ready(function ($) {
                     // Add action cell to the row
                     var actionCell = $("<td class='text-center' style='width: 120px;'></td>");
                    //INFO BUTTON
-                    var infoButton = $("<button></button>")
-                    .addClass("btn btn-info btn-sm mr-1") 
-                    .css("display", "inline-block")
-                    .html('<i class="fas fa-info-circle"></i>')
-                    .on("click", function () {
-                        var violationId = item.violationId;
-                        
-                        fetch("/api/violation/getviolationdetails?violationId=" + violationId)
-                            .then(response => {
-                            if (!response.ok) {
-                                throw new Error("Network response was not ok");
-                            }
-                            return response.json();
-                            })
-                            .then(violationDetails => {
-                            displayViolationDetailsModal(violationDetails);
-                            })
-                            .catch(error => console.error("Error fetching violation details:", error));
-
-                    });
+                   var infoButton = $("<button></button>")
+                  .addClass("btn btn-info btn-sm mr-1") 
+                  .css({
+                    display: "inline-block",
+                    margin: "",
+                    background:""
+                  })
+                  .html('<i class="fas fa-info-circle"></i>')
+                  .on("click", function () {
+                    var violationId = item.violationId;
+                    sessionStorage.setItem("violationId", violationId);
+                    
+                    // Redirect to another view
+                    window.location.href = "/Home/ViewViolationInfo";
+                });
                     actionCell.append(infoButton);
                     
                     //UPDATE BUTTON
@@ -141,18 +136,6 @@ jQuery(document).ready(function ($) {
             
 });
 
-function displayViolationDetailsModal(violationDetails) {
-    console.log(violationDetails);
-    // Set the values in the modal
-    for (const property in violationDetails) {
-      if (violationDetails.hasOwnProperty(property)) {
-        $(`#modal${property.charAt(0).toUpperCase()}${property.slice(1)}`).text(violationDetails[property]);
-      }
-    }
-  
-    // Show the modal
-    $("#violationInfoModal").modal("show");
-  }
 
 // UPDATE THE DISCIPLINARY ACTION
   function updateDisciplinaryAction() {

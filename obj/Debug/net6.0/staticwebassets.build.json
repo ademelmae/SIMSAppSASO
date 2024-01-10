@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "mK1D3JytJPPTmChCTEGUP7eTsaS6VfsNzaZ0pigTh3I=",
+  "Hash": "oR6y0ezk7M0aZZhKkZTZV26rLGJzdfhSNREDx6M2o1g=",
   "Source": "SIMSApp",
   "BasePath": "_content/SIMSApp",
   "Mode": "Default",
@@ -1341,6 +1341,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\viewstudent.js"
+    },
+    {
+      "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\js\\viewviolation.js",
+      "SourceId": "SIMSApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\",
+      "BasePath": "_content/SIMSApp",
+      "RelativePath": "js/viewviolation.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\viewviolation.js"
     },
     {
       "Identity": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",

@@ -58,21 +58,25 @@
 <body>
 
 <div class="container mt-4">
-  <div class="row mb-4">
-    <div class="col-md-6">
-      <h2 class="mb-4">Monthly Report - Student Violation System</h2>
-    </div>
-    <div class="col-md-6 text-right">
+  <div class="header--wrapper">
+        <div class="header--title">
+              <span style="color: white;font-weight: bold; font-size: 20px">SASO-<span style="color: rgb(255, 255, 255)55, 255, 255);">IMS</span></span>
+              <h2 style="color:white;">Monthly Reports</h2>
+        </div>
+        <div class="user--info">
+            <img src="/lib/guidancelogo.png" alt="">
+        </div>
+
+   
+  </div>
+ <div class=" text-right">
       <p>Report Date: <span id="reportDate"></span></p>
     </div>
-  </div>
-
   <table class="table table-bordered" id="monthlyReportTable">
     <thead class="thead-light">
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Student Name</th>
-        <th scope="col">Violation Type</th>
+        <th scope="col">Violation</th>
         <th scope="col">Date</th>
       </tr>
     </thead>
@@ -144,7 +148,7 @@ function updateMonthlyReportTable(reports) {
     // Add new rows based on fetched data
     reports.forEach((report, index) => {
         const row = `<tr>
-                        <th scope="row">${index + 1}</th>
+                        @* <th scope="row">${index + 1}</th> *@
                         <td>${report.studentName}</td>
                         <td>${report.violationType}</td>
                         <td>${report.violationDate}</td>
@@ -195,3 +199,4 @@ $('#reportDate').text(formatDate(new Date()));
 </script>
 </body>
 </html>
+<script src="~/js/logout.js"></script>

@@ -20,38 +20,38 @@ namespace SIMSApp.Controllers
         }
 
     [HttpPost]
-public async Task<IActionResult> AddStudent(Student studinfo)
-{
-    // Check if StudentIdNum already exists
-    var existingStudentIdNum = _context.Students.FirstOrDefault(s => s.StudentIdNum == studinfo.StudentIdNum);
-    if (existingStudentIdNum != null)
+    public async Task<IActionResult> AddStudent(Student studinfo)
     {
-        return Conflict(new { Message = "StudentIdNum already exists" });
+        // Check if StudentIdNum already exists
+        var existingStudentIdNum = _context.Students.FirstOrDefault(s => s.StudentIdNum == studinfo.StudentIdNum);
+        if (existingStudentIdNum != null)
+        {
+            return Conflict(new { Message = "StudentIdNum already exists" });
+        }
+
+        // Check if the combination of Firstname, Middlename, and Lastname already exists
+        var existingStudent = _context.Students.FirstOrDefault(s =>
+            s.Firstname == studinfo.Firstname &&
+            s.Middlename == studinfo.Middlename &&
+            s.Lastname == studinfo.Lastname);
+
+        if (existingStudent != null)
+        {
+            return Conflict(new { Message = "Student already exists" });
+        }
+        else
+        {
+            // Generate a random password
+            studinfo.Password = GenerateRandomPassword();
+
+            // Save the student with the generated password
+            _context.Students.Add(studinfo);
+            await _context.SaveChangesAsync();
+
+            // Return the student object with the generated password
+            return Ok(studinfo);
+        }
     }
-
-    // Check if the combination of Firstname, Middlename, and Lastname already exists
-    var existingStudent = _context.Students.FirstOrDefault(s =>
-        s.Firstname == studinfo.Firstname &&
-        s.Middlename == studinfo.Middlename &&
-        s.Lastname == studinfo.Lastname);
-
-    if (existingStudent != null)
-    {
-        return Conflict(new { Message = "Student already exists" });
-    }
-    else
-    {
-        // Generate a random password
-        studinfo.Password = GenerateRandomPassword();
-
-        // Save the student with the generated password
-        _context.Students.Add(studinfo);
-        await _context.SaveChangesAsync();
-
-        // Return the student object with the generated password
-        return Ok(studinfo);
-    }
-}
 
         private string GenerateRandomPassword()
         {

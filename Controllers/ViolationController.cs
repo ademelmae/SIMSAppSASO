@@ -35,6 +35,21 @@ public class ViolationController : ControllerBase
         return Ok(violations);
     }
 
+[HttpGet("getViolations")]
+public IActionResult GetViolations(string studentIdNum)
+{
+    // Assuming 'ViolationType' is a property in your Studentviolation model
+    var violations = _context.Studentviolations
+        .Where(v => v.StudentIdNum == studentIdNum)
+        .Select(v => new
+        {
+            ViolationType = v.ViolationType,
+            Data = v
+        })
+        .ToList();
+
+    return Ok(violations);
+}
         [HttpGet("getViolationsTable")]
         public async Task<ActionResult<IEnumerable<object>>> GetViolationsTable()
         {
@@ -56,19 +71,6 @@ public class ViolationController : ControllerBase
             return result;
         }
 
-     [HttpGet("getviolationdetails")]
-        public async Task<ActionResult<Studentviolation>> GetViolationDetails(int violationId)
-        {
-            // Ensure studentId is used in your logic
-            var violation = await _context.Studentviolations.FirstOrDefaultAsync(s => s.ViolationId == violationId);
-
-            if (violation == null)
-            {
-                return NotFound(); // Return a 404 if the student is not found
-            }
-
-            return Ok(violation);
-        }
 
      [HttpDelete("deleteViolation/{id}")]
         public async Task<IActionResult> DeleteViolation(int id)
@@ -127,6 +129,20 @@ public class ViolationController : ControllerBase
         return Ok(reports);
     }
 
+
+        [HttpGet("getViolationDetails")]
+        public async Task<ActionResult<Studentviolation>> getViolationDetails(int violationId)
+        {
+            // Ensure studentId is used in your logic
+            var violation = await _context.Studentviolations.FirstOrDefaultAsync(s => s.ViolationId == violationId);
+
+            if (violation == null)
+            {
+                return NotFound(); 
+            }
+
+            return Ok(violation);
+        }
     }
 
        

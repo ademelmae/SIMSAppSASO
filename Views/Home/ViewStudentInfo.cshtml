@@ -1,34 +1,126 @@
- <link rel="stylesheet" href="/css/sidebar.css">
- <link rel="stylesheet" href="/css/formdesign.css">
- <div class="container">
-    <div class="form-container">
-        <div><h3>View Student Information</h3></div>
-        <div class="row">
-        <p><strong>Student ID:</strong> <span id="infoStudentIdNum"></span></p>
-        <p><strong>Firstname:</strong> <span id="infoFirstname"></span></p>
-        <p><strong>Middlename:</strong> <span id="infoMiddlename"></span></p>
-        <p><strong>Lastname:</strong> <span id="infoLastname"></span></p>
-        <p><strong>Date of Birth:</strong> <span id="infoDateofBirth"></span></p>
-        <p><strong>Age:</strong> <span id="infoAge"></span></p>
-        <p><strong>Gender:</strong> <span id="infoGender"></span></p>
-        <p><strong>Phone Number:</strong> <span id="infoPhone"></span></p>
-        <p><strong>Email:</strong> <span id="infoEmail"></span></p>
-        <p><strong>Province:</strong> <span id="infoProvince"></span></p>
-        <p><strong>City:</strong> <span id="infoCity"></span></p>
-        <p><strong>Barangay:</strong> <span id="infoBarangay"></span></p>
-        <p><strong>Street Address:</strong> <span id="infoStreet"></span></p>
-        <p><strong>Academic Year:</strong> <span id="infoAcademicYear"></span></p>
-        <p><strong>Department:</strong> <span id="infoDepartment"></span></p>
-        <p><strong>Course:</strong> <span id="infoCourse"></span></p>
-        <p><strong>Year Level:</strong> <span id="infoYearLevel"></span></p>
-        <p><strong>Parent/Guardian's Name:</strong> <span id="infoParentName"></span></p>
-        <p><strong>Parent/Guardian's Address:</strong> <span id="infoParentHome"></span></p>
-        <p><strong>Parent/Guardian's Contact Number:</strong> <span id="infoParentContact"></span></p>
-        <p><strong>Parent/Guardian's Email Address:</strong> <span id="infoParentEmail"></span></p>
-        </div>
-        
-    </div>
-               
-</div>
+<!DOCTYPE html>
+<html lang="en">
 
-<script src="~/js/viewstudent.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <title>Student Information</title>
+</head>
+
+<body>
+   
+
+    <div class="container">
+         <header>
+            <h2 style="margin-left: 20px;">Student Information</h1>
+        </header>
+        <div class="form-container">
+           
+
+            <div class="row personal-info">
+                <div class="info-group">
+                    <h4>Personal Information</h4>
+                    <p><strong>Student ID:</strong> <span id="infoStudentIdNum"></span></p>
+                    <p><strong>Firstname:</strong> <span id="infoFirstname"></span></p>
+                    <p><strong>Middlename:</strong> <span id="infoMiddlename"></span></p>
+                    <p><strong>Lastname:</strong> <span id="infoLastname"></span></p>
+                    <p><strong>Date of Birth:</strong> <span id="infoBirthdate"></span></p>
+                    <p><strong>Age:</strong> <span id="infoAge"></span></p>
+                    <p><strong>Gender:</strong> <span id="infoGender"></span></p>
+                    <p><strong>Phone Number:</strong> <span id="infoPhone"></span></p>
+                    <p><strong>Email:</strong> <span id="infoEmail"></span></p>
+                </div>
+
+                <div class="info-group">
+                    <h4>Address Information</h4>
+                    <p><strong>Province:</strong> <span id="infoProvince"></span></p>
+                    <p><strong>City:</strong> <span id="infoCity"></span></p>
+                    <p><strong>Barangay:</strong> <span id="infoBarangay"></span></p>
+                    <p><strong>Street Address:</strong> <span id="infoStreet"></span></p>
+                </div>
+
+                <div class="info-group">
+                    <h4>Academic Information</h4>
+                    <p><strong>Academic Year:</strong> <span id="infoAcademicYear"></span></p>
+                    <p><strong>Department:</strong> <span id="infoDepartment"></span></p>
+                    <p><strong>Course:</strong> <span id="infoCourse"></span></p>
+                    <p><strong>Year Level:</strong> <span id="infoYearLevel"></span></p>
+                </div>
+
+                <div class="info-group">
+                    <h4>Guardian Information</h4>
+                    <p><strong>Parent/Guardian's Name:</strong> <span id="infoParentName"></span></p>
+                    <p><strong>Parent/Guardian's Address:</strong> <span id="infoParentHome"></span></p>
+                    <p><strong>Parent/Guardian's Contact Number:</strong> <span id="infoParentContact"></span></p>
+                    <p><strong>Parent/Guardian's Email Address:</strong> <span id="infoParentEmail"></span></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="~/js/viewstudent.js"></script>
+    <script src="~/js/logout.js"></script>
+</body>
+
+</html>
+
+  <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            padding: 10px;
+            text-align: left;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 1000px;  
+            margin: 20px auto;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h3 {
+            text-align: center;
+            color: #333333333;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .info-group {
+            flex: 0 0 48%;
+            margin-bottom: 15px;
+        }
+
+        h4 {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 8px 0;
+            color: #555;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    </style>
