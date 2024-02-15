@@ -15,7 +15,7 @@ builder.WebHost.UseKestrel(options=>
 {
 
 });
-builder.WebHost.UseUrls("https://localhost:7203", "https://192.168.254.107:7203");
+builder.WebHost.UseUrls("https://localhost:7203", "https://192.168.254.106:7203");
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<simsdbContext>();
@@ -59,7 +59,7 @@ app.MapControllerRoute(
 );
  app.UseEndpoints(endpoints =>
     {
-        endpoints.MapControllers(); // Map controllers
+        endpoints.MapControllers(); 
     });
 
 app.Run();

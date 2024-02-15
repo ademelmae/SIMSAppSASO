@@ -28,6 +28,48 @@ public class ViolationController : ControllerBase
         return Ok();
     }
 
+     [HttpPut("updateviolation/{id}")]
+        public async Task<IActionResult> UpdateViolation(int id, [FromBody] Studentviolation updatedData)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var existingViolation = await _context.Studentviolations.FindAsync(id);
+
+                if (existingViolation == null)
+                {
+                    return NotFound();
+                }
+
+              
+                existingViolation.OffenseLevel = updatedData.OffenseLevel;
+                existingViolation.ViolationType = updatedData.ViolationType;
+                existingViolation.ViolationDate = updatedData.ViolationDate;
+                existingViolation.ViolationDate = updatedData.ViolationTime;
+                existingViolation.DisciplinaryAction = updatedData.DisciplinaryAction;
+                existingViolation.OffenseType = updatedData.OffenseType;
+                existingViolation.Location = updatedData.Location;
+                existingViolation.ReportingName = updatedData.ReportingName;
+                existingViolation.ReportingRole = updatedData.ReportingRole;
+                existingViolation.ReportingContact = updatedData.ReportingContact;
+                existingViolation.Description = updatedData.Description;
+                
+                // Save changes to the database
+                await _context.SaveChangesAsync();
+
+                return Ok(new { message = "Violation updated successfully" });
+            }
+            catch
+            {
+                // Log the exception or handle it accordingly
+                return StatusCode(500, new { error = "An error occurred while updating the violation" });
+            }
+        }
+
     [HttpGet("getViolations")]
     public IActionResult GetViolations()
     {

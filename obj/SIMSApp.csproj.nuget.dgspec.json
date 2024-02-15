@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\SIMSApp.csproj": {}
+    "C:\\Users\\Ademel Mae\\Desktop\\SIMS\\SIMSApp\\SIMSApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\SIMSApp.csproj": {
+    "C:\\Users\\Ademel Mae\\Desktop\\SIMS\\SIMSApp\\SIMSApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\SIMSApp.csproj",
+        "projectUniqueName": "C:\\Users\\Ademel Mae\\Desktop\\SIMS\\SIMSApp\\SIMSApp.csproj",
         "projectName": "SIMSApp",
-        "projectPath": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\SIMSApp.csproj",
+        "projectPath": "C:\\Users\\Ademel Mae\\Desktop\\SIMS\\SIMSApp\\SIMSApp.csproj",
         "packagesPath": "C:\\Users\\Ademel Mae\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ademel Mae\\Documents\\SIMS\\SIMSApp\\obj\\",
+        "outputPath": "C:\\Users\\Ademel Mae\\Desktop\\SIMS\\SIMSApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ademel Mae\\AppData\\Roaming\\NuGet\\NuGet.Config"

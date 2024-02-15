@@ -96,7 +96,7 @@
               <button type="" id="backbtn" onclick="window.location.href='@Url.Action("ViewViolations", "Home")'"  style="" class="btn btn-success">Back</button>
             </div>
             <div style="margin-left: 140px;"class="col-md-1">
-              <button type="submit" id="submitbtn" class="btn btn-primary">Submit</button>
+              <button type="button" id="submitbtn" class="btn btn-primary">Submit</button>
             </div>
         </div>
       </div>
@@ -105,3 +105,10 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="~/js/updateviolation.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#submitbtn").click(function () {
+        updateViolationDataInDatabase();
+    });
+});
+</script>
