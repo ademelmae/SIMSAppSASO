@@ -1,69 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Student Violation Report Form</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="/css/sidebar.css">
-   <link rel="stylesheet" href="/css/formdesign.css">
-  <link rel="stylesheet" href="/css/registerStudent.css">
+  <link rel="stylesheet" href="/css/formdesign.css">
+</head>
 
+<body>
   <div class="container">
     <div class="form-container">
-        <div class="header--wrapper">
-         <div class="header--title">
-                    <span style="color: white;font-weight: bold; font-size: 20px">SASO-<span style="color: rgb(255, 255, 255)55, 255, 255);">IMS</span></span>
-                      <h2 style="color:white;">Student Violation Report Form</h2>
-                </div>
-                <div class="user--info">
-                
-                    <img src="/lib/guidancelogo.png" alt="">
-                </div>
-    </div>
-    <form id="violationForm">
-      <div class="form-group">
-        <label for="searchStudent">Search for student:</label>
-               <input type="text" class="form-control" id="searchStudent" name="searchStudent">
-        
-       </div>
-       <div class="form-group">
-        <label for="studentName">Student Name:</label>
-        <input type="text" class="form-control" id="studentName" name="studentName" disabled>
-      </div>
-      <div class="form-group">
-        <label for="studentID">Student ID Number:</label>
-        <input type="text" class="form-control" id="studentID" name="studentID" disabled>
-      </div>
-      <div class="form-group">
-        <label for="departmentSelect" class="form-label">Department:</label>
-        <input type="text" class="form-control" id="departmentSelect" name="departmentSelect" disabled>
-      </div>
-      <div class="form-group">
-        <label for="courseSelect" class="form-label">Course:</label>
-        <input type="text" class="form-control" id="courseSelect" name="courseSelect" disabled>   
-      </div>
-      <div class="form-group">
-        <label for="academicYear">Academic Year:</label>
-        <input type="text" class="form-control" id="academicYear" name="academicYear" disabled>
+      <div class="header--wrapper">
+        <div class="header--title">
+          <span style="color: white;font-weight: bold; font-size: 20px">SASO-<span
+              style="color: rgb(255, 255, 255)55, 255, 255);">IMS</span></span>
+          <h2 style="color:white;">Student Violation Report Form</h2>
+        </div>
+        <div class="user--info">
+          <img src="/lib/guidancelogo.png" alt="">
+        </div>
       </div>
 
-      <!-- Violation Details -->
-      <div class="form-category">Violation Details</div>
-      <div class="form-group">
-        <select class="form-control" id="violationSelect">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="searchStudent">Search for student:</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="searchStudent" name="searchStudent">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form id="violationForm">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="studentID">Student ID Number:</label>
+              <input type="text" class="form-control" id="studentID" name="studentID" disabled>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="studentName">Student Name:</label>
+              <input type="text" class="form-control" id="studentName" name="studentName" disabled>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="departmentSelect" class="form-label">Department:</label>
+              <input type="text" class="form-control" id="departmentSelect" name="departmentSelect" disabled>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="courseSelect" class="form-label">Course:</label>
+              <input type="text" class="form-control" id="courseSelect" name="courseSelect" disabled>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="academicYear">Academic Year:</label>
+              <input type="text" class="form-control" id="academicYear" name="academicYear" disabled>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-category">Violation Details</div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="violationSelect">Select a violation:</label>
+              <select class="form-control" id="violationSelect" required>
                 <option value="">Select violation</option>
                 <option value="1">Tardiness</option>
                 <option value="2">Absence from class</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="dateOfViolation">Date of Violation:</label>
-        <input type="date" class="form-control" id="dateOfViolation" name="dateOfViolation" required>
-      </div>
-      <div class="form-group">
-        <label for="timeOfViolation">Time of Violation:</label>
-        <input type="time" class="form-control" id="timeOfViolation" name="timeOfViolation" required>
-      </div>
-      <div class="form-group">
-        <label for="sanction">Sanction:</label>
-        <select class="form-control" id="offenseLevelSelect">
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="dateOfViolation">Date of Violation:</label>
+              <input type="date" class="form-control" id="dateOfViolation" name="dateOfViolation" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <!-- Violation Details Fields -->
+            <div class="form-group">
+              <label for="timeOfViolation">Time of Violation:</label>
+              <input type="time" class="form-control" id="timeOfViolation" name="timeOfViolation" required>
+            </div>
+            <!-- Other Violation Details Fields -->
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="sanction">Sanction:</label>
+              <select class="form-control" id="offenseLevelSelect" required>
                 <option value="1st">1st offense</option>
                 <option value="2nd">2nd Offense</option>
                 <option value="3rd">3rd Offense</option>
@@ -72,123 +117,148 @@
                 <option value="6th">6th Offense</option>
                 <option value="7th">7th Offense</option>
                 <option value="8th">8th Offense</option>
-        </select>
-      </div>
-      <div class="form-group">
-            <textarea class="form-control" id="disciplinaryActionInput" placeholder="Disciplinary Action" rows="4"></textarea>
-        </div>
-      <div class="form-group">
-        <label for="offenseType">Offense Type:</label>
-        <select class="form-control" id="offenseType" name="offenseType">
-          <option value="major">Major Offense</option>
-          <option value="minor">Minor Offense</option>
-          <!-- Add more options as needed -->
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="location">Location of Violation:</label>
-        <input type="text" class="form-control" id="location" name="location" required>
-      </div>
-  
-        <label for="description">Description of Violation:</label>
-        <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
-   
-      <div class="form-group">
-        <label for="attachment">Attachment (Photo/Video/Document):</label>
-        <input type="file" class="form-control-file" id="attachment" name="attachment">
-      </div>
-
-      <div class="form-category">Reporting Person's Information</div>
-      <div class="form-group">
-        <label for="reportingPersonName">Name:</label>
-        <input type="text" class="form-control" id="reportingPersonName" name="reportingPersonName" required>
-      </div>
-      <div class="form-group">
-        <label for="role">Role or Position:</label>
-        <input type="text" class="form-control" id="role" name="role" required>
-      </div>
-      <div class="form-group">
-        <label for="contactNumber">Contact Number:</label>
-        <input type="number" id="contact" name="contact" placeholder="09XXXXXXXXX" pattern="^\d{11}$" required>
-      </div>
-
-    <div class="form-group">
-      <label for="approvalStatus">Approval Status:</label>
-      <div class="form-check">
-          <input type="radio" class="form-check-input" id="pendingStatus" name="approvalStatus" value="pending" required>
-          <label class="form-check-label" for="pendingStatus">Pending</label>
-      </div>
-      <div class="form-check">
-          <input type="radio" class="form-check-input" id="approvedStatus" name="approvalStatus" value="approved" required>
-          <label class="form-check-label" for="approvedStatus">Approved</label>
-      </div>
-    </div>
-
-      <div style="margin-left: 840px;"class="col-md-1">
-              <button type="submit" id="submitbtn"class="btn btn-primary">Submit</button>
+              </select>
             </div>
-    </form>
+          </div>
+        </div>
+        <div class="form-group">
+          <textarea class="form-control" id="disciplinaryActionInput" placeholder="Disciplinary Action" rows="4"
+            required></textarea>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="offenseType">Offense Type:</label>
+              <select class="form-control" id="offenseType" name="offenseType">
+                <option value="major">Major Offense</option>
+                <option value="minor">Minor Offense</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="location">Location of Violation:</label>
+              <input type="text" class="form-control" id="location" name="location" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="description">Description of Violation:</label>
+              <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="form-category">Reporting Person's Information</div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="reportingPersonName">Name:</label>
+              <input type="text" class="form-control" id="reportingPersonName" name="reportingPersonName" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="role">Role or Position:</label>
+              <input type="text" class="form-control" id="role" name="role" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="contactNumber">Contact Number:</label>
+              <input type="number" id="contact" name="contact" required>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="approvalStatus">Approval Status:</label>
+              <div class="form-check">
+                <input type="radio" class="form-check-input" id="pendingStatus" name="approvalStatus" value="pending"
+                  required>
+                <label class="form-check-label" for="pendingStatus">Pending</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" class="form-check-input" id="ongoingStatus" name="approvalStatus" value="ongoing"
+                  required>
+                <label class="form-check-label" for="ongoingStatus">Ongoing</label>
+              </div>
+              <div class="form-check">
+                <input type="radio" class="form-check-input" id="resolvedStatus" name="approvalStatus" value="resolved"
+                  required>
+                <label class="form-check-label" for="resolvedStatus">Resolved</label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group text-right">
+          <button type="submit" id="" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
     </div>
-    
   </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="~/js/addviolation.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="~/js/addviolation.js"></script>
 
-<script>
-  
-  jQuery(document).ready(function($) {
-    $("#searchStudent").autocomplete({
-      source: function(request, response) {
-        $.ajax({
-          url: "/api/studentregister/autocomplete",
-          type: "GET",
-          data: { searchTerm: request.term },
-          success: function(data) {
-            console.log(data);
+  <script>
+    jQuery(document).ready(function ($) {
+      $("#searchStudent").autocomplete({
+        source: function (request, response) {
+          $.ajax({
+            url: "/api/studentregister/autocomplete",
+            type: "GET",
+            data: {
+              searchTerm: request.term
+            },
+            success: function (data) {
+              console.log(data);
 
-            // Check if data is an array
-            if (Array.isArray(data)) {
-              response($.map(data, function(item) {
-                console.log(item);
+              // Check if data is an array
+              if (Array.isArray(data)) {
+                response($.map(data, function (item) {
+                  console.log(item);
 
-                // Check if expected properties exist
-                if (item.firstname && item.middlename && item.lastname) {
-                  return {
-                    label: item.firstname + ' ' + item.middlename + ' ' + item.lastname,
-                    value: item.firstname + ' ' + item.middlename + ' ' + item.lastname,
-                    studentData: item
-                  };
-                } else {
-                  console.error("Invalid data format for item:", item);
-                  return null; // Skip this item if the structure is not as expected
-                }
-              }));
-            } else {
-              console.error("Invalid response format. Expected an array.");
+                  // Check if expected properties exist
+                  if (item.firstname && item.middlename && item.lastname) {
+                    return {
+                      label: item.firstname + ' ' + item.middlename + ' ' + item.lastname,
+                      value: item.firstname + ' ' + item.middlename + ' ' + item.lastname,
+                      studentData: item
+                    };
+                  } else {
+                    console.error("Invalid data format for item:", item);
+                    return null;
+                  }
+                }));
+              } else {
+                console.error("Invalid response format. Expected an array.");
+              }
+            },
+            error: function (xhr, status, error) {
+              console.error("AJAX Error:", status, error);
             }
-          },
-          error: function(xhr, status, error) {
-            console.error("AJAX Error:", status, error);
-          }
-        });
-      },
-      minLength: 2,
-      select: function(event, ui) {
-       var fullName = ui.item.studentData.firstname + ' ' + ui.item.studentData.middlename + ' ' + ui.item.studentData.lastname;
-        // Populate other fields based on selected student data
-         $("#studentName").val(fullName);
-        $("#studentID").val(ui.item.studentData.studentIdNum);
-        $("#departmentSelect").val(ui.item.studentData.department);
-        $("#courseSelect").val(ui.item.studentData.course);
-        $("#academicYear").val(ui.item.studentData.academicYear);
-      }
+          });
+        },
+        minLength: 2,
+        select: function (event, ui) {
+          var fullName = ui.item.studentData.firstname + ' ' + ui.item.studentData.middlename + ' ' + ui.item.studentData.lastname;
+          $("#studentName").val(fullName);
+          $("#studentID").val(ui.item.studentData.studentIdNum);
+          $("#departmentSelect").val(ui.item.studentData.department);
+          $("#courseSelect").val(ui.item.studentData.course);
+          $("#academicYear").val(ui.item.studentData.academicYear);
+        }
+      });
+
     });
+  </script>
+  <script src="~/js/logout.js"></script>
+</body>
 
-});
-
-  
-</script>
-<script src="~/js/logout.js"></script>
-
+</html>

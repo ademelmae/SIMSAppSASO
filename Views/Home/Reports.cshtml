@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +22,8 @@
       margin-top: 30px;
     }
 
-    h2, h5 {
+    h2,
+    h5 {
       color: #3498db;
     }
 
@@ -33,10 +35,12 @@
     .table-bordered {
       border: 1px solid #ddd;
       border-radius: 10px;
-      background-color: #ecf0f1; /* Table background color */
+      background-color: #ecf0f1;
+      /* Table background color */
     }
 
-    .table-bordered th, .table-bordered td {
+    .table-bordered th,
+    .table-bordered td {
       border: 1px solid #ddd;
     }
 
@@ -55,148 +59,151 @@
     }
   </style>
 </head>
+
 <body>
 
-<div class="container mt-4">
-  <div class="header--wrapper">
-        <div class="header--title">
-              <span style="color: white;font-weight: bold; font-size: 20px">SASO-<span style="color: rgb(255, 255, 255)55, 255, 255);">IMS</span></span>
-              <h2 style="color:white;">Monthly Reports</h2>
-        </div>
-        <div class="user--info">
-            <img src="/lib/guidancelogo.png" alt="">
-        </div>
+  <div class="container mt-4">
+    <div class="header--wrapper">
+      <div class="header--title">
+        <span style="color: white;font-weight: bold; font-size: 20px">SASO-<span
+            style="color: rgb(255, 255, 255)55, 255, 255);">IMS</span></span>
+        <h2 style="color:white;">Monthly Reports</h2>
+      </div>
+      <div class="user--info">
+        <img src="/lib/guidancelogo.png" alt="">
+      </div>
 
-   
-  </div>
- <div class=" text-right">
+
+    </div>
+    <div class=" text-right">
       <p>Report Date: <span id="reportDate"></span></p>
     </div>
-  <table class="table table-bordered" id="monthlyReportTable">
-    <thead class="thead-light">
-      <tr>
-        <th scope="col">Student Name</th>
-        <th scope="col">Violation</th>
-        <th scope="col">Date</th>
-      </tr>
-    </thead>
-    <tbody id="monthlyReportTable">
-      <!-- Sample data, replace with actual data from your system -->
-      <tr>
-        <th scope="row">1</th>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      <!-- Add more rows as needed -->
-    </tbody>
-  </table>
+    <table class="table table-bordered" id="monthlyReportTable">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Student Name</th>
+          <th scope="col">Violation</th>
+          <th scope="col">Date</th>
+        </tr>
+      </thead>
+      <tbody id="monthlyReportTable">
+        <!-- Sample data, replace with actual data from your system -->
+        <tr>
+          <th scope="row">1</th>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
 
-  <div class="row mt-4">
-    <div class="col-md-6">
-      <div class="summary-section">
-        <h5 class="mb-3">Report Summary</h5>
-        <p>Total Violations: <span id="totalViolations">2</span></p>
-        <p>Total Students Affected: <span id="totalStudentsAffected">2</span></p>
-        <p>Most Common Violation: <span id="mostCommonViolation">Plagiarism</span></p>
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="summary-section">
+          <h5 class="mb-3">Report Summary</h5>
+          <p>Total Violations: <span id="totalViolations">2</span></p>
+          <p>Total Students Affected: <span id="totalStudentsAffected">2</span></p>
+          <p>Most Common Violation: <span id="mostCommonViolation">Plagiarism</span></p>
+        </div>
+      </div>
+      <div class="col-md-6 text-right">
+        <p>Month and Year: <span id="monthYear">January 2023</span></p>
       </div>
     </div>
-    <div class="col-md-6 text-right">
-      <p>Month and Year: <span id="monthYear">January 2023</span></p>
-    </div>
   </div>
-</div>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
-<script>
-// Assuming the URL for fetching reports is correct
-const apiUrl = '/api/Violation/GetMonthlyReports';
+  <script>
+    // Assuming the URL for fetching reports is correct
+    const apiUrl = '/api/Violation/GetMonthlyReports';
 
-// Function to fetch monthly reports using AJAX
-function fetchMonthlyReports(year, month) {
-    $.ajax({
+    // Function to fetch monthly reports using AJAX
+    function fetchMonthlyReports(year, month) {
+      $.ajax({
         type: 'GET',
         url: `${apiUrl}?year=${year}&month=${month}`,
         dataType: 'json',
         success: function (data) {
-            updateMonthlyReportTable(data);
-            updateSummarySection(data);
+          updateMonthlyReportTable(data);
+          updateSummarySection(data);
         },
         error: function (error) {
-            console.error('Error fetching monthly reports:', error);
+          console.error('Error fetching monthly reports:', error);
         }
-    });
-}
+      });
+    }
 
-// Function to update the HTML content with fetched monthly reports
-function updateMonthlyReportTable(reports) {
-    const tbody = $('#monthlyReportTable tbody');
+    // Function to update the HTML content with fetched monthly reports
+    function updateMonthlyReportTable(reports) {
+      const tbody = $('#monthlyReportTable tbody');
 
-    // Clear existing rows
-    tbody.empty();
+      // Clear existing rows
+      tbody.empty();
 
-    // Add new rows based on fetched data
-    reports.forEach((report, index) => {
+      // Add new rows based on fetched data
+      reports.forEach((report, index) => {
         const row = `<tr>
-                        @* <th scope="row">${index + 1}</th> *@
+    @* <th scope="row">${index + 1}</th> *@
                         <td>${report.studentName}</td>
                         <td>${report.violationType}</td>
                         <td>${report.violationDate}</td>
                     </tr>`;
         tbody.append(row);
-    });
-}
+      });
+    }
 
-// Function to update the summary section with fetched data
-function updateSummarySection(reports) {
-    const totalViolations = reports.length;
-    const totalStudentsAffected = new Set(reports.map(report => report.studentName)).size;
+    // Function to update the summary section with fetched data
+    function updateSummarySection(reports) {
+      const totalViolations = reports.length;
+      const totalStudentsAffected = new Set(reports.map(report => report.studentName)).size;
 
-    // Assuming 'reports' is an array of MonthlyReport objects
-    const violationCounts = reports.reduce((acc, report) => {
+      // Assuming 'reports' is an array of MonthlyReport objects
+      const violationCounts = reports.reduce((acc, report) => {
         acc[report.violationType] = (acc[report.violationType] || 0) + 1;
         return acc;
-    }, {}); // Provide an empty object as the initial value
+      }, {}); // Provide an empty object as the initial value
 
-    const mostCommonViolation = Object.keys(violationCounts).reduce((a, b) => violationCounts[a] > violationCounts[b] ? a : b, '');
+      const mostCommonViolation = Object.keys(violationCounts).reduce((a, b) => violationCounts[a] > violationCounts[b] ? a : b, '');
 
-    // Update summary section
-    $('#totalViolations').text(totalViolations);
-    $('#totalStudentsAffected').text(totalStudentsAffected);
-    $('#mostCommonViolation').text(mostCommonViolation);
-}
+      // Update summary section
+      $('#totalViolations').text(totalViolations);
+      $('#totalStudentsAffected').text(totalStudentsAffected);
+      $('#mostCommonViolation').text(mostCommonViolation);
+    }
 
-// Function to get the current month and year
-function getCurrentMonthYear() {
-    const currentDate = new Date();
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth() + 1; // JavaScript months are 0-indexed
+    // Function to get the current month and year
+    function getCurrentMonthYear() {
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth() + 1; // JavaScript months are 0-indexed
 
-    return { year, month };
-}
+      return { year, month };
+    }
 
-// Example: Fetch and display reports for the current month
-const currentMonthYear = getCurrentMonthYear();
-fetchMonthlyReports(currentMonthYear.year, currentMonthYear.month);
+    // Example: Fetch and display reports for the current month
+    const currentMonthYear = getCurrentMonthYear();
+    fetchMonthlyReports(currentMonthYear.year, currentMonthYear.month);
 
-function formatDate(date) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    return new Date(date).toLocaleDateString('en-US', options);
-}
+    function formatDate(date) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(date).toLocaleDateString('en-US', options);
+    }
 
-// Update the Report Date span with the current date
-$('#reportDate').text(formatDate(new Date()));
-</script>
+    // Update the Report Date span with the current date
+    $('#reportDate').text(formatDate(new Date()));
+  </script>
 </body>
+
 </html>
 <script src="~/js/logout.js"></script>

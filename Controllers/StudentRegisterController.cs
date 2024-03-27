@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using SIMSApp.Models;
 
 namespace SIMSApp.Controllers
@@ -19,39 +20,42 @@ namespace SIMSApp.Controllers
             _context = context;
         }
 
-    [HttpPost]
-    public async Task<IActionResult> AddStudent(Student studinfo)
-    {
-        // Check if StudentIdNum already exists
-        var existingStudentIdNum = _context.Students.FirstOrDefault(s => s.StudentIdNum == studinfo.StudentIdNum);
-        if (existingStudentIdNum != null)
+        [HttpPost]
+        public async Task<IActionResult> AddStudent(Student studinfo)
         {
-            return Conflict(new { Message = "StudentIdNum already exists" });
+            try
+            {
+                var existingStudentIdNum = _context.Students.FirstOrDefault(s => s.StudentIdNum == studinfo.StudentIdNum);
+                if (existingStudentIdNum != null)
+                {
+                    return Conflict(new { Message = "StudentIdNum already exists" });
+                }
+
+                var existingStudent = _context.Students.FirstOrDefault(s =>
+                    s.Firstname == studinfo.Firstname &&
+                    s.Middlename == studinfo.Middlename &&
+                    s.Lastname == studinfo.Lastname);
+
+                if (existingStudent != null)
+                {
+                    return Conflict(new { Message = "Student already exists" });
+                }
+
+                // Generate a random password
+                studinfo.Password = GenerateRandomPassword();
+
+                _context.Students.Add(studinfo);
+                await _context.SaveChangesAsync();
+
+                return Ok(studinfo);
+            }
+
+
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while updating the student.");
+            }
         }
-
-        // Check if the combination of Firstname, Middlename, and Lastname already exists
-        var existingStudent = _context.Students.FirstOrDefault(s =>
-            s.Firstname == studinfo.Firstname &&
-            s.Middlename == studinfo.Middlename &&
-            s.Lastname == studinfo.Lastname);
-
-        if (existingStudent != null)
-        {
-            return Conflict(new { Message = "Student already exists" });
-        }
-        else
-        {
-            // Generate a random password
-            studinfo.Password = GenerateRandomPassword();
-
-            // Save the student with the generated password
-            _context.Students.Add(studinfo);
-            await _context.SaveChangesAsync();
-
-            // Return the student object with the generated password
-            return Ok(studinfo);
-        }
-    }
 
         private string GenerateRandomPassword()
         {
@@ -78,12 +82,11 @@ namespace SIMSApp.Controllers
         [HttpGet("getstudentdetails")]
         public async Task<ActionResult<Student>> GetStudentDetails(int studentId)
         {
-            // Ensure studentId is used in your logic
             var student = await _context.Students.FirstOrDefaultAsync(s => s.StudentId == studentId);
 
             if (student == null)
             {
-                return NotFound(); // Return a 404 if the student is not found
+                return NotFound();
             }
 
             return Ok(student);
@@ -103,7 +106,6 @@ namespace SIMSApp.Controllers
         [HttpGet("getstudentdata")]
         public async Task<ActionResult<IEnumerable<object>>> GetStudentData()
         {
-            // Projecting only the required fields
             var result = await _context.Students
                 .Select(s => new
                 {
@@ -127,43 +129,43 @@ namespace SIMSApp.Controllers
         {
             try
             {
-                var existingStudent = await _context.Students.FindAsync(id);
+                // Check if there's another student with the same ID number
+                var existingStudentIdNum = await _context.Students.FirstOrDefaultAsync(s => s.StudentIdNum == updatedStudent.StudentIdNum && s.StudentId != id);
+                if (existingStudentIdNum != null)
+                {
+                    return Conflict(new { Message = "StudentIdNum already exists" });
+                }
 
+                // Check if there's another student with the same name
+                var existingStudentDuplicate = await _context.Students.FirstOrDefaultAsync(s =>
+                    s.Firstname == updatedStudent.Firstname &&
+                    s.Middlename == updatedStudent.Middlename &&
+                    s.Lastname == updatedStudent.Lastname &&
+                    s.StudentId != id);
+
+                if (existingStudentDuplicate != null)
+                {
+                    return Conflict(new { Message = "Student already exists" });
+                }
+
+                // Find the existing student to update
+                var existingStudent = await _context.Students.FindAsync(id);
                 if (existingStudent == null)
                 {
                     return NotFound($"Student with ID {id} not found.");
                 }
 
-                // Update properties based on the provided data
-                existingStudent.StudentIdNum = updatedStudent.StudentIdNum;
-                existingStudent.Firstname = updatedStudent.Firstname;
-                existingStudent.Middlename = updatedStudent.Middlename;
-                existingStudent.Lastname = updatedStudent.Lastname;
-                existingStudent.Birthdate = updatedStudent.Birthdate;
-                existingStudent.Age = updatedStudent.Age;
-                existingStudent.Gender = updatedStudent.Gender;
-                existingStudent.Phone = updatedStudent.Phone;
-                existingStudent.Email = updatedStudent.Email;
-                existingStudent.Province = updatedStudent.Province;
-                existingStudent.City = updatedStudent.City;
-                existingStudent.Barangay = updatedStudent.Barangay;
-                existingStudent.Street = updatedStudent.Street;
-                existingStudent.Zip = updatedStudent.Zip;
-                existingStudent.AcademicYear = updatedStudent.AcademicYear;
-                existingStudent.Department = updatedStudent.Department;
-                existingStudent.Course = updatedStudent.Course;
-                existingStudent.YearLevel = updatedStudent.YearLevel;
-                existingStudent.ParentName = updatedStudent.ParentName;
-                existingStudent.ParentHome = updatedStudent.ParentHome;
-                existingStudent.ParentContact = updatedStudent.ParentContact;
-                existingStudent.ParentEmail = updatedStudent.ParentEmail;
+                // Update the existing student
+                _context.Entry(existingStudent).CurrentValues.SetValues(updatedStudent);
                 await _context.SaveChangesAsync();
 
                 return Ok(new { success = true, message = "Student updated successfully" });
             }
             catch (Exception ex)
             {
-                return BadRequest($"Error updating student data: {ex.Message}");
+                // Log the exception
+                // _logger.LogError($"Error updating student data: {ex}");
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while updating the student.");
             }
         }
 
@@ -197,12 +199,11 @@ namespace SIMSApp.Controllers
 
                 return Ok(new { message = "Student deleted successfully" });
             }
-            catch 
+            catch
             {
-                // Log the exception or handle it accordingly
                 return StatusCode(500, new { error = "An error occurred while deleting the student" });
             }
         }
-      
+
     }
 }

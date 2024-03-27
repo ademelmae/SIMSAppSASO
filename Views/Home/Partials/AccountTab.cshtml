@@ -1,192 +1,195 @@
 <!DOCTYPE html>
+
 <head>
   <title>Login</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 
-<div class="container"  style="padding-top: 50px;">
-    <div class="row justify-content-center">    
+  <div class="container" style="padding-top: 50px;">
+    <div class="row justify-content-center">
       <div class="col-md-6">
-  <h2>SASO Information Management System</h2>
-  
-  <ul class="nav nav-pills">
-    <li class="active"><a data-toggle="pill" href="#login">Log in</a></li>
-    <li><a data-toggle="pill" href="#register">Register</a></li>
-  </ul>
-  
-  <div class="tab-content">
-    <div id="login" class="tab-pane fade in active">
-      <form id ="loginForm">
-      <!-- Email input -->
-      <div class="form-outline mb-4" style="padding-top: 20px;">
-          <label class="form-label" for="loginName">Email or username</label>
-        <input type="text" id="loginUsername" class="form-control" />
-      </div>
+        <h2>SASO Information Management System</h2>
 
-      <!-- Password input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="loginPassword">Password</label>
-        <input type="password" id="loginPassword" class="form-control"/>
-      </div>
+        <ul class="nav nav-pills">
+          <li class="active"><a data-toggle="pill" href="#login">Log in</a></li>
+          <li><a data-toggle="pill" href="#register">Register</a></li>
+        </ul>
 
-      <!-- 2 column grid layout -->
-      <div class="row mb-4">
-        <div class="col-md-6 d-flex justify-content-center">
-          <!-- Checkbox -->
-          <div class="form-check mb-3 mb-md-0">
-            <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
-            <label class="form-check-label" for="loginCheck"> Remember me </label>
+        <div class="tab-content">
+          <div id="login" class="tab-pane fade in active">
+            <form id="loginForm">
+              <!-- Email input -->
+              <div class="form-outline mb-4" style="padding-top: 20px;">
+                <label class="form-label" for="loginName">Email or username</label>
+                <input type="text" id="loginUsername" class="form-control" />
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="loginPassword">Password</label>
+                <input type="password" id="loginPassword" class="form-control" />
+              </div>
+
+              <!-- 2 column grid layout -->
+              <div class="row mb-4">
+                <div class="col-md-6 d-flex justify-content-center">
+                  <!-- Checkbox -->
+                  <div class="form-check mb-3 mb-md-0">
+                    <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked />
+                    <label class="form-check-label" for="loginCheck"> Remember me </label>
+                  </div>
+                </div>
+
+                <div class="col-md-6 d-flex justify-content-center">
+                  <!-- Simple link -->
+                  <a href="#!">Forgot password?</a>
+                </div>
+              </div>
+
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+              <!-- Register buttons -->
+              <div class="text-center">
+                <p>Not a member? <a href="#!">Register</a></p>
+              </div>
+            </form>
+          </div>
+          @* REGISTER FORM *@
+          <div id="register" class="tab-pane fade">
+            <form>
+              <!-- Name input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="registerName">Name</label>
+                <input type="text" id="registerName" class="form-control" />
+              </div>
+
+              <!-- Username input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="registerUsername">Username</label>
+                <input type="text" id="registerUsername" class="form-control" />
+              </div>
+
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="registerEmail">Email</label>
+                <input type="email" id="registerEmail" class="form-control" />
+
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="registerPassword">Password</label>
+                <input type="password" id="registerPassword" class="form-control" />
+              </div>
+
+              <!-- Repeat Password input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+                <input type="password" id="registerRepeatPassword" class="form-control" />
+              </div>
+
+              <!-- Checkbox -->
+              <div class="form-check d-flex justify-content-center mb-4">
+                <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
+                  aria-describedby="registerCheckHelpText" />
+                <label class="form-check-label" for="registerCheck">
+                  I have read and agree to the terms
+                </label>
+              </div>
+
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
+            </form>
           </div>
         </div>
-
-        <div class="col-md-6 d-flex justify-content-center">
-          <!-- Simple link -->
-          <a href="#!">Forgot password?</a>
-        </div>
       </div>
-
-      <!-- Submit button -->
-      <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
-
-      <!-- Register buttons -->
-      <div class="text-center">
-        <p>Not a member? <a href="#!">Register</a></p>
-      </div>
-    </form>
     </div>
-    @* REGISTER FORM *@
-    <div id="register" class="tab-pane fade">
-       <form>
-      <!-- Name input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="registerName">Name</label>
-        <input type="text" id="registerName" class="form-control" />
-      </div>
-
-      <!-- Username input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="registerUsername">Username</label>
-        <input type="text" id="registerUsername" class="form-control" />
-      </div>
-
-      <!-- Email input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="registerEmail">Email</label>
-        <input type="email" id="registerEmail" class="form-control" />
-
-      </div>
-
-      <!-- Password input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="registerPassword">Password</label>
-        <input type="password" id="registerPassword" class="form-control" />
-      </div>
-
-      <!-- Repeat Password input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-        <input type="password" id="registerRepeatPassword" class="form-control" />
-      </div>
-
-      <!-- Checkbox -->
-      <div class="form-check d-flex justify-content-center mb-4">
-        <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-          aria-describedby="registerCheckHelpText" />
-        <label class="form-check-label" for="registerCheck">
-          I have read and agree to the terms
-        </label>
-      </div>
-
-      <!-- Submit button -->
-      <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
-    </form>
-    </div>
-    </div>
-  </div>
-</div>
 
 </body>
+
 </html>
 
 
 <style>
-*{
-  background-color: #14141f;
-  color: white;
-}
+  * {
+    background-color: #14141f;
+    color: white;
+  }
 
-form {
-  max-width: 900px;
-  margin: 10px auto;
-  padding: 10px 10px;
-  background: #14141f;
-  border-radius: 8px;
-}
+  form {
+    max-width: 900px;
+    margin: 10px auto;
+    padding: 10px 10px;
+    background: #14141f;
+    border-radius: 8px;
+  }
 
-h1 {
-  text-align: center;
-}
+  h1 {
+    text-align: center;
+  }
 
-input[type="text"],
-input[type="password"],
-input[type="date"],
-input[type="datetime"],
-input[type="email"],
-input[type="number"],
-input[type="search"],
-input[type="tel"],
-input[type="time"],
-input[type="url"],
-textarea,
-select {
-  background: rgba(255,255,255,0.1);
-  border: none;
-  font-size: 16px;
-  height: auto;
-  margin: 0;
-  outline: 0;
-  padding: 15px;
-  width: 100%;
-  color: #8a97a0;
-  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
-  margin-bottom: 30px;
-}
+  input[type="text"],
+  input[type="password"],
+  input[type="date"],
+  input[type="datetime"],
+  input[type="email"],
+  input[type="number"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="time"],
+  input[type="url"],
+  textarea,
+  select {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    font-size: 16px;
+    height: auto;
+    margin: 0;
+    outline: 0;
+    padding: 15px;
+    width: 100%;
+    color: #8a97a0;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+    margin-bottom: 30px;
+  }
 
-button {
-  padding: 19px 39px 18px 39px;
-  color: #FFF;
-  background-color: #4bc970;
-  font-size: 18px;
-  text-align: center;
-  font-style: normal;
-  border-radius: 5px;
-  width: 100%;
-  border: 1px solid #3ac162;
-  border-width: 1px 1px 3px;
-  box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
-  margin-bottom: 10px;
-}
+  button {
+    padding: 19px 39px 18px 39px;
+    color: #FFF;
+    background-color: #4bc970;
+    font-size: 18px;
+    text-align: center;
+    font-style: normal;
+    border-radius: 5px;
+    width: 100%;
+    border: 1px solid #3ac162;
+    border-width: 1px 1px 3px;
+    box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+    margin-bottom: 10px;
+  }
 
-fieldset {
-  margin-bottom: 30px;
-  border: none;
-}
+  fieldset {
+    margin-bottom: 30px;
+    border: none;
+  }
 
-legend {
-  font-size: 1.4em;
-  margin-bottom: 10px;
-}
+  legend {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+  }
 
-input.form-control:focus {
-  background-color: #1b1b27;
-  color: white; 
-  outline: none; 
-}
+  input.form-control:focus {
+    background-color: #1b1b27;
+    color: white;
+    outline: none;
+  }
 
-input.form-control{
-  color:rgb(218, 209, 209);
-}
+  input.form-control {
+    color: rgb(218, 209, 209);
+  }
 </style>

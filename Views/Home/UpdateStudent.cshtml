@@ -1,210 +1,257 @@
 <link rel="stylesheet" href="/css/sidebar.css">
 <link rel="stylesheet" href="/css/formdesign.css">
-<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,500;1,400&family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
-  <div class="container">
-    <div class="header--wrapper">
-         <div class="header--title">
-                    <span style="color: white;font-weight: bold; font-size: 20px">SASO-<span style="color: rgb(255, 255, 255)55, 255, 255);">IMS</span></span>
-                      <h2 style="color:white;">Student Registration Form</h2>
-                </div>
-                <div class="user--info">
-                
-                    <img src="/lib/guidancelogo.png" alt="">
-                </div>
+<link
+  href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,500;1,400&family=Montserrat:wght@400;500&display=swap"
+  rel="stylesheet">
+<div class="container">
+  <div class="header--wrapper">
+    <div class="header--title">
+      <span style="color: white;font-weight: bold; font-size: 20px">SASO-<span
+          style="color: rgb(255, 255, 255)55, 255, 255);">IMS</span></span>
+      <h2 style="color:white;">Student Registration Form</h2>
     </div>
-    <div class="form-container" style="background">
-      <form id="updateStudentForm" class="formstudent">
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-category">Student Information</div>
-            <div class="form-group">
-              <label for="studentidnum" class="form-label">Student ID Number:</label>
-              <input type="number" class="form-control" id="updateStudentIdNum" required>
-            </div>
-            <div class="form-group">
-              <label for="firstname" class="form-label">First Name:</label>
-              <input type="text" class="form-control" id="updateFirstname" required>
-            </div>
-            <div class="form-group">
-              <label for="middlename" class="form-label">Middle Name:</label>
-              <input type="text" class="form-control" id="updateMiddlename" required>
-            </div>
-            <div class="form-group">
-              <label for="lastname" class="form-label">Last Name:</label>
-              <input type="text" class="form-control" id="updateLastname" required>
-            </div>
+    <div class="user--info">
+
+      <img src="/lib/guidancelogo.png" alt="">
+    </div>
+  </div>
+  <div class="form-container" style="background">
+    <form id="updateStudentForm" class="formstudent">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-category">Student Information</div>
+          <div class="form-group">
+            <label for="studentidnum" class="form-label">Student ID Number:</label>
+            <input type="number" class="form-control" id="updateStudentIdNum" required>
           </div>
-          <div style="margin-top:70px;" class="col-md-6">
-            <div class="form-group">
-              <label for="dob" class="form-label">Date of Birth:</label>
-              <input type="date" class="form-control" id="updateBirthdate">
-            </div>
-            <div class="form-group">
-              <label for="age" class="form-label">Age:</label>
-              <input type="text" class="form-control" id="updateAge" readonly>
-            </div>
-            <div class="form-group">
-              <label for="gender" class="form-label">Gender:</label>
-              <select class="form-control" id="updateGender" required>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-            </div>
+          <div class="form-group">
+            <label for="firstname" class="form-label">First Name:</label>
+            <input type="text" class="form-control" id="updateFirstname" required>
           </div>
+          <div class="form-group">
+            <label for="middlename" class="form-label">Middle Name:</label>
+            <input type="text" class="form-control" id="updateMiddlename" required>
+          </div>
+          <div class="form-group">
+            <label for="lastname" class="form-label">Last Name:</label>
+            <input type="text" class="form-control" id="updateLastname" required>
+          </div>
+        </div>
+        <div style="margin-top:70px;" class="col-md-6">
+          <div class="form-group">
+            <label for="dob" class="form-label">Date of Birth:</label>
+            <input type="date" class="form-control" id="updateBirthdate">
+          </div>
+          <div class="form-group">
+            <label for="age" class="form-label">Age:</label>
+            <input type="text" class="form-control" id="updateAge" readonly>
+          </div>
+          <div class="form-group">
+            <label for="gender" class="form-label">Gender:</label>
+            <select class="form-control" id="updateGender" required>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+        </div>
         <div class="col-md-6">
           <div class="form-category">Contact Information</div>
           <div class="form-group">
-              <label for="phone" class="form-label">Phone Number:</label>
-              <input type="text" class="form-control" id="updatePhone" pattern="^\d{11}$" maxlength="11" required>
-              <span id="phoneError" style="display: flex; color: rgb(255, 39, 39);" class="error-message"></span>
+            <label for="phone" class="form-label">Phone Number:</label>
+            <input type="text" class="form-control" id="updatePhone" pattern="^\d{11}$" maxlength="11" required>
+            <span id="phoneError" style="display: flex; color: rgb(255, 39, 39);" class="error-message"></span>
           </div>
         </div>
         <div style="margin-top: 70px;" class="col-md-6">
-            <div class="form-group">
-                <label for="emailadd" class="form-label">Email Address:</label>
-                <input type="email" class="form-control" id="updateEmail" title="Enter a valid email address" required>
-                <span id="emailError"  style="display: flex;color:red;"class="error-message"></span>
-            </div>
+          <div class="form-group">
+            <label for="emailadd" class="form-label">Email Address:</label>
+            <input type="email" class="form-control" id="updateEmail" title="Enter a valid email address" required>
+            <span id="emailError" style="display: flex;color:red;" class="error-message"></span>
+          </div>
         </div>
 
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-category">Address Information</div>
+          <div class="form-group">
+            <label for="province">Province</label>
+            <input type="text" class="form-control" id="province" required>
+          </div>
+          <div class="form-group">
+            <label for="city">City</label>
+            <select class="form-control" id="updateCity">
+              <option value="Cebu City">Cebu City</option>
+
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="barangay">Barangay</label>
+            <select class="form-control" id="updateBarangay">
+              <option value="barangay1">Barangay 1</option>
+              <option value="barangay2">Barangay 2</option>
+              <option value="barangay3">Barangay 3</option>
+              <!-- Add more barangay options as needed -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="streetAddress">Street Address</label>
+            <input type="text" class="form-control" id="updateStreet" placeholder="Enter street address">
+          </div>
+
+          <div class="form-group">
+            <label for "zipCode">Zip Code</label>
+            <input type="text" class="form-control" id="updateZip" placeholder="Enter zip code">
+          </div>
         </div>
 
-        <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-category">Address Information</div>
-                        <div class="form-group">
-                                <label for="province">Province</label>
-                                <select class="form-control" id="updateProvince">
-                                  <option value="Cebu">Cebu</option>
-                                  <option value="Bohol">Bohol</option>
-                                  <option value="Negros Oriental">Negros Oriental</option>
-                                </select>
-                      </div>
-                          <div class="form-group">
-                                    <label for="city">City</label>
-                                    <select class="form-control" id="updateCity">
-                                    <option value="Cebu City">Cebu City</option>
-                                
-                                  </select>
-                          </div>
-                     
-                                <div class="form-group">
-                                    <label for="barangay">Barangay</label>
-                                    <select class="form-control" id="updateBarangay">
-                                    <option value="barangay1">Barangay 1</option>
-                                    <option value="barangay2">Barangay 2</option>
-                                    <option value="barangay3">Barangay 3</option>
-                                    <!-- Add more barangay options as needed -->
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="streetAddress">Street Address</label>
-                                    <input type="text" class="form-control" id="updateStreet" placeholder="Enter street address">
-                                </div>
-
-                                 <div class="form-group">
-                                <label for "zipCode">Zip Code</label>
-                                <input type="text" class="form-control" id="updateZip" placeholder="Enter zip code">
-                            </div>
-                        </div>
-                            
-                    <div class="col-md-6">
-                        <div class="form-category">Academic Information</div>
-                        <div class="form-group">
-                            <label for="academicYear" class="form-label">Academic Year:</label>
-                            <input type="text" class="form-control" id="updateAcademicYear" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="departmentSelect" class="form-label">Select Department:</label>
-                            <select class="form-control" id="updateDepartment">
-                                <option value="College of Teacher Education">College of Teacher Education</option>
-                                <option value="Criminal Justice Education">Criminal Justice Education</option>
-                                <option value="College of Commerce">College of Commerce</option>
-                                <option value="College of Computer Studies">College of Computer Studies</option>
-                                <option value="Psychology Program">Psychology Program</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="courseSelect" class="form-label">Select Course:</label>
-                            <select class="form-control" id="updateCourse">
-                                <!-- Courses will be populated here -->
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="yearSelect" class="form-label">Select Year:</label>
-                            <select class="form-control" id="updateYearLevel">
-                                <option value="1st year">1st year</option>
-                                <option value="2nd year">2nd year</option>
-                                <option value="3rd year">3rd year</option>
-                                <option value="4th year">4th year</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-category">Parent Information</div>
-                        <div class="form-group">
-                            <label for="parentName" class="form-label">Name of Parent/Guardian:</label>
-                            <input type="text" class="form-control" id="updateParentName" required>
-                        </div>
-                         <div class="form-group">
-                            <label for="parentHome" class="form-label">Home Address of Parent/Guardian:</label>
-                            <input type="text" class="form-control" id="updateParentHome" required>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                      <div class="form-category"> Contact Information</div>
-                          <div class="form-group">
-                            <label for="parentContact" class="form-label">Phone Number of Parent/Guardian:</label>
-                            <input type="number" class="form-control" id="updateParentContact" pattern="^09\d{9}$" maxlength="11" required>
-                            <span id="phoneError" style="display: flex;color:red;"class="error-message"></span>
-                          </div>
-                        <div class="form-group">
-                            <label for="parentEmail" class="form-label">Email Address of Parent/Guardian:</label>
-                            <input type="email" class="form-control" id="updateParentEmail" required>
-                        </div>
-                    </div>
-                </div>
- 
-        <div style="margin-top: 100px; margin-left: 720px;"class="row">
-            <div class="col-md-1">
-              <button type="" id="backbtn" onclick="window.location.href='@Url.Action("studentlists", "Home")'"  style="" class="btn btn-success">Back</button>
-            </div>
-            <div style="margin-left: 140px;"class="col-md-1">
-              <button type="submit" id="submitbtn" class="btn btn-primary">Submit</button>
-            </div>
+        <div class="col-md-6">
+          <div class="form-category">Academic Information</div>
+          <div class="form-group">
+            <label for="academicYear" class="form-label">Academic Year:</label>
+            <input type="text" class="form-control" id="updateAcademicYear" required>
+          </div>
+          <div class="form-group">
+            <label for="departmentSelect" class="form-label">Select Department:</label>
+            <select class="form-control" id="updateDepartment">
+              <option value="College of Teacher Education">College of Teacher Education</option>
+              <option value="Criminal Justice Education">Criminal Justice Education</option>
+              <option value="College of Commerce">College of Commerce</option>
+              <option value="College of Computer Studies">College of Computer Studies</option>
+              <option value="Psychology Program">Psychology Program</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="courseSelect" class="form-label">Select Course:</label>
+            <select class="form-control" id="updateCourse">
+              <!-- Courses will be populated here -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="yearSelect" class="form-label">Select Year:</label>
+            <select class="form-control" id="updateYearLevel">
+              <option value="1st year">1st year</option>
+              <option value="2nd year">2nd year</option>
+              <option value="3rd year">3rd year</option>
+              <option value="4th year">4th year</option>
+            </select>
+          </div>
         </div>
-      </form>
-    </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-category">Parent Information</div>
+          <div class="form-group">
+            <label for="parentName" class="form-label">Name of Parent/Guardian:</label>
+            <input type="text" class="form-control" id="updateParentName" required>
+          </div>
+          <div class="form-group">
+            <label for="parentHome" class="form-label">Home Address of Parent/Guardian:</label>
+            <input type="text" class="form-control" id="updateParentHome" required>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-category"> Contact Information</div>
+          <div class="form-group">
+            <label for="parentContact" class="form-label">Phone Number of Parent/Guardian:</label>
+            <input type="number" class="form-control" id="updateParentContact" pattern="^09\d{9}$" maxlength="11"
+              required>
+            <span id="phoneError" style="display: flex;color:red;" class="error-message"></span>
+          </div>
+          <div class="form-group">
+            <label for="parentEmail" class="form-label">Email Address of Parent/Guardian:</label>
+            <input type="email" class="form-control" id="updateParentEmail" required>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 100px; margin-left: 720px;" class="row">
+        <div class="col-md-1">
+          <button type="" id="backbtn" onclick="window.location.href='@Url.Action("studentlists", "Home")'" style=""
+            class="btn btn-success">Back</button>
+        </div>
+        <div style="margin-left: 140px;" class="col-md-1">
+          <button type="submit" id="submitbtn" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </form>
   </div>
+</div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf8"
+  src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 
 <script src="~/js/updatestudent.js"></script>
 <script>
-    document.getElementById('updatePhone').addEventListener('input', function () {
-        validatePhoneNumber('phone');
-    });
+  function calculateAge() {
+    const dobInput = document.getElementById("updateBirthdate");
+    const ageInput = document.getElementById("updateAge");
 
-    document.getElementById('updateParentContact').addEventListener('input', function () {
-        validatePhoneNumber('parentContact');
-    });
+    // Get the selected date from the input field
+    const selectedDate = new Date(dobInput.value);
 
-    function validatePhoneNumber(inputId) {
-        var phoneNumberInput = document.getElementById(inputId);
-        var phoneError = document.getElementById(inputId + 'Error');
-        var phoneNumberPattern = /^09\d{9}$/;
+    // Calculate the current date
+    const currentDate = new Date();
 
-        if (!phoneNumberPattern.test(phoneNumberInput.value)) {
-            phoneError.textContent = 'Invalid phone number. Please use the format 09XXXXXXXXX.';
-            phoneNumberInput.setCustomValidity('Invalid phone number');
-        } else {
-            phoneError.textContent = '';
-            phoneNumberInput.setCustomValidity('');
-        }
+    // Calculate the difference in years
+    let age = currentDate.getFullYear() - selectedDate.getFullYear();
+
+    // Check if the birthdate has occurred this year or not
+    if (
+      currentDate.getMonth() < selectedDate.getMonth() ||
+      (currentDate.getMonth() === selectedDate.getMonth() &&
+        currentDate.getDate() < selectedDate.getDate())
+    ) {
+      age--;
     }
-</script>
 
- 
+    // Update the age input field
+    ageInput.value = age;
+  }
+
+  // Add an event listener to the date input field
+  const dobInput = document.getElementById("updateBirthdate");
+  dobInput.addEventListener("input", calculateAge);
+
+
+  // Calculate the age on page load (if date of birth is already set)
+  calculateAge();
+
+  //DEFINE COURSES FOR EACH DEPARTMENT
+  const courses = {
+    "College of Teacher Education": ["Bachelor of Elementary Education", "Bachelor of Secondary Education major in English", "Bachelor of Secondary Education major in Mathematics",
+      "Bachelor of Secondary Education major in Science", "Bachelor of Secondary Education major in Social Studies"],
+    "Criminal Justice Education": ["Bachelor of Science in Criminology"],
+    "College of Commerce": ["Bachelor of Science in Accountancy", "Bachelor of Science in Accounting Technology", "Bachelor of Science in Business Administration Major in Financial Management",
+      "Bachelor of Science in Business Management", "Bachelor of Science in Hospitality Management", "Bachelor of Science in Hospitality Management Major in Food and Beverage",
+      "Bachelor of Science in Tourism Management"],
+    "College of Computer Studies": ["Bachelor of Science in Information Technology"],
+    "Psychology Program": ["Bachelor of Science in Psychology"]
+  };
+
+  function populateCourses() {
+    const departmentSelect = document.getElementById("updateDepartment");
+    const courseSelect = document.getElementById("updateCourse");
+    const selectedDepartment = departmentSelect.value;
+
+    // Clear the current options in the courses select box
+    courseSelect.innerHTML = "";
+
+    // Populate the courses select box with options based on the selected department
+    courses[selectedDepartment].forEach(course => {
+      const option = document.createElement("option");
+      option.value = course;
+      option.text = course;
+      courseSelect.appendChild(option);
+    });
+  }
+
+  // Add an event listener to the department select box to update the courses select box when the department changes
+  document.getElementById("updateDepartment").addEventListener("change", populateCourses);
+
+  // Initial population of the courses select box
+  populateCourses();
+</script>

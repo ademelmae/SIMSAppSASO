@@ -42,7 +42,8 @@ public class UserRegisterController : ControllerBase
                     Lastname = request.Lastname,
                     Username = request.Username,
                     Email = request.Email,
-                    Password = hashedPassword
+                    Password = hashedPassword,
+                    Role = request.Role
                 };
 
                 _context.Useraccounts.Add(newUser);

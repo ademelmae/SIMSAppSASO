@@ -3,6 +3,14 @@ $(document).ready(function() {
     if(sessionStorage.getItem("Logged") === "false" || sessionStorage.getItem("Logged")===undefined || sessionStorage.getItem("Logged")===null){
         window.location.href ="https://localhost:7203/"
     }
+
+  
+
+    // // Redirect to register student page
+    // document.getElementById("registerButton").addEventListener("click", function () {
+    //     window.location.href = "https://localhost:7203/home/registerstudent";
+    // });
+   
     $.ajax({
         url: '/api/count/studentCount',
         method: 'GET',

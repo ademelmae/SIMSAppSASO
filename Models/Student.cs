@@ -10,16 +10,16 @@ namespace SIMSApp.Models
         public string Middlename { get; set; }
         public string Lastname { get; set; }
         public string Birthdate { get; set; }
-        public int Age { get; set; }
+        public int? Age { get; set; }
         public string Gender { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public string? Password { get; set; }
+        public string Password { get; set; }
         public string Province { get; set; }
         public string City { get; set; }
         public string Barangay { get; set; }
         public string Street { get; set; }
-        public int Zip { get; set; }
+        public int? Zip { get; set; }
         public string StudentIdNum { get; set; }
         public string Department { get; set; }
         public string Course { get; set; }

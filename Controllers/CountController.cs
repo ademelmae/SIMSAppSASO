@@ -13,31 +13,31 @@ namespace SIMSApp.Controllers
     {
         private readonly simsdbContext _context;
 
-    public CountController(simsdbContext context)
-    {
-        _context = context;
-    }
+        public CountController(simsdbContext context)
+        {
+            _context = context;
+        }
 
-    [HttpGet("studentCount")]
-    public IActionResult GetStudentCount()
-    {
-        int studentCount = _context.Students.Count();
-        return Ok(studentCount);
-    }
+        [HttpGet("studentCount")]
+        public IActionResult GetStudentCount()
+        {
+            int studentCount = _context.Students.Count();
+            return Ok(studentCount);
+        }
 
-    [HttpGet("violationCount")]
-    public IActionResult GetPendingViolationCount()
-    {
-        int pendingViolationCount = _context.Studentviolations.Count(v => v.Status == "pending");
-        return Ok(pendingViolationCount);
-    }
+        [HttpGet("violationCount")]
+        public IActionResult GetPendingViolationCount()
+        {
+            int pendingViolationCount = _context.Studentviolations.Count(v => v.Status == "pending");
+            return Ok(pendingViolationCount);
+        }
 
-    [HttpGet("approvedCount")]
-    public IActionResult GetApprovedViolationCount()
-    {
-        int approvedViolationCount = _context.Studentviolations.Count(v => v.Status == "approved");
-        return Ok(approvedViolationCount);
-    }
+        [HttpGet("approvedCount")]
+        public IActionResult GetApprovedViolationCount()
+        {
+            int approvedViolationCount = _context.Studentviolations.Count(v => v.Status == "approved");
+            return Ok(approvedViolationCount);
+        }
 
     }
 }

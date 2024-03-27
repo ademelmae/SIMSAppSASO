@@ -8,6 +8,7 @@ $(document).ready(function() {
         var email = $("#registerEmail").val();
         var password = $("#registerPassword").val();
         var confirmPassword = $("#confirmPassword").val();
+        var role = $("#registerRole").val();
         var missingFields = [];
         var invalidFields = [];
 
@@ -55,7 +56,8 @@ $(document).ready(function() {
                     Lastname: lastname,
                     Username: username,
                     Email: email,
-                    Password: password
+                    Password: password,
+                    Role: role
                 }),
                 contentType: 'application/json',
                 success: function(response) {

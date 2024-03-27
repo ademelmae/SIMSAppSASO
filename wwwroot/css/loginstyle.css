@@ -19,9 +19,10 @@ input {
   overflow: hidden;
   margin-top: 0;
 }
-.logo{
-    height: 200px;
-    width: 200px;
+
+.logo {
+  height: 200px;
+  width: 200px;
 }
 
 .forms-container {
@@ -81,7 +82,7 @@ form.sign-in-form {
   height: 55px;
   border-radius: 55px;
   display: flex;
-  align-items: center; 
+  align-items: center;
   padding: 0 1rem;
 }
 
@@ -91,7 +92,8 @@ form.sign-in-form {
   color: #acacac;
   transition: 0.5s;
   font-size: 1.1rem;
-  flex: 0 0 15%; /* Set a fixed width for the icon container */
+  flex: 0 0 15%;
+  /* Set a fixed width for the icon container */
 }
 
 .input-field input {
@@ -103,7 +105,8 @@ form.sign-in-form {
   font-weight: 600;
   font-size: 1.1rem;
   color: #333;
-  flex: 1; /* Allow input to expand and fill remaining space */
+  flex: 1;
+  /* Allow input to expand and fill remaining space */
 }
 
 .input-field input::placeholder {
@@ -130,6 +133,7 @@ form.sign-in-form {
   background-color: #4d84e2;
   /* color:yellow; */
 }
+
 .panels-container {
   position: absolute;
   height: 100%;
@@ -149,8 +153,8 @@ form.sign-in-form {
   top: -10%;
   right: 48%;
   transform: translateY(-50%);
- 
-  background: radial-gradient(circle at 6.4% 9.8%, rgb(88, 242, 174) 0%, rgb(0, 130, 240) 97.9%); 
+
+  background: radial-gradient(circle at 6.4% 9.8%, rgb(88, 242, 174) 0%, rgb(0, 130, 240) 97.9%);
   transition: 1.8s ease-in-out;
   border-radius: 50%;
   z-index: 6;
@@ -259,6 +263,7 @@ form.sign-in-form {
     min-height: 800px;
     height: 100vh;
   }
+
   .signin-signup {
     width: 100%;
     top: 95%;
@@ -365,9 +370,11 @@ form.sign-in-form {
   .image {
     display: none;
   }
+
   .panel .content {
     padding: 0.5rem 1rem;
   }
+
   .container {
     padding: 1.5rem;
   }
@@ -385,17 +392,20 @@ form.sign-in-form {
 
 @media (max-width: 1200px) {
   .container {
-      min-width: 100%;
+    min-width: 100%;
   }
+
   .signin-signup {
-      width: 100%;
-      left: 50%;
-      transform: translate(-50%, -100%);
+    width: 100%;
+    left: 50%;
+    transform: translate(-50%, -100%);
   }
+
   .panels-container {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 2fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
   }
+
   /* Add more responsive styles as needed */
 }
 
@@ -407,132 +417,140 @@ form.sign-in-form {
 @media (max-width: 570px) {
   /* Further adjustments for very small screens */
   /* Example: hide certain elements, reduce padding, etc. */
-}@media (max-width: 870px) {
+}
+
+@media (max-width: 870px) {
   .container {
-      min-height: 800px;
-      height: 100vh;
-      min-width: 100vw; /* Ensures full-width container */
+    min-height: 800px;
+    height: 100vh;
+    min-width: 100vw;
+    /* Ensures full-width container */
   }
 
   .signin-signup {
-      width: 100%;
-      top: 95%;
-      transform: translate(-50%, -100%);
-      transition: 0.5s 0.8s ease-in-out;
-      left: 50%;
+    width: 100%;
+    top: 95%;
+    transform: translate(-50%, -100%);
+    transition: 0.5s 0.8s ease-in-out;
+    left: 50%;
   }
 
-  .signin-signup, .container.sign-up-mode .signin-signup {
-      left: 50%;
+  .signin-signup,
+  .container.sign-up-mode .signin-signup {
+    left: 50%;
   }
 
   .panels-container {
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 2fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
   }
 
   .panel {
-      flex-direction: row;
-      justify-content: space-around;
-      align-items: center;
-      padding: 2.5rem 2%;
-      grid-column: 1 / 2;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2.5rem 2%;
+    grid-column: 1 / 2;
   }
 
   .right-panel {
-      grid-row: 3 / 4;
+    grid-row: 3 / 4;
   }
 
   .left-panel {
-      grid-row: 1 / 2;
+    grid-row: 1 / 2;
   }
 
   .image {
-      width: 200px;
-      transition: transform 0.9s ease-in-out;
-      transition-delay: 0.6s;
+    width: 200px;
+    transition: transform 0.9s ease-in-out;
+    transition-delay: 0.6s;
   }
 
   .panel .content {
-      padding-right: 15%;
-      transition: transform 0.9s ease-in-out;
-      transition-delay: 0.8s;
+    padding-right: 15%;
+    transition: transform 0.9s ease-in-out;
+    transition-delay: 0.8s;
   }
 
   .panel h3 {
-      font-size: 1.2rem;
+    font-size: 1.2rem;
   }
 
   .panel p {
-      font-size: 0.7rem;
-      padding: 0.5rem 0;
+    font-size: 0.7rem;
+    padding: 0.5rem 0;
   }
 
   .btn.transparent {
-      width: 110px;
-      height: 35px;
-      font-size: 0.7rem;
+    width: 110px;
+    height: 35px;
+    font-size: 0.7rem;
   }
+
   .container:before {
-      width: 1500px;
-      height: 1500px;
-      transform: translateX(-50%);
-      left: 30%;
-      bottom: 68%;
-      right: initial;
-      top: initial;
-      transition: 2s ease-in-out;
+    width: 1500px;
+    height: 1500px;
+    transform: translateX(-50%);
+    left: 30%;
+    bottom: 68%;
+    right: initial;
+    top: initial;
+    transition: 2s ease-in-out;
   }
 
   .container.sign-up-mode:before {
-      transform: translate(-50%, 100%);
-      bottom: 32%;
-      right: initial;
+    transform: translate(-50%, 100%);
+    bottom: 32%;
+    right: initial;
   }
 
-  .container.sign-up-mode .left-panel .image, .container.sign-up-mode .left-panel .content {
-      transform: translateY(-300px);
+  .container.sign-up-mode .left-panel .image,
+  .container.sign-up-mode .left-panel .content {
+    transform: translateY(-300px);
   }
 
-  .container.sign-up-mode .right-panel .image, .container.sign-up-mode .right-panel .content {
-      transform: translateY(0px);
+  .container.sign-up-mode .right-panel .image,
+  .container.sign-up-mode .right-panel .content {
+    transform: translateY(0px);
   }
 
-  .right-panel .image, .right-panel .content {
-      transform: translateY(300px);
+  .right-panel .image,
+  .right-panel .content {
+    transform: translateY(300px);
   }
 
   .container.sign-up-mode .signin-signup {
-      top: 5%;
-      transform: translate(-50%, 0);
+    top: 5%;
+    transform: translate(-50%, 0);
   }
 }
 
 /* Media query for screens with a maximum width of 570px */
 @media (max-width: 570px) {
   form {
-      padding: 0 1.5rem;
+    padding: 0 1.5rem;
   }
 
   .image {
-      display: none;
+    display: none;
   }
 
   .panel .content {
-      padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem;
   }
 
   .container {
-      padding: 1.5rem;
+    padding: 1.5rem;
   }
 
   .container:before {
-      bottom: 72%;
-      left: 50%;
+    bottom: 72%;
+    left: 50%;
   }
 
   .container.sign-up-mode:before {
-      bottom: 28%;
-      left: 50%;
+    bottom: 28%;
+    left: 50%;
   }
 }

@@ -18,7 +18,6 @@ namespace SIMSApp.Models
         public string OffenseType { get; set; }
         public string Location { get; set; }
         public string Description { get; set; }
-        public string Attachment { get; set; }
         public string ReportingName { get; set; }
         public string ReportingRole { get; set; }
         public string ReportingContact { get; set; }

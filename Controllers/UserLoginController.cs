@@ -23,7 +23,7 @@ public class UserLoginController : ControllerBase
         {
             // Find the user by their username or email
             var user = _context.Useraccounts.FirstOrDefault(u =>
-                (u.Username == request.Username || u.Email == request.Username)
+                (u.Username == request.Username || u.Email == request.Email || u.Role == request.Role)
             );
 
             if (user == null)
@@ -41,10 +41,9 @@ public class UserLoginController : ControllerBase
                 // Compare the hashed password from the request with the stored hashed password
                 if (user.Password == hashedPassword)
                 {
-                    // Passwords match, user is authenticated
-                    // You can generate a JWT token here and return it for authentication
-                    // For simplicity, I'm returning a success message
-                    return Ok("Login successful");
+                    
+                    // Return user role and ID
+                    return Ok(new { Role = user.Role, UserId = user.UserId });
                 }
                 else
                 {

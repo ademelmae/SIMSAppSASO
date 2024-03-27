@@ -2,33 +2,34 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SIMSApp.Models;
 
-namespace SIMSApp.Controllers{
-[ApiController]
-[Route("api/[controller]")]
-public class ViolationController : ControllerBase
+namespace SIMSApp.Controllers
 {
-    private readonly simsdbContext _context; // Replace 'YourDbContext' with your actual DbContext class.
-
-    public ViolationController(simsdbContext context)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class ViolationController : ControllerBase
     {
-        _context = context;
-    }
+        private readonly simsdbContext _context;
 
-    [HttpPost]
-    public IActionResult PostViolation([FromBody] Studentviolation studentViolation)
-    {
-        if (!ModelState.IsValid)
+        public ViolationController(simsdbContext context)
         {
-            return BadRequest(ModelState);
+            _context = context;
         }
 
-        _context.Studentviolations.Add(studentViolation);
-        _context.SaveChanges();
+        [HttpPost]
+        public IActionResult PostViolation([FromBody] Studentviolation studentViolation)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        return Ok();
-    }
+            _context.Studentviolations.Add(studentViolation);
+            _context.SaveChanges();
 
-     [HttpPut("updateviolation/{id}")]
+            return Ok();
+        }
+
+        [HttpPut("updateviolation/{id}")]
         public async Task<IActionResult> UpdateViolation(int id, [FromBody] Studentviolation updatedData)
         {
             if (!ModelState.IsValid)
@@ -45,7 +46,7 @@ public class ViolationController : ControllerBase
                     return NotFound();
                 }
 
-              
+
                 existingViolation.OffenseLevel = updatedData.OffenseLevel;
                 existingViolation.ViolationType = updatedData.ViolationType;
                 existingViolation.ViolationDate = updatedData.ViolationDate;
@@ -57,7 +58,7 @@ public class ViolationController : ControllerBase
                 existingViolation.ReportingRole = updatedData.ReportingRole;
                 existingViolation.ReportingContact = updatedData.ReportingContact;
                 existingViolation.Description = updatedData.Description;
-                
+
                 // Save changes to the database
                 await _context.SaveChangesAsync();
 
@@ -70,28 +71,28 @@ public class ViolationController : ControllerBase
             }
         }
 
-    [HttpGet("getViolations")]
-    public IActionResult GetViolations()
-    {
-        var violations = _context.Studentviolations.ToList();
-        return Ok(violations);
-    }
-
-[HttpGet("getViolations")]
-public IActionResult GetViolations(string studentIdNum)
-{
-    // Assuming 'ViolationType' is a property in your Studentviolation model
-    var violations = _context.Studentviolations
-        .Where(v => v.StudentIdNum == studentIdNum)
-        .Select(v => new
+        [HttpGet("getViolations")]
+        public IActionResult GetViolations()
         {
-            ViolationType = v.ViolationType,
-            Data = v
-        })
-        .ToList();
+            var violations = _context.Studentviolations.ToList();
+            return Ok(violations);
+        }
 
-    return Ok(violations);
-}
+        [HttpGet("getViolations")]
+        public IActionResult GetViolations(string studentIdNum)
+        {
+            // Assuming 'ViolationType' is a property in your Studentviolation model
+            var violations = _context.Studentviolations
+                .Where(v => v.StudentIdNum == studentIdNum)
+                .Select(v => new
+                {
+                    ViolationType = v.ViolationType,
+                    Data = v
+                })
+                .ToList();
+
+            return Ok(violations);
+        }
         [HttpGet("getViolationsTable")]
         public async Task<ActionResult<IEnumerable<object>>> GetViolationsTable()
         {
@@ -114,7 +115,7 @@ public IActionResult GetViolations(string studentIdNum)
         }
 
 
-     [HttpDelete("deleteViolation/{id}")]
+        [HttpDelete("deleteViolation/{id}")]
         public async Task<IActionResult> DeleteViolation(int id)
         {
             try
@@ -131,17 +132,17 @@ public IActionResult GetViolations(string studentIdNum)
 
                 return Ok(new { message = "Violation deleted successfully" });
             }
-            catch 
+            catch
             {
                 // Log the exception or handle it accordingly
                 return StatusCode(500, new { error = "An error occurred while deleting the violation" });
             }
         }
 
-         [HttpGet("{violationId}")]
+        [HttpGet("{violationId}")]
         public ActionResult<Studentviolation> GetViolation(int violationId)
         {
-            var violation = _context.Studentviolations.FirstOrDefault(v  => v.ViolationId == violationId);
+            var violation = _context.Studentviolations.FirstOrDefault(v => v.ViolationId == violationId);
 
             if (violation == null)
             {
@@ -152,43 +153,38 @@ public IActionResult GetViolations(string studentIdNum)
         }
 
         [HttpGet("GetMonthlyReports")]
-    public IActionResult GetMonthlyReports(int year, int month)
-    {
-        // Retrieve all records from the database
-        var allReports = _context.Studentviolations.ToList();
+        public IActionResult GetMonthlyReports(int year, int month)
+        {
+            // Retrieve all records from the database
+            var allReports = _context.Studentviolations.ToList();
 
-        // Filter records in-memory
-        var reports = allReports
-            .Where(report =>
-            {
-                DateTime date;
-                return DateTime.TryParse(report.ViolationDate, out date) &&
-                       date.Year == year &&
-                       date.Month == month;
-            })
-            .ToList();
+            // Filter records in-memory
+            var reports = allReports
+                .Where(report =>
+                {
+                    DateTime date;
+                    return DateTime.TryParse(report.ViolationDate, out date) &&
+                           date.Year == year &&
+                           date.Month == month;
+                })
+                .ToList();
 
-        return Ok(reports);
-    }
+            return Ok(reports);
+        }
 
 
         [HttpGet("getViolationDetails")]
         public async Task<ActionResult<Studentviolation>> getViolationDetails(int violationId)
         {
-            // Ensure studentId is used in your logic
             var violation = await _context.Studentviolations.FirstOrDefaultAsync(s => s.ViolationId == violationId);
 
             if (violation == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
 
             return Ok(violation);
         }
     }
-
-       
- 
-
 
 }

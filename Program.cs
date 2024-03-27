@@ -15,7 +15,7 @@ builder.WebHost.UseKestrel(options=>
 {
 
 });
-builder.WebHost.UseUrls("https://localhost:7203", "https://192.168.254.106:7203");
+builder.WebHost.UseUrls("https://localhost:443", "https://192.168.254.103:443");
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<simsdbContext>();
